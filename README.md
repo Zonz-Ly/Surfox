@@ -41,7 +41,7 @@ Firefox 版本 132.0 及更高
 ## **安装**
 
 ### **下载**
-点按右上方绿色的「<>Code▾」按钮，选择 Download ZIP。
+点按右上方绿色的「<>Code▾」按钮，选择「Download ZIP」。
 
 ### **Windows 下：**
 1. **config.js** → `安装目录/`
