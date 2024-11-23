@@ -1,0 +1,97 @@
+/*  Tested on Firefox 132.0  */
+
+/*  Delete this text to get the extensions button back.  */
+#unified-extensions-button {
+    display: none !important;
+}
+
+/*  Delete this text to get the menu button back. You can use the menu bar instead. If you want to open the settings, you can open the URL bar and find the button at the bottom right corner.  */
+#PanelUI-button {
+    display: none !important;
+}
+
+/*  Delete this text to get the star button back in the URL bar. You can also access the same function by right-clicking on the tab or the page.  */
+#star-button-box{
+    display: none !important;
+}
+
+/*  Delete this text to get Firefox default text color (especially it will appear darker in light mode). */
+:root {
+    --input-color: light-dark( rgba(0, 0, 0, .8), rgb(255, 255, 255) ) !important;
+    --toolbox-non-lwt-textcolor: var(--input-color) !important;
+    --lwt-text-color: var(--input-color) !important;
+    --button-text-color: var(--input-color) !important;
+    --urlbarView-highlight-color: var(--input-color) !important;
+    --arrowpanel-color: var(--input-color) !important;
+    --sidebar-text-color: var(--input-color) !important;
+    --tab-selected-textcolor: var(--input-color) !important;
+    --toolbar-color: var(--input-color) !important;
+    --toolbar-field-color: var(--input-color) !important;
+    --toolbar-field-focus-color: var(--input-color) !important;
+    --newtab-text-primary-color: var(--input-color) !important;
+    --newtab-contextual-text-primary-color: var(--input-color) !important;
+    --toolbar-non-lwt-textcolor: var(--input-color) !important;
+    --toolbox-non-lwt-textcolor-inactive: var(--input-color) !important;
+    @media (prefers-color-scheme: dark) {
+        --toolbar-color: rgb(255, 255, 255) !important;
+    }
+}
+
+/*  Delete all text below to get Firefox default background color (especially it will appear slightly bluish in dark mode).  */
+:root {
+    --button-background-color: light-dark( rgba(0, 0, 0, .03), rgba(255, 255, 255, .03) ) !important;
+    --button-background-color-hover: light-dark( rgba(0, 0, 0, .06), rgba(255, 255, 255, .06) ) !important;
+    --button-background-color-active: light-dark( rgba(0, 0, 0, .12), rgba(255, 255, 255, .12) ) !important;
+    --newtab-button-background: transparent !important;
+    --newtab-element-hover-color: var(--button-background-color-hover) !important;
+    --newtab-element-active-color: var(--button-background-color-active) !important;
+    --newtab-button-static-background: light-dark(#F6F6F6, #3C3C3C) !important;
+    --newtab-button-static-hover-background: light-dark(#EFEFEF, #424242) !important;
+    --newtab-button-static-active-background: light-dark(#E0E0E0, #4E4E4E) !important;
+    --toolbar-bgcolor: light-dark(#FEFEFE, #363636) !important;
+    --input-bgcolor: light-dark(#FFFFFF, #444444) !important;
+    --tabpanel-background-color: var(--toolbar-bgcolor) !important;
+    --newtab-background-color: var(--toolbar-bgcolor) !important;
+    --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
+    --button-text-color-primary: var(--toolbar-bgcolor) !important;
+    --newtab-background-color-secondary: var(--input-bgcolor) !important;
+    --arrowpanel-background: var(--input-bgcolor) !important;
+    --toolbar-field-focus-background-color: var(--input-bgcolor) !important;
+    --lwt-sidebar-background-color: light-dark(#FEFEFE, #1D1D1D) !important;
+    --sidebar-background-color: light-dark(#FEFEFE, #1D1D1D) !important;
+    --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
+    --background-color-box: light-dark(#FFFFFF, #272727) !important;
+    --in-content-table-background: var(--background-color-box) !important;
+    --chrome-content-separator-color: light-dark( rgba(0, 0, 0, .1), rgba(0, 0, 0, .6) ) !important;
+    --toolbarbutton-icon-fill: light-dark( rgba(0, 0, 0, .555), rgba(255, 255, 255, .637) ) !important;
+    --toolbarbutton-disabled-opacity: .3 !important;
+    --color-accent-primary: light-dark( rgb(34, 102, 238), rgb(80, 166, 250) ) !important;
+    --link-color: var(--color-accent-primary) !important;
+    --toolbarbutton-icon-fill-attention: var(--color-accent-primary) !important;
+    --newtab-primary-action-background: var(--color-accent-primary) !important;
+    --focus-outline-color: var(--color-accent-primary) !important;
+    --download-progress-fill-color: var(--color-accent-primary) !important;
+}
+
+@media (-moz-platform: windows) and (prefers-color-scheme: dark) {
+    .urlbar-input:focus::selection,
+    .searchbar-textbox:focus-within::selection {
+        background-color: #0078D7 !important;
+  }
+}
+
+menupopup:not(.toolbar-menupopup) {
+    --panel-background: light-dark(#FAFAFA, #2D2D2D) !important;
+    menu, menuitem {
+        &:where([_moz-menuactive]:not([disabled="true"])) {
+            background-color: var(--button-background-color-active) !important;
+        }
+        &:where([_moz-menuactive="true"][disabled="true"]) {
+            background-color: transparent !important;
+        }
+    }
+}
+
+tooltip {
+    background-color: light-dark(#FAFAFA, #2B2B2B) !important;
+}
