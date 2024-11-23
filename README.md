@@ -20,6 +20,7 @@ Firefox version 132.0 and above.
 ## **Customize**
 
 Open the `userContent.css` file in the **chrome** folder and remove the unwanted content as indicated in the comments.
+
 When there is only one tab, the tab bar will hide automatically. Or you can place a tool icon (e.g., new tab button ) on the tab bar to keep it from hiding.
 
 ---
@@ -46,4 +47,5 @@ Firefox 版本 132.0 及更高
 ## **自定义**
 
 打开 **chrome** 文件夹中的 `userContent.css` 文件，按照注释提示删除不喜欢的内容。
+
 当只有一个标签页时，标签栏将自动隐藏；或者你可以在标签栏放入一个工具图标（例如打开新标签页），这样它就不会自动隐藏了。
