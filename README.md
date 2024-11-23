@@ -1,3 +1,7 @@
+## Introduction
+A Firefox userChrome theme that closely mimics the UI of Safari on macOS Big Sur. 
+There are many similar ones on GitHub, but none of them satisfied me, so I created my own. Not only does it mimic the appearance, but it also imitates the interactions, with some optimizations and improvements for a more polished effect. This is my first time working with CSS and JS, and I spent a lot of time and effort on it, with a lot of help and guidance from my boyfriend.
+
 ## Requirement
 Firefox version 132.0 and above.
 
@@ -24,6 +28,10 @@ Open the `userContent.css` file in the **chrome** folder and remove the unwanted
 When there is only one tab, the tab bar will hide automatically. Or you can place a tool icon (e.g., new tab button ) on the tab bar to keep it from hiding.
 
 ##
+
+## **介绍**
+一个 Firefox 的 userChrome 主题，最大限度模仿 Big Sur Safari 的 UI。基埠上有很多类似的但没有一个让我满意的，于是我自己写了一个；不仅模仿外观，还模仿交互，且加以取捨优化，打造一个更完美的效果。这是我第一次接触 CSS 和 JS，为了完成它，我花了大量时间和精力，这也离不开我男朋友的帮助和指导。
+
 ## **要求**
 Firefox 版本 132.0 及更高
 
