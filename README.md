@@ -7,6 +7,9 @@ Firefox version 132.0 and above.
 
 ## **Installation**
 
+### **Download**
+Click the green "<>Code▾" button in the top-right corner and select "Download ZIP."
+
 ### **On Windows:**
 1. **config.js** → `Installation directory/`
 2. **autoconfig.js** → `Installation directory/defaults/pref/`
@@ -36,6 +39,9 @@ When there is only one tab, the tab bar will hide automatically. Or you can plac
 Firefox 版本 132.0 及更高
 
 ## **安装**
+
+### **下载**
+点按右上方绿色的「<>Code▾」按钮，选择 Download ZIP。
 
 ### **Windows 下：**
 1. **config.js** → `安装目录/`
