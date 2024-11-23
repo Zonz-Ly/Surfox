@@ -1,3 +1,6 @@
+## Requirement
+Firefox version 132.0 and above.
+
 ## **Installation**
 
 ### **On Windows:**
@@ -19,6 +22,9 @@
 Open the `userContent.css` file in the **chrome** folder and remove the unwanted content as indicated in the comments.
 
 ---
+
+## **要求**
+Firefox 版本 132.0 及更高
 
 ## **安装**
 
