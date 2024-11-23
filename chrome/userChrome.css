@@ -37,7 +37,7 @@
     --toolbar-field-background-color: transparent !important;
 }
 
-#nav-bar-customization-target {
+#PanelUI-button {
     @media (-moz-platform: macos){
         padding-inline-end: var(--toolbar-start-end-padding) !important;
     }
