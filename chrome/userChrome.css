@@ -61,7 +61,7 @@
     }
     @media (-moz-platform: macos) {
         /*  Make same as Safari on Big Sur  */
-        margin: 18px 8px 18px 19px !important;
+        margin: 18px 11px 18px 19px !important;
     }
 }
 
