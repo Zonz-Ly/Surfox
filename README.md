@@ -23,8 +23,7 @@ Open the `userContent.css` file in the **chrome** folder and remove the unwanted
 
 When there is only one tab, the tab bar will hide automatically. Or you can place a tool icon (e.g., new tab button ) on the tab bar to keep it from hiding.
 
----
-
+##
 ## **要求**
 Firefox 版本 132.0 及更高
 
