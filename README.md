@@ -1,5 +1,6 @@
 ## Introduction
-A Firefox userChrome.CSS theme that closely mimics the UI of Safari on macOS Big Sur. 
+A Firefox userChrome.CSS theme that mimics the new UI of Safari on macOS Big Sur and above.
+
 While there are many similar themes on GitHub, none of them met my expectations, so I created my own. It not only replicates the interface but also the operational logic, with some optimizations and adjustments for a more perfect user experience. This is my first time working with CSS and JS, and I spent a lot of time and effort to complete it, with a great help and guidance from my boyfriend.
 
 ## Requirement
