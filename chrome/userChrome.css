@@ -458,16 +458,15 @@ findbar:-moz-window-inactive {
         margin: 4px 2px !important;
         border-radius: 4px !important;
     }
-}
-
-#PlacesToolbarItems {
-    height: 20px !important;
-    margin: 4px 0px !important;
-    justify-content: safe center !important;
-    > .bookmark-item {
-    padding: 0px 6px !important;
-    margin: 0px 2px !important;
-    border-radius: 4px !important;
+    #PlacesToolbarItems {
+        height: 20px !important;
+        margin: 4px 0px !important;
+        justify-content: safe center !important;
+        > .bookmark-item {
+        padding: 0px 6px !important;
+        margin: 0px 2px !important;
+        border-radius: 4px !important;
+        }
     }
 }
 
