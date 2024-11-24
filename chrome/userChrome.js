@@ -67,7 +67,7 @@ queueMicrotask(() => {
             return;
         }
 
-        urlbarToolbarItem.style.maxWidth = (navBar.clientWidth * 0.404) + 'px';
+        urlbarToolbarItem.style.maxWidth = (navBar.clientWidth * 0.41 - 8) + 'px';
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
         let beforeBarWidth = 0;
@@ -123,17 +123,17 @@ queueMicrotask(() => {
 
         if (beforeBarWidth > afterBarWidth) {
             if (leftFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginLeft = Math.max(4, Math.min((navBar.clientWidth * 0.298) - beforeBarWidth, (navBar.clientWidth * 0.596) - beforeBarWidth - afterBarWidth - 4)) + 'px';
+                urlbarToolbarItem.style.marginLeft = Math.max(4, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
                 urlbarToolbarItem.style.marginLeft = '';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.298) - beforeBarWidth - 4, (navBar.clientWidth * 0.596) - beforeBarWidth - afterBarWidth - 8)) / leftFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                if ((navBar.clientWidth * 0.298) - afterBarWidth > 4 && (navBar.clientWidth * 0.596) - beforeBarWidth - afterBarWidth - 4 > 4) {
+                if ((navBar.clientWidth * 0.295) - afterBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
                     urlbarToolbarItem.style.marginRight = 'auto';
                 } else {
                     urlbarToolbarItem.style.marginRight = '';
@@ -147,7 +147,7 @@ queueMicrotask(() => {
             }
         } else {
             if (leftFlexibleSpaceCount === 0) {
-                if ((navBar.clientWidth * 0.298) - beforeBarWidth > 4 && (navBar.clientWidth * 0.596) - beforeBarWidth - afterBarWidth - 4 > 4) {
+                if ((navBar.clientWidth * 0.295) - beforeBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
                     urlbarToolbarItem.style.marginLeft = 'auto';
                 } else {
                     urlbarToolbarItem.style.marginLeft = '';
@@ -160,10 +160,10 @@ queueMicrotask(() => {
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginRight = Math.max(4, Math.min((navBar.clientWidth * 0.298) - afterBarWidth, (navBar.clientWidth * 0.596) - beforeBarWidth - afterBarWidth - 4)) + 'px';
+                urlbarToolbarItem.style.marginRight = Math.max(4, Math.min((navBar.clientWidth * 0.295) - afterBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
                 urlbarToolbarItem.style.marginRight = '';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.298) - afterBarWidth - 4, (navBar.clientWidth * 0.596) - beforeBarWidth - afterBarWidth - 8)) / rightFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - afterBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
