@@ -6,7 +6,7 @@
 }
 
 /*  Delete this text to get the menu button back. You can use the menu bar instead. If you want to open the settings, you can open the URL bar and find the button at the bottom right corner.  */
-#PanelUI-button {
+#PanelUI-menu-button {
     display: none !important;
 }
 
