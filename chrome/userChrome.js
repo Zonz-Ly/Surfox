@@ -58,6 +58,7 @@ queueMicrotask(() => {
         if (document.documentElement.hasAttribute("customizing")) {
             urlbarToolbarItem.style.marginLeft = '';
             urlbarToolbarItem.style.marginRight = '';
+            urlbarToolbarItem.style.minWidth ='';
             urlbarToolbarItem.style.maxWidth ='';
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
             flexibleSpaces.forEach(space => {
@@ -67,6 +68,7 @@ queueMicrotask(() => {
             return;
         }
 
+        urlbarToolbarItem.style.minWidth = (navBar.clientWidth * 0.41 - 8) + 'px';
         urlbarToolbarItem.style.maxWidth = (navBar.clientWidth * 0.41 - 8) + 'px';
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
