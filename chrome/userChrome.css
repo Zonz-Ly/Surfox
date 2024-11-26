@@ -488,6 +488,10 @@ findbar:-moz-window-inactive {
 	border-top: 1px solid var(--chrome-content-separator-color) !important;
 }
 
+#nav-bar-customization-target > #personal-bookmarks {
+  flex: none !important;
+}
+
 #navigator-toolbox {
   border-bottom: 1px solid var(--chrome-content-separator-color) !important;
 }
