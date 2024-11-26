@@ -277,16 +277,6 @@ findbar:-moz-window-inactive {
 	}
 }
 
-#tabbrowser-tabs:last-child .tabbrowser-tab:nth-last-child(2),
-#TabsToolbar-customization-target > .toolbarbutton-1:last-child,
-#TabsToolbar-customization-target > .toolbaritem-combined-buttons:last-child > .toolbarbutton-1:last-child,
-#TabsToolbar-customization-target > toolbarspring:last-child,
-#TabsToolbar-customization-target > toolbarpaletteitem:last-child > .toolbarbutton-1,
-#TabsToolbar-customization-target > toolbarpaletteitem:last-child > .toolbaritem-combined-buttons > .toolbarbutton-1:last-child,
-#TabsToolbar-customization-target > toolbarpaletteitem:last-child > toolbarspring {
-    border-right: none !important;
-}
-
 :root:not([customizing]) #TabsToolbar-customization-target .toolbarbutton-1[disabled] {
     opacity: 1 !important;
     > .toolbarbutton-icon,
@@ -309,8 +299,21 @@ findbar:-moz-window-inactive {
 #tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab:nth-last-child(2),
 #tabbrowser-tabs:not(:last-child) #tabbrowser-arrowscrollbox[overflowing],
 #TabsToolbar-customization-target .toolbarbutton-1,
-#TabsToolbar-customization-target toolbarspring {
+#TabsToolbar-customization-target toolbarspring,
+#TabsToolbar-customization-target #personal-bookmarks {
     border-right: solid 1px var(--tabbar-separator-color) !important;
+}
+
+#tabbrowser-tabs:last-child .tabbrowser-tab:nth-last-child(2),
+#TabsToolbar-customization-target > .toolbarbutton-1:last-child,
+#TabsToolbar-customization-target > .toolbaritem-combined-buttons:last-child > .toolbarbutton-1:last-child,
+#TabsToolbar-customization-target > toolbarspring:last-child,
+#TabsToolbar-customization-target > #personal-bookmarks:last-child,
+#TabsToolbar-customization-target > toolbarpaletteitem:last-child > .toolbarbutton-1,
+#TabsToolbar-customization-target > toolbarpaletteitem:last-child > .toolbaritem-combined-buttons > .toolbarbutton-1:last-child,
+#TabsToolbar-customization-target > toolbarpaletteitem:last-child > toolbarspring,
+#TabsToolbar-customization-target > toolbarpaletteitem:last-child > #personal-bookmarks {
+    border-right: none !important;
 }
 
 #TabsToolbar:hover .tabbrowser-tab {
