@@ -80,7 +80,7 @@
   }
 }
 
-menupopup:not(.toolbar-menupopup) {
+menupopup:not(.toolbar-menupopup):not([placespopup="true"]) {
     --panel-background: light-dark(#FAFAFA, #2D2D2D) !important;
     menu, menuitem {
         &:where([_moz-menuactive]:not([disabled="true"])) {
