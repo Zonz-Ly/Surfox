@@ -483,6 +483,10 @@ findbar:-moz-window-inactive {
     #PlacesToolbar > .bookmark-item {
         margin: 0px 2px 6px 2px !important;
     }
+    #personal-toolbar-empty-description {
+        margin: 0px 2px 2px 2px !important;
+        padding : 3px 4px 3px 4px !important;
+    }
 }
 
 #TabsToolbar-customization-target #personal-bookmarks {
