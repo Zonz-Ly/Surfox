@@ -300,7 +300,8 @@ findbar:-moz-window-inactive {
 #tabbrowser-tabs:not(:last-child) #tabbrowser-arrowscrollbox[overflowing],
 #TabsToolbar-customization-target .toolbarbutton-1,
 #TabsToolbar-customization-target toolbarspring,
-#TabsToolbar-customization-target #personal-bookmarks {
+#TabsToolbar-customization-target > #personal-bookmarks #PlacesToolbarItems > .bookmark-item,
+#TabsToolbar-customization-target > toolbarpaletteitem > #personal-bookmarks {
     border-right: solid 1px var(--tabbar-separator-color) !important;
 }
 
@@ -308,7 +309,7 @@ findbar:-moz-window-inactive {
 #TabsToolbar-customization-target > .toolbarbutton-1:last-child,
 #TabsToolbar-customization-target > .toolbaritem-combined-buttons:last-child > .toolbarbutton-1:last-child,
 #TabsToolbar-customization-target > toolbarspring:last-child,
-#TabsToolbar-customization-target > #personal-bookmarks:last-child,
+#TabsToolbar-customization-target > #personal-bookmarks:last-child  #PlacesToolbarItems > .bookmark-item:last-child,
 #TabsToolbar-customization-target > toolbarpaletteitem:last-child > .toolbarbutton-1,
 #TabsToolbar-customization-target > toolbarpaletteitem:last-child > .toolbaritem-combined-buttons > .toolbarbutton-1:last-child,
 #TabsToolbar-customization-target > toolbarpaletteitem:last-child > toolbarspring,
@@ -484,6 +485,49 @@ findbar:-moz-window-inactive {
     }
 }
 
+#TabsToolbar-customization-target #personal-bookmarks {
+    font-size: 11px !important;
+    min-width: 0 !important;
+}
+
+#TabsToolbar-customization-target > #personal-bookmarks #PlacesToolbarItems > .bookmark-item {
+    border-radius: 0px !important;
+    margin: 0 !important;
+    transition: background-color 200ms !important;
+    .toolbarbutton-text {
+        display: none !important;
+    }
+    .toolbarbutton-icon {
+        margin-inline: 2px !important;
+    }
+}
+
+#TabsToolbar-customization-target #personal-bookmarks #PlacesToolbarItems > toolbarseparator {
+    margin-inline-start: -1px !important;
+    padding: 0 !important;
+    &::before {
+        border-inline-start: 1px solid var(--tabbar-separator-color) !important;
+        border-image-source: none !important;
+    }
+}
+
+#nav-bar-customization-target > #personal-bookmarks #PlacesToolbar {
+    align-items: center !important;
+    #PlacesToolbarItems > .bookmark-item {
+        height: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
+        margin-inline: var(--toolbarbutton-outer-padding) !important;
+        .toolbarbutton-text {
+            display: none !important;
+        }
+        .toolbarbutton-icon {
+            margin-inline: 2px !important;
+        }
+    }
+    #PlacesToolbarItems > toolbarseparator {
+        padding: 4px !important;
+    }
+}
+
 #PersonalToolbar:nth-child(3) {
 	border-top: 1px solid var(--chrome-content-separator-color) !important;
 }
@@ -491,6 +535,8 @@ findbar:-moz-window-inactive {
 #navigator-toolbox {
   border-bottom: 1px solid var(--chrome-content-separator-color) !important;
 }
+
+/* menu bar */
 
 #toolbar-menubar {
     .toolbarbutton-1,
