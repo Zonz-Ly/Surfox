@@ -26,7 +26,7 @@ Firefox version 132. 133 will be adapted later.
 
 Open the `userContent.css` file in the **chrome** folder and remove the unwanted content as indicated in the comments.
 
-It is recommended to disable updates (default) as new versions are likely to alter the browser's UI structure, causing the unadapted Surfox to stop working. If you need to enable updates, open the `autoconfig.js` file, delete the line `pref("app.update.channel", "");` then save.
+It is recommended to disable updates (default) as new versions are likely to adjust the browser's UI structure, causing the unadapted Surfox to stop working. If you need to enable updates, open the `autoconfig.js` file, delete the line `pref("app.update.channel", "");` then save.
 
 When there is only one tab, the tab bar will hide automatically. Or you can place a tool icon (e.g., new tab button ) on the tab bar to keep it from hiding.
 
