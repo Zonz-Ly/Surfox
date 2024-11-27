@@ -26,9 +26,11 @@ Firefox version 132. 133 will be adapted later.
 
 Open the `userContent.css` file in the **chrome** folder and remove the unwanted content as indicated in the comments.
 
-It is recommended to disable updates (default) as new versions are likely to adjust the browser's UI structure, causing the unadapted Surfox to stop working. If you need to enable updates, open the `autoconfig.js` file, delete the line `pref("app.update.channel", "");` then save.
-
 When there is only one tab, the tab bar will hide automatically. Or you can place a tool icon (e.g., new tab button ) on the tab bar to keep it from hiding.
+
+If you want to place the 'Bookmarks toolbar items' on the Navigation Bar, make sure there is 'Flexible Space' on both sides of the address bar. Otherwise, Firefox's bug may cause it to crash. If you're unlucky to encounter this issue, temporarily delete the `config.js` file, then open Firefox, adjust the navigation bar layout, and restore the `config.js` file.
+
+It is recommended to disable updates (default) as new versions are likely to adjust the browser's UI structure, causing the unadapted Surfox to stop working. If you need to enable updates, open the `autoconfig.js` file, delete the line `pref("app.update.channel", "");` then save.
 
 ##
 
@@ -58,6 +60,8 @@ Firefox 版本 132。133 将在稍后适配。
 
 打开 **chrome** 文件夹中的 `userContent.css` 文件，按照注释提示删除不喜欢的内容。
 
-推荐禁用更新（默认），因为新版本很可能会改变浏览器界面结构导致未适配的 Surfox 无法使用。如果需要启用更新，请打开 `autoconfig.js` 文件，删除 `pref("app.update.channel", "");` 这一行，并保存。
-
 当只有一个标签页时，标签栏将自动隐藏；或者你可以在标签栏放入一个工具图标（例如打开新标签页），这样它就不会自动隐藏了。
+
+如果你想把「书签工具栏项目」放在导航栏上，请确保地址栏左右均放置有「弹性空白」，否则 Firefox 的罢虼将导致其崩溃。如果你不幸中招了，请暂时先删除 `config.js`，然后打开 Firefox，调整好导航栏排序，再恢复 `config.js`。
+
+推荐禁用更新（默认），因为新版本很可能会改变浏览器界面结构导致未适配的 Surfox 无法使用。如果需要启用更新，请打开 `autoconfig.js` 文件，删除 `pref("app.update.channel", "");` 这一行，并保存。
