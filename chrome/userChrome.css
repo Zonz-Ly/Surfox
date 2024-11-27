@@ -442,7 +442,7 @@ findbar:-moz-window-inactive {
 #PersonalToolbar {
     background-color: transparent !important;
     font-size: 11px !important;
-    height: 28px !important;
+    height: 29px !important;
     .toolbarbutton-1 {
         height: 20px !important;
         margin: 4px 0px !important;
