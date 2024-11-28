@@ -1,13 +1,18 @@
-// @-ts-nocheck - Tested on Firefox 132.0.
+// @-ts-nocheck - Tested on Firefox 133.0.
 
 queueMicrotask(() => {
     //  Move window controls into the navigation bar.
     let navBar = document.querySelector("#nav-bar");
-    let titleBar = document.querySelector("#titlebar");
-    navBar.after(titleBar);
+    let tabBar = document.querySelector("#TabsToolbar")
+    let menuBar = document.querySelector("#toolbar-menubar");
+    navBar.after(tabBar);
+    navBar.after(menuBar);
 
     let windowControls = [...document.querySelectorAll(".titlebar-buttonbox-container")];
-    windowControls.forEach(control => control.remove());
+    windowControls.forEach((control, index) => {
+        if (index === 0) {control.style.display = 'flex';}
+        else {control.remove();}
+    });
     navBar.prepend(windowControls[0]);
 
     //  Move bookmark bar to expected order.
@@ -18,12 +23,12 @@ queueMicrotask(() => {
         switch (bookmarkVisibility) {
             case "always":
                 if (bookmarkBar.previousElementSibling !== navBar) {
-                    navBar.after(bookmarkBar);
+                    bookmarkBar.after(tabBar);
                 }
                 break;
             case "newtab":
-                if (bookmarkBar.previousElementSibling !== titleBar) {
-                    titleBar.after(bookmarkBar);
+                if (bookmarkBar.previousElementSibling !== tabBar) {
+                    tabBar.after(bookmarkBar);
                 }
                 break;
             default:
@@ -91,11 +96,9 @@ queueMicrotask(() => {
                 }
                 continue;
             }
-
             if (isLeft) {
                 beforeBarWidth += element.clientWidth;
             }
-
             if (isRight) {
                 afterBarWidth += element.clientWidth;
             }
@@ -130,7 +133,7 @@ queueMicrotask(() => {
             if (leftFlexibleSpaceCount === 0) {
                 urlbarToolbarItem.style.marginLeft = Math.max(4, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
-                urlbarToolbarItem.style.marginLeft = '';
+                urlbarToolbarItem.style.marginLeft = '4px';
                 let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
@@ -141,10 +144,10 @@ queueMicrotask(() => {
                 if ((navBar.clientWidth * 0.295) - afterBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
                     urlbarToolbarItem.style.marginRight = 'auto';
                 } else {
-                    urlbarToolbarItem.style.marginRight = '';
+                    urlbarToolbarItem.style.marginRight = '4px';
                 }
             } else {
-                urlbarToolbarItem.style.marginRight = '';
+                urlbarToolbarItem.style.marginRight = '4px';
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = '0';
                     space.style.maxWidth = 'none';
@@ -155,10 +158,10 @@ queueMicrotask(() => {
                 if ((navBar.clientWidth * 0.295) - beforeBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
                     urlbarToolbarItem.style.marginLeft = 'auto';
                 } else {
-                    urlbarToolbarItem.style.marginLeft = '';
+                    urlbarToolbarItem.style.marginLeft = '4px';
                 }
             } else {
-                urlbarToolbarItem.style.marginLeft = '';
+                urlbarToolbarItem.style.marginLeft = '4px';
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = '0';
                     space.style.maxWidth = 'none';
@@ -167,7 +170,7 @@ queueMicrotask(() => {
             if (rightFlexibleSpaceCount === 0) {
                 urlbarToolbarItem.style.marginRight = Math.max(4, Math.min((navBar.clientWidth * 0.295) - afterBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
-                urlbarToolbarItem.style.marginRight = '';
+                urlbarToolbarItem.style.marginRight = '4px';
                 let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - afterBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
@@ -331,7 +334,6 @@ queueMicrotask(() => {
 
     //  Customize tab bar.
     let tabStrip = document.querySelector("#TabsToolbar-customization-target");
-    let tabBar = document.querySelector("#TabsToolbar");
     function layoutTabs() {
         let tabs = tabStrip.querySelectorAll(".tabbrowser-tab");
         let canHideTabBar = tabStrip.childElementCount <= 1 && tabs.length <= 1;
