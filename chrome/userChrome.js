@@ -25,11 +25,13 @@ queueMicrotask(() => {
                 if (bookmarkBar.previousElementSibling !== navBar) {
                     bookmarkBar.after(tabBar);
                 }
+                bookmarkBar.setAttribute("bookmark-show", "always");
                 break;
             case "newtab":
                 if (bookmarkBar.previousElementSibling !== tabBar) {
                     tabBar.after(bookmarkBar);
                 }
+                bookmarkBar.setAttribute("bookmark-show", "newtab");
                 break;
             default:
                 break;
