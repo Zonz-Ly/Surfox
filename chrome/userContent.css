@@ -57,10 +57,10 @@
     --newtab-background-color-secondary: var(--input-bgcolor) !important;
     --arrowpanel-background: var(--input-bgcolor) !important;
     --toolbar-field-focus-background-color: var(--input-bgcolor) !important;
+    --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .05), rgba(0, 0, 0, .3)) !important;
+    --toolbarbutton-icon-fill-attention-text: var(--toolbar-field-background-color) !important;
     --lwt-sidebar-background-color: light-dark(#FEFEFE, #1D1D1D) !important;
     --sidebar-background-color: light-dark(#FEFEFE, #1D1D1D) !important;
-    --toolbarbutton-icon-fill-attention-text: light-dark(#F1F1F1, #1D1D1D) !important;
-    --toolbar-field-background-color: light-dark(#F1F1F1, #1D1D1D) !important;
     --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
     --background-color-box: light-dark(#FFFFFF, #272727) !important;
     --in-content-table-background: var(--background-color-box) !important;
