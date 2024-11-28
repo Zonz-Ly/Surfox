@@ -1,4 +1,4 @@
-/*  Tested on Firefox 132.0  */
+/*  Tested on Firefox 133.0  */
 
 @import "userContent.css";
 
@@ -15,7 +15,7 @@
     --toolbarbutton-outer-padding: 4px !important;
     --toolbarbutton-inner-padding: 6px !important;
     --urlbar-min-height: 28px !important;
-    --urlbar-margin-inline: 4px !important; /* You'd better not change this value because some places that reference it are hardcoded in the JS by me. */
+    --urlbar-margin-inline: 0px !important;
     --tab-shadow-max-size: 0px !important;
     --tab-min-height: 28px !important;
     @media (-moz-platform: windows) {
@@ -65,6 +65,7 @@
 }
 
 .titlebar-buttonbox {
+    @media (-moz-platform: windows) {min-height: 40px !important;}
     @media (-moz-platform: macos) {
         /*  Make same as Safari on Big Sur  */
         margin: 18px 11px 18px 19px !important;
@@ -80,12 +81,15 @@
 	}
 }
 
+#urlbar[breakout-extend] {
+    top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
+    :root[sizemode="normal"][tabsintitlebar] & {
+        top: calc(((var(--urlbar-container-height) - var(--urlbar-height)) / 2) + 1px) !important;
+    }
+}
+
 #urlbar, #searchbar {
     font-size: inherit !important;
-    top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
-    left: 0 !important;
-    width: 100% !important;
-
     --urlbar-icon-padding: 4px !important;
     --urlbar-box-bgcolor: var(--button-background-color) !important;
     --urlbar-box-focus-bgcolor: var(--button-background-color-hover) !important;
@@ -258,8 +262,8 @@ findbar:-moz-window-inactive {
 
 /* Tabs */
 
-#TabsToolbar-customization-target {
-    height: 28px !important;
+#TabsToolbar-customization-target, #tabbrowser-arrowscrollbox {
+    height: var(--tab-min-height) !important;
 }
 
 #TabsToolbar {
@@ -279,15 +283,15 @@ findbar:-moz-window-inactive {
     margin: 0 !important;
     border: none !important;
     padding-inline-start: calc(var(--tab-overflow-pinned-tabs-width)) !important;
+    font-size: 11px !important;
+    min-height: var(--tab-min-height) !important;
+    --tab-min-width: 120px !important;
     &[movingtab] {
         padding-bottom: 0 !important;
     }
 }
 
 .tabbrowser-tab {
-    font-size: 11px !important;
-    min-height: var(--tab-min-height) !important;
-    --tab-min-width: 120px !important;
     &:hover {
         background-color: var(--toolbarbutton-hover-background) !important;
     }
@@ -505,7 +509,7 @@ findbar:-moz-window-inactive {
     }
 }
 
-:root:not([customizing]) #PersonalToolbar:nth-child(2) {
+:root:not([customizing]) #PersonalToolbar:nth-child(4) {
     height: 26px !important;
     #PlacesToolbarItems,
     .toolbarbutton-1 {
@@ -564,7 +568,7 @@ findbar:-moz-window-inactive {
     }
 }
 
-#PersonalToolbar:nth-child(3) {
+#PersonalToolbar:nth-child(5) {
 	border-top: 1px solid var(--chrome-content-separator-color) !important;
 }
 
