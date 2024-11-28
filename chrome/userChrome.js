@@ -83,7 +83,7 @@ queueMicrotask(() => {
                 isRight = true;
                 continue;
             }
-            if (element.tagName === "toolbarspring") {
+            if (element.matches("toolbarspring")) {
                 if (isLeft) {
                     leftFlexibleSpaces.push(element);
                 } else if (isRight) {
@@ -112,6 +112,9 @@ queueMicrotask(() => {
         for (let element of navBar.children) {
             if (element === navBarTarget) {
                 isAfterNavBarTarget = true;
+                continue;
+            }
+            if (element.matches("panel")) {
                 continue;
             }
             if (isAfterNavBarTarget) {
