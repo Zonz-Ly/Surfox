@@ -65,7 +65,6 @@
 }
 
 .titlebar-buttonbox {
-    @media (-moz-platform: windows) {min-height: 40px !important;}
     @media (-moz-platform: macos) {
         /*  Make same as Safari on Big Sur  */
         margin: 18px 11px 18px 19px !important;
