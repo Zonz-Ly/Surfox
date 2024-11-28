@@ -508,7 +508,7 @@ findbar:-moz-window-inactive {
     }
 }
 
-:root:not([customizing]) #PersonalToolbar:nth-child(4) {
+:root:not([customizing]) #PersonalToolbar[bookmark-show="always"] {
     height: 26px !important;
     #PlacesToolbarItems,
     .toolbarbutton-1 {
@@ -567,7 +567,7 @@ findbar:-moz-window-inactive {
     }
 }
 
-#PersonalToolbar:nth-child(5) {
+#PersonalToolbar[bookmark-show="newtab"] {
 	border-top: 1px solid var(--chrome-content-separator-color) !important;
 }
 
