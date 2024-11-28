@@ -324,7 +324,6 @@ findbar:-moz-window-inactive {
 
 .tabbrowser-tab,
 #scrollbutton-up,
-#tabbrowser-arrowscrollbox[overflowing] .tabbrowser-tab:nth-last-child(2),
 #tabbrowser-tabs:not(:last-child) #tabbrowser-arrowscrollbox[overflowing],
 #TabsToolbar-customization-target .toolbarbutton-1,
 #TabsToolbar-customization-target toolbarspring,
@@ -334,7 +333,7 @@ findbar:-moz-window-inactive {
     border-right: solid 1px var(--tabbar-separator-color) !important;
 }
 
-#tabbrowser-tabs:last-child .tabbrowser-tab:nth-last-child(2),
+#tabbrowser-tabs:last-child #tabbrowser-arrowscrollbox:not([overflowing]) .tabbrowser-tab:nth-last-child(2),
 #TabsToolbar-customization-target > .toolbarbutton-1:last-child,
 #TabsToolbar-customization-target > .toolbaritem-combined-buttons:last-child > .toolbarbutton-1:last-child,
 #TabsToolbar-customization-target > toolbarspring:last-child,
