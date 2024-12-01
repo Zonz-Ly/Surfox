@@ -70,7 +70,7 @@
     --color-accent-primary: light-dark(#2266EE, #50A6FA) !important;
     --newtab-primary-action-background: var(--color-accent-primary) !important;
     --focus-outline-color: var(--color-accent-primary) !important;
-    --link-color: var(--color-accent-primary) !important;
+    --link-color: light-dark(#0360E5, #25A0FF) !important;
     --toolbarbutton-icon-fill-attention: light-dark(#003CCA, #5EA9FF) !important;
     --download-progress-fill-color: light-dark(#3A80F7, #3267DE) !important;
     --tab-loading-fill: light-dark(#3A80F7, #3267DE) !important;
