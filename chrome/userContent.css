@@ -67,12 +67,13 @@
     --chrome-content-separator-color: light-dark( rgba(0, 0, 0, .1), rgba(0, 0, 0, .6) ) !important;
     --toolbarbutton-icon-fill: light-dark( rgba(0, 0, 0, .555), rgba(255, 255, 255, .637) ) !important;
     --toolbarbutton-disabled-opacity: .3 !important;
-    --color-accent-primary: light-dark( rgb(34, 102, 238), rgb(80, 166, 250) ) !important;
-    --link-color: var(--color-accent-primary) !important;
-    --toolbarbutton-icon-fill-attention: var(--color-accent-primary) !important;
+    --color-accent-primary: light-dark(#2266EE, #50A6FA) !important;
     --newtab-primary-action-background: var(--color-accent-primary) !important;
     --focus-outline-color: var(--color-accent-primary) !important;
-    --download-progress-fill-color: var(--color-accent-primary) !important;
+    --link-color: var(--color-accent-primary) !important;
+    --toolbarbutton-icon-fill-attention: light-dark(#003CCA, #5EA9FF) !important;
+    --download-progress-fill-color: light-dark(#3A80F7, #3267DE) !important;
+    --tab-loading-fill: light-dark(#3A80F7, #3267DE) !important;
 }
 
 @media (-moz-platform: windows) and (prefers-color-scheme: dark) {
