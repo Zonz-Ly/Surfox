@@ -50,6 +50,10 @@
     opacity: 1 !important;
 }
 
+:root:not([macOSNativeFullscreen]) #nav-bar > .titlebar-buttonbox-container {
+    display: flex !important;
+}
+
 .titlebar-buttonbox {
     @media (-moz-platform: macos) {
         /*  Make same as Safari on Big Sur +  */
