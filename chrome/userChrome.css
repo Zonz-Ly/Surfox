@@ -50,7 +50,7 @@
     opacity: 1 !important;
 }
 
-:root:not([macOSNativeFullscreen]) #nav-bar > .titlebar-buttonbox-container {
+:root:not([macOSNativeFullscreen]):is([chromemargin], [inFullscreen]) #nav-bar > .titlebar-buttonbox-container {
     display: flex !important;
 }
 
