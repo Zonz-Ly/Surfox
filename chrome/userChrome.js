@@ -60,8 +60,8 @@ queueMicrotask(() => {
 
     function urlbarSizer() {
         if (document.documentElement.hasAttribute("customizing")) {
-            urlbarToolbarItem.style.marginLeft = '';
-            urlbarToolbarItem.style.marginRight = '';
+            urlbarToolbarItem.style.marginLeft = '4px';
+            urlbarToolbarItem.style.marginRight = '4px';
             urlbarToolbarItem.style.minWidth ='';
             urlbarToolbarItem.style.maxWidth ='';
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
