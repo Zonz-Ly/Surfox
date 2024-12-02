@@ -46,6 +46,13 @@
     }
 }
 
+#nav-bar {
+    @media (-moz-platform: linux) {
+	/*  Remove the 1px line at the top on Linux  */
+        border-top: none !important;
+    }
+}
+
 :root[tabsintitlebar] #titlebar:-moz-window-inactive {
     opacity: 1 !important;
 }
