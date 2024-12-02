@@ -10,7 +10,7 @@ queueMicrotask(() => {
 
     tabBar.querySelector(".titlebar-buttonbox-container").remove();
     menuBar.querySelector(".titlebar-buttonbox-container").remove();
-    let windowControls = navBar.querySelector(".titlebar-buttonbox-container");
+    let windowControl = navBar.querySelector(".titlebar-buttonbox-container");
 
     //  Move bookmark bar to expected order.
     let bookmarkBar = document.querySelector("#PersonalToolbar");
@@ -104,9 +104,9 @@ queueMicrotask(() => {
         }
 
         if (navigator.platform.startsWith("Mac")) {
-            beforeBarWidth += windowControls.clientWidth;
+            beforeBarWidth += windowControl.clientWidth;
         } else {
-            afterBarWidth += windowControls.clientWidth;
+            afterBarWidth += windowControl.clientWidth;
         }
 
         let rightNavBarElementsWidth = 0;
@@ -117,6 +117,9 @@ queueMicrotask(() => {
                 continue;
             }
             if (element.matches("panel")) {
+                continue;
+            }
+            if (element === windowControl) {
                 continue;
             }
             if (isAfterNavBarTarget) {
