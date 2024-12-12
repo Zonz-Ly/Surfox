@@ -13,10 +13,15 @@
         --newtab-background-color-secondary: light-dark(#FFFFFF, #444444) !important;
         --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
         --background-color-box: light-dark(#FFFFFF, #272727) !important;
+        --in-content-table-background: var(--background-color-box) !important;
         --button-text-color: light-dark( rgba(0, 0, 0, .8), rgb(255, 255, 255) ) !important;
         --button-text-color-hover: var(--button-text-color) !important;
         --button-text-color-active: var(--button-text-color) !important;
         --button-text-color-disabled: var(--button-text-color) !important;
+        --button-text-color-primary: light-dark(#FEFEFE, #363636) !important;
+        --button-text-color-primary-hover: var(--button-text-color-primary) !important;
+        --button-text-color-primary-active: var(--button-text-color-primary) !important;
+        --button-text-color-primary-disabled: var(--button-text-color-primary) !important;
         --button-background-color: light-dark( rgba(0, 0, 0, .03), rgba(255, 255, 255, .03) ) !important;
         --button-background-color-hover: light-dark( rgba(0, 0, 0, .06), rgba(255, 255, 255, .06) ) !important;
         --button-background-color-active: light-dark( rgba(0, 0, 0, .12), rgba(255, 255, 255, .12) ) !important;
