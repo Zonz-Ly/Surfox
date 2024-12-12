@@ -1,4 +1,4 @@
-/*  Tested on Firefox 133.0  */
+/*  Tested on Firefox 133.0.3  */
 
 /*  Delete this text to get the extensions button back.  */
 #unified-extensions-button {
@@ -32,6 +32,12 @@
     --newtab-contextual-text-primary-color: var(--input-color) !important;
     --toolbar-non-lwt-textcolor: var(--input-color) !important;
     --toolbox-non-lwt-textcolor-inactive: var(--input-color) !important;
+    --panel-banner-item-color: var(--input-color) !important;
+    --button-text-color-hover: var(--input-color) !important;
+    --button-text-color-active: var(--input-color) !important;
+    --button-text-color-disabled: var(--input-color) !important;
+    --button-text-color-ghost: var(--input-color) !important;
+    --toolbar-color: var(--input-color) !important;
     @media (prefers-color-scheme: dark) {
         --toolbar-color: rgb(255, 255, 255) !important;
     }
@@ -43,8 +49,18 @@
     --button-background-color-hover: light-dark( rgba(0, 0, 0, .06), rgba(255, 255, 255, .06) ) !important;
     --button-background-color-active: light-dark( rgba(0, 0, 0, .12), rgba(255, 255, 255, .12) ) !important;
     --newtab-button-background: transparent !important;
+    --panel-banner-item-background-color: var(--button-background-color) !important;
+    --button-background-color-disabled: var(--button-background-color) !important;
     --newtab-element-hover-color: var(--button-background-color-hover) !important;
+    --panel-item-hover-bgcolor: var(--button-background-color-hover) !important;
+    --panel-banner-item-hover-bgcolor: var(--button-background-color-hover) !important;
+    --toolbarbutton-hover-background: var(--button-background-color-hover) !important;
+    --button-background-color-ghost-hover: var(--button-background-color-hover) !important;
     --newtab-element-active-color: var(--button-background-color-active) !important;
+    --panel-item-active-bgcolor: var(--button-background-color-active) !important;
+    --panel-banner-item-active-bgcolor: var(--button-background-color-active) !important;
+    --toolbarbutton-active-background: var(--button-background-color-active) !important;
+    --button-background-color-ghost-active: var(--button-background-color-active) !important;
     --newtab-button-static-background: light-dark(#F6F6F6, #3C3C3C) !important;
     --newtab-button-static-hover-background: light-dark(#EFEFEF, #424242) !important;
     --newtab-button-static-active-background: light-dark(#E0E0E0, #4E4E4E) !important;
@@ -54,9 +70,13 @@
     --newtab-background-color: var(--toolbar-bgcolor) !important;
     --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
     --button-text-color-primary: var(--toolbar-bgcolor) !important;
+    --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
+    --button-text-color-primary-hover: var(--toolbar-bgcolor) !important;
+    --button-text-color-primary-disabled: var(--toolbar-bgcolor) !important;
     --newtab-background-color-secondary: var(--input-bgcolor) !important;
     --arrowpanel-background: var(--input-bgcolor) !important;
     --toolbar-field-focus-background-color: var(--input-bgcolor) !important;
+    --urlbarView-result-button-hover-color: var(--input-bgcolor) !important;
     --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .05), rgba(0, 0, 0, .3)) !important;
     --toolbarbutton-icon-fill-attention-text: var(--toolbar-field-background-color) !important;
     --lwt-sidebar-background-color: light-dark(#FEFEFE, #1D1D1D) !important;
@@ -70,7 +90,10 @@
     --color-accent-primary: light-dark(#2266EE, #50A6FA) !important;
     --newtab-primary-action-background: var(--color-accent-primary) !important;
     --focus-outline-color: var(--color-accent-primary) !important;
+    --accent-color: var(--color-accent-primary) !important;
+    --button-background-color-primary: var(--color-accent-primary) !important;
     --link-color: light-dark(#0360E5, #25A0FF) !important;
+    --link-color-visited: var(--link-color) !important;
     --toolbarbutton-icon-fill-attention: light-dark(#003CCA, #5EA9FF) !important;
     --download-progress-fill-color: light-dark(#3A80F7, #3267DE) !important;
     --tab-loading-fill: light-dark(#3A80F7, #3267DE) !important;
