@@ -4,7 +4,7 @@ A Firefox userChrome.CSS theme that mimics the new UI of Safari on macOS Big Sur
 While there are many similar themes on GitHub, none of them met my expectations, so I created my own. It not only replicates the interface but also the operational logic, with some optimizations and adjustments for a more perfect user experience. This is my first time working with CSS and JS, and I spent a lot of time and effort to complete it, with a great help and guidance from my boyfriend.
 
 ## Requirement
-Firefox version 132 and above.
+Firefox version 128 and above.
 
 ## **Installation**
 
@@ -24,8 +24,6 @@ Firefox version 132 and above.
 
 ## **Customize**
 
-Open the `userContent.css` file in the **chrome** folder and remove the unwanted content as indicated in the comments.
-
 When there is only one tab, the tab bar will hide automatically. Or you can place a tool icon (e.g., new tab button ) on the tab bar to keep it from hiding.
 
 If you want to place the 'Bookmarks toolbar items' on the navigation bar, make sure there is 'Flexible Space' on both sides of the URL bar. Otherwise, Firefox's bug may cause it to crash. If you're unlucky to encounter this issue, temporarily delete the `config.js` file, then open Firefox, adjust the navigation bar layout, and restore the `config.js` file.
@@ -38,7 +36,7 @@ It is recommended to disable updates (default) as new versions are likely to adj
 一个 Firefox 的 userChrome 主题，侭可能模仿 Big Sur Safari 的 UI。基埠上有很多类似的但没有一个让我满意的，于是我自己写了一个；不仅模仿外观，还模仿交互，且加以取捨优化，打造一个更完美的使用体验。这是我第一次接触 CSS 和 JS，为了完成它，我花了大量时间和精力，这也离不开我男朋友的帮助和指导。
 
 ## **要求**
-Firefox 版本 132 及更高。
+Firefox 版本 128 及更高。
 
 ## **安装**
 
@@ -57,8 +55,6 @@ Firefox 版本 132 及更高。
    (里面会有很多各种各样的文件和文件夹，而不仅仅是几个文件夹；如果你看到的是后者，打开自动选中的那个文件夹)，然后将整个 **chrome** 文件夹放入该文件夹中。
 
 ## **自定义**
-
-打开 **chrome** 文件夹中的 `userContent.css` 文件，按照注释提示删除不喜欢的内容。
 
 当只有一个标签页时，标签栏将自动隐藏；或者你可以在标签栏放入一个工具图标（例如打开新标签页），这样它就不会自动隐藏了。
 
