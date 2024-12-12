@@ -415,6 +415,7 @@ tooltip {
     }
 }
 
+#private-browsing-indicator-with-label,
 .private-browsing-indicator-with-label {
     display: none !important;
 }
