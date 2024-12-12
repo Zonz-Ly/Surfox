@@ -409,11 +409,14 @@ queueMicrotask(() => {
     }
 
     //  Prevents uidensity from setting to touch.
-    new MutationObserver(() => {
+    function setUidensity() {
         if (document.documentElement.getAttribute('uidensity') === 'touch') {
             document.documentElement.setAttribute('uidensity', 'mac');
         }
-    }).observe(document.documentElement, {
+    }
+
+    setUidensity();
+    (new MutationObserver(() => setUidensity())).observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['uidensity'],
     });
