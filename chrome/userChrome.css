@@ -1,4 +1,4 @@
-/*  Tested on Firefox 133.0  */
+/*  Tested on Firefox 133.0.3  */
 
 @import "userContent.css";
 
@@ -35,14 +35,16 @@
     background-color: transparent !important;
     font-size: 13px !important;
     height: 42px !important;
+    align-items: center !important;
     --toolbarbutton-border-radius: 5px !important;
     --toolbar-field-border-color: light-dark( rgba(0, 0, 0, .12), rgba(255, 255, 255, .12) ) !important;
     --toolbar-field-background-color: transparent !important;
-    :root[tabsintitlebar] & {
-        @media (-moz-platform: macos) {
-            height: 52px !important;
-            --toolbar-start-end-padding: 12px !important;
-        }
+    [uidensity="mac"] & {
+        height: 52px !important;
+        --toolbar-start-end-padding: 12px !important;
+    }
+    [uidensity="compact"] & {
+        height: 38px !important;
     }
 }
 
@@ -53,6 +55,10 @@
     }
 }
 
+#nav-bar-customization-target {
+    height: 28px !important;
+}
+
 :root[tabsintitlebar] #titlebar:-moz-window-inactive {
     opacity: 1 !important;
 }
@@ -61,26 +67,94 @@
     display: flex !important;
 }
 
-.titlebar-buttonbox {
+:root:not([uidensity="mac"]) .titlebar-buttonbox {
     @media (-moz-platform: macos) {
-        /*  Make same as Safari on Big Sur +  */
-        margin-inline: 19px 7px !important;
+        /*  Make same as Safari's URL bar padding on Catalina −  */
+        margin-inline: 14px 6px !important;
     }
     @media (-moz-platform: windows) {
         /*  Make same as Windows 11  */
-        .titlebar-button:hover {
+        > .titlebar-button:hover {
             background-color: var(--toolbarbutton-hover-background) !important;
             &:active {
                 background-color: light-dark( rgba(0, 0, 0, .025), rgba(255, 255, 255, .045) ) !important;
             }
         }
-        .titlebar-close:hover {
+        > .titlebar-close:hover {
             stroke: white;
             background-color: #C42B1C !important;
             &:active {
                 background-color: light-dark(#C84031, #B22A1B) !important;
             }
         }
+    }
+}
+
+:root[uidensity="mac"] .titlebar-buttonbox {
+    @media (-moz-platform: macos) {
+        /*  Make same as Safari on Big Sur +  */
+        margin-inline: 19px 7px !important;
+    }
+    @media (-moz-platform: windows) {
+        padding-inline-end: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
+        > .titlebar-button {
+            margin-inline: 4px !important;
+            padding: 8px !important;
+            border-radius: var(--toolbarbutton-border-radius) !important;
+            &:hover {
+                background-color: var(--toolbarbutton-hover-background) !important;
+                &:active {
+                    background-color: var(--toolbarbutton-active-background) !important;
+                }
+            }
+        }
+        > .titlebar-close:hover {
+            stroke: white;
+            background-color: #C42B1C !important;
+            &:active {
+                background-color: light-dark(#AC2619, #CB4437) !important;
+            }
+        }
+    }
+}
+
+@media (-moz-platform: macos) {
+    :root[uidensity="compact"] .titlebar-buttonbox {
+        /*  Make same as Safari on Big Sur + compact toolbar style */
+        margin-inline: 12px 4px !important;
+    }
+}
+
+@media (-moz-platform: windows) {
+    :root:not([uidensity="mac"]) .titlebar-buttonbox-container {
+        align-self: stretch !important;
+    }
+}
+
+@media (-moz-platform: linux) {
+    .titlebar-buttonbox-container {
+        align-self: stretch !important;
+    }
+}
+
+@media (-moz-platform: windows) {
+    .titlebar-min {
+        list-style-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='context-stroke' fill-opacity='context-stroke-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 6a.5.5 0 0 0-.5.5.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 0-.5-.5z'/%3E%3C/svg%3E") !important;
+        @media (resolution > 1dppx) {
+            list-style-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='context-stroke' fill-opacity='context-stroke-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 5.5a.5.5 0 0 0-.5.5.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 0-.5-.5z'/%3E%3C/svg%3E") !important;
+        }
+    }
+
+    .titlebar-max {
+        list-style-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='context-stroke' fill-opacity='context-stroke-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 1C1.677 1 1 1.677 1 2.5v7c0 .823.677 1.5 1.5 1.5h7c.823 0 1.5-.677 1.5-1.5v-7c0-.823-.677-1.5-1.5-1.5zm0 1h7c.282 0 .5.218.5.5v7c0 .282-.218.5-.5.5h-7a.493.493 0 0 1-.5-.5v-7c0-.282.218-.5.5-.5z'/%3E%3C/svg%3E") !important;
+    }
+
+    .titlebar-restore {
+        list-style-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='context-stroke' fill-opacity='context-stroke-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 2h5A1.5 1.5 45 0 1 10 3.5v5a1 1 135 0 0 1-1v-4A2.5 2.5 45 0 0 8.5 1h-4a1 1 135 0 0-1 1zM1 4.5v5A1.5 1.5 45 0 0 2.5 11h5A1.5 1.5 135 0 0 9 9.5v-5A1.5 1.5 45 0 0 7.5 3h-5A1.5 1.5 135 0 0 1 4.5zM2.5 4h5a.5.5 45 0 1 .5.5v5a.5.5 135 0 1-.5.5h-5a.5.5 45 0 1-.5-.5v-5a.5.5 135 0 1 .5-.5z'/%3E%3C/svg%3E") !important;
+    }
+
+    .titlebar-close {
+        list-style-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='context-stroke' fill-opacity='context-stroke-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 1a.5.5 0 0 0-.353.146.5.5 0 0 0 0 .708L5.293 6l-4.146 4.145a.5.5 0 0 0 0 .707.5.5 0 0 0 .707 0L6 6.706l4.146 4.146a.5.5 0 0 0 .706 0 .5.5 0 0 0 0-.707L6.708 6l4.146-4.146a.5.5 0 0 0 0-.707.5.5 0 0 0-.707 0L5.998 5.292 1.855 1.146A.5.5 0 0 0 1.5 1z'/%3E%3C/svg%3E") !important;
     }
 }
 
@@ -91,15 +165,11 @@
             border-top: 1px solid transparent !important;
         }
     }
-    #urlbar[breakout-extend] {
-        @media (-moz-platform: windows) {
-            top: calc(((var(--urlbar-container-height) - var(--urlbar-height)) / 2) + 1px) !important;
-        }
-    }
 }
 
-#urlbar[breakout-extend] {
-    top: calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2) !important;
+#urlbar-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 #urlbar, #searchbar {
@@ -220,12 +290,18 @@
     display: none !important;
 }
 
+#PanelUI-menu-button {
+    padding-inline-end: var(--toolbarbutton-outer-padding) !important;
+}
+
 #PanelUI-button {
     padding-inline-end: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
 }
 
-#PanelUI-menu-button {
-    padding-inline-end: var(--toolbarbutton-outer-padding) !important;
+@media (-moz-platform: windows) {
+    :root[uidensity="mac"] #PanelUI-button {
+        padding-inline-end: 0 !important;
+    }
 }
 
 .toolbaritem-combined-buttons:not([widget-type="button-and-view"], [widget-type="custom"]),
@@ -272,6 +348,14 @@ findbar:-moz-window-inactive {
 
 #customization-palette .toolbarbutton-1 {
     opacity: 1 !important;
+}
+
+toolbarspring {
+    margin-block: 0 !important;
+}
+
+#PersonalToolbar toolbarspring {
+    height: 22px !important;
 }
 
 /* Tabs */
@@ -527,11 +611,9 @@ findbar:-moz-window-inactive {
     height: 28px !important;
     margin-top: -5px !important;
     margin-bottom: 2px !important;
-    :root[tabsintitlebar] & {
-        @media (-moz-platform: macos) {
-            margin-top: -7px !important;
-            margin-bottom: 5px !important;
-        }
+    :root[uidensity="mac"] & {
+        margin-top: -7px !important;
+        margin-bottom: 5px !important;
     }
 }
 
