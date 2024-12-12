@@ -1,4 +1,4 @@
-// @-ts-nocheck - Tested on Firefox 133.0.
+// @-ts-nocheck - Tested on Firefox 133.0.3.
 
 queueMicrotask(() => {
     //  Move window controls into the navigation bar.
@@ -373,5 +373,36 @@ queueMicrotask(() => {
                 });
             }
         }
+    });
+
+    //  Add touch options on Mac.
+    if (navigator.platform.startsWith("Mac")) {
+        if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
+            Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
+            Services.prefs.setIntPref("browser.uidensity", 2);
+       }
+        new MutationObserver(() => {
+            let uidensityMenu = document.querySelector("#customization-uidensity-menu");
+            let normalItem = uidensityMenu.querySelector("#customization-uidensity-menuitem-normal");
+            if (normalItem) {
+                let touchItem = normalItem.cloneNode(true);
+                touchItem.setAttribute("id", "customization-uidensity-menuitem-touch");
+                touchItem.setAttribute("data-l10n-id", "customize-mode-uidensity-menu-touch");
+                uidensityMenu.appendChild(touchItem);
+                observer.disconnect();
+            }
+        }).observe(document.querySelector("body"), {
+            childList: true
+        });
+    }
+
+    //  Prevents uidensity from setting to touch.
+    new MutationObserver(() => {
+        if (document.documentElement.getAttribute('uidensity') === 'touch') {
+            document.documentElement.setAttribute('uidensity', 'mac');
+        }
+    }).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['uidensity'],
     });
 });
