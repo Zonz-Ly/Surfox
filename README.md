@@ -39,11 +39,11 @@ In the "Customize Toolbar" page, click the "Density" button in the lower-left co
 - You can also enable **Compact** through `about:config`, which matches the native compact toolbar style width on Big Sur +.  
 
 ### Some configurable `about:config` values (set to `true`):  
-- `extensions.unifiedExtensions.enabled`: Show the unified extensions button.  
-- `userChrome.menuButton.enabled`: Show the menu button (Why not just use the menu bar instead? On macOS, it is natively built-in, and on Windows or Linux, it appears by pressing the Alt key).
-- `userChrome.urlbar.starButton.enabled`: Show the star button for bookmarks at the far right of the address bar.  
-- `browser.tabs.tabmanager.enabled`: Show the "All Tabs" button to the right of the tabs (Firefox 131− only; can be removed starting in version 132).  
-- `browser.compactmode.show`: Display the "Compact" option in the "Density" menu.  
+- `extensions.unifiedExtensions.enabled`: Show the unified extensions button (quite useful if you use extensions).  
+- `userChrome.menuButton.enabled`: Show the menu button (Why not just use the menu bar instead? On macOS, it's natively built-in, and on Windows and Linux, it appears by pressing the Alt key).  
+- `userChrome.urlbar.starButton.enabled`: Show the star button for bookmarks at the far right of the address bar (you can also access it by right-clicking on a blank area of the webpage).  
+- `browser.tabs.tabmanager.enabled`: Show the "All Tabs" button to the right of the tabs (only in Firefox 131−, can be removed manually starting from version 132).  
+- `browser.compactmode.show`: Display the "Compact" option in the "Density" menu (not particularly useful).  
 
 It is recommended to disable updates (default) as new versions are likely to adjust the browser's UI structure, causing the unadapted Surfox to stop working. If you need to enable updates, open the `autoconfig.js` file, delete the line `pref("app.update.channel", "");` then save.
 
@@ -90,10 +90,10 @@ Firefox 版本 128 及更高。
 - 还可以通过 `about:config` 开启 **「紧凑」** ，它和 Big Sur + 上的原生紧凑工具栏样式宽度一致。
 
 ### 一些可以根据需要调整的 `about:config` 的值（设置为 `true` 时）：
-- `extensions.unifiedExtensions.enabled` 显示扩展按钮
+- `extensions.unifiedExtensions.enabled` 显示扩展按钮（如果你用扩展的话还是很有用的）
 - `userChrome.menuButton.enabled`: 显示菜单按钮（为什么不用菜单栏代替呢？macOS 原生自带，Windows 和 Linux 下按一下 alt 就会出现）
-- `userChrome.urlbar.starButton.enabled` 显示地址栏最右侧的星星收藏按钮
+- `userChrome.urlbar.starButton.enabled` 显示地址栏最右侧的星星收藏按钮（在网页空白处按右键就会有）
 - `browser.tabs.tabmanager.enabled` 显示标签右侧的所有标签页按钮（仅 Firefox 131−，132 起可以自行移除）
-- `browser.compactmode.show` 在「密度」菜单中显示「紧凑」选项
+- `browser.compactmode.show` 在「密度」菜单中显示「紧凑」选项（没什么用）
 
 推荐禁用更新（默认），因为新版本很可能会改变浏览器界面结构导致未适配的 Surfox 无法使用。如果需要启用更新，请打开 `autoconfig.js` 文件，删除 `pref("app.update.channel", "");` 这一行，并保存。
