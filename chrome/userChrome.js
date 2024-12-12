@@ -1,5 +1,15 @@
 // @-ts-nocheck - Tested on Firefox 133.0.3.
 
+if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
+    Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
+    Services.prefs.setBoolPref("extensions.unifiedExtensions.enabled", false);
+    Services.prefs.setBoolPref("userChrome.menuButton.enabled", false);
+    Services.prefs.setBoolPref("userChrome.urlbar.starButton.enabled", false);
+    if (navigator.platform.startsWith("Mac")) {
+        Services.prefs.setIntPref("browser.uidensity", 2);
+    }
+}
+
 queueMicrotask(() => {
     //  Move window controls into the navigation bar.
     let navBar = document.querySelector("#nav-bar");
@@ -8,9 +18,11 @@ queueMicrotask(() => {
     navBar.after(tabBar);
     navBar.after(menuBar);
 
-    tabBar.querySelector(".titlebar-buttonbox-container").remove();
-    menuBar.querySelector(".titlebar-buttonbox-container").remove();
-    let windowControl = navBar.querySelector(".titlebar-buttonbox-container");
+    let windowControls = [...document.querySelectorAll(".titlebar-buttonbox-container")];
+    windowControls.forEach((control, index) => {
+        if (index === 0) {navBar.prepend(control);}
+        else {control.remove();}
+    });
 
     //  Move bookmark bar to expected order.
     let bookmarkBar = document.querySelector("#PersonalToolbar");
@@ -53,6 +65,13 @@ queueMicrotask(() => {
     //  Remove titlebar spacers.
     let titlebarSpacers = document.querySelectorAll(".titlebar-spacer");
     titlebarSpacers.forEach(spacer => spacer.remove());
+
+    //  Remove star button if need.
+    try {
+        if (!Services.prefs.getBoolPref("browser.tabs.tabmanager.enabled")) {
+            document.querySelector("#alltabs-button").remove();
+        }
+    } catch(e) {}
 
     //  Absolute URL bar.
     let urlbarToolbarItem = document.querySelector("#urlbar-container");
@@ -103,10 +122,10 @@ queueMicrotask(() => {
             }
         }
 
-        if (navigator.platform.startsWith("Mac")) {
-            beforeBarWidth += windowControl.clientWidth;
+        if (parseInt(window.getComputedStyle(windowControls[0]).order, 10) > 0) {
+            afterBarWidth += windowControls[0].clientWidth;
         } else {
-            afterBarWidth += windowControl.clientWidth;
+            beforeBarWidth += windowControls[0].clientWidth;
         }
 
         let rightNavBarElementsWidth = 0;
@@ -117,9 +136,6 @@ queueMicrotask(() => {
                 continue;
             }
             if (element.matches("panel")) {
-                continue;
-            }
-            if (element === windowControl) {
                 continue;
             }
             if (isAfterNavBarTarget) {
@@ -377,10 +393,6 @@ queueMicrotask(() => {
 
     //  Add touch options on Mac.
     if (navigator.platform.startsWith("Mac")) {
-        if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
-            Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
-            Services.prefs.setIntPref("browser.uidensity", 2);
-       }
         new MutationObserver(() => {
             let uidensityMenu = document.querySelector("#customization-uidensity-menu");
             let normalItem = uidensityMenu.querySelector("#customization-uidensity-menuitem-normal");
