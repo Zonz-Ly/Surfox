@@ -5,7 +5,9 @@ While there are many similar themes on GitHub, none of them met my expectations,
 
 ## Requirement
 Firefox version 128 and above.
+
 (Actually, it can support version 117, but you’ll need to tweak a few details—DIY!)
+
 (Versions 117 and below don’t support CSS nesting and light-dark syntax, so modifications are more complicated. However, if you’re willing to put in the effort to adapt it, support is still possible.)
 
 ## **Installation**
@@ -29,16 +31,19 @@ Firefox version 128 and above.
 
 When there is only one tab and the tab bar contains no tool icons, it will hide automatically. Alternatively, you can place a tool icon (e.g., a new tab button) on the tab bar to prevent it from hiding.
 
+
 Right-click on a blank area in the window to set the position of the bookmarks toolbar:
 - When **"Always Show"** is selected, it will appear above the tab bar.
 - When **"Only Show on New Tabs"** is selected, it will appear below the tab bar.
 - Alternatively, you can try placing the "Bookmarks Toolbar Items" on the **tab bar**—there might be a pleasant surprise waiting for you!
 - If you want to place the "Bookmarks toolbar items" on the **navigation bar**, make sure there is 'Flexible Space' on both sides of the URL bar. Otherwise, Firefox's bug may cause it to crash. If you're unlucky to encounter this issue, temporarily delete the `config.js` file, then open Firefox, adjust the navigation bar layout, and restore the `config.js` file.
 
+
 In the "Customize Toolbar" page, click the "Density" button in the lower-left corner to choose different navigation bar widths:
 - **Standard (default on Windows):** The vertical padding of the address bar matches that of Catalina − and is recommended for Catalina − users.
 - **Touch (default on macOS):** The navigation bar width matches that of Big Sur +.
 - You can also enable **Compact** through `about:config`, which matches the native compact toolbar style width on Big Sur +.
+
 
 ### Some configurable `about:config` values (if set to `true`):
 - `extensions.unifiedExtensions.enabled`: Show the unified extensions button (quite useful if you use extensions).
@@ -46,6 +51,7 @@ In the "Customize Toolbar" page, click the "Density" button in the lower-left co
 - `userChrome.urlbar.starButton.enabled`: Show the star button for bookmarks at the far right of the address bar (you can also access it by right-clicking on a blank area of the webpage).
 - `browser.tabs.tabmanager.enabled`: Show the "All Tabs" button to the right of the tabs (only in Firefox 131−, can be removed manually starting from version 132).  
 - `browser.compactmode.show`: Display the "Compact" option in the "Density" menu (not particularly useful).
+
 
 It is recommended to disable updates (default) as new versions are likely to adjust the browser's UI structure, causing the unadapted Surfox to stop working. If you need to enable updates, open the `autoconfig.js` file, delete the line `pref("app.update.channel", "");` then save.
 
@@ -56,7 +62,9 @@ It is recommended to disable updates (default) as new versions are likely to adj
 
 ## **要求**
 Firefox 版本 128 及更高。
+
 （其实可以支持到 117，但是需要修改一小部分细节，自己动手！）
+
 （117 及更低由于不支持 css 嵌套和 light-dark 语法，修改起来比较麻烦，但如果你愿意花一些精力转译，也可以支持。）
 
 ## **安装**
@@ -81,17 +89,18 @@ Firefox 版本 128 及更高。
 当只有一个标签页且标签栏没有工具图标时，标签栏将自动隐藏；或者你可以在标签栏放入一个工具图标（例如打开新标签页），这样它就不会自动隐藏了。
 
 
-
 在窗口空白处点右键，可以设置书签工具栏的位置：
 - 当选择 **「始终显示」** 时，它将出现在标签栏上方；
 - 当选择 **「只在新标签页显示」** 时，它将出现在标签栏下方。
 - 或者你可以试试把「书签工具栏项目」放在**标签栏**上，也许会有惊喜！
 - 如果你想把「书签工具栏项目」放在**导航栏**上，请确保地址栏左右均放置有「弹性空白」，否则 Firefox 的罢虼将导致其崩溃。如果你不幸中招了，请暂时先删除 `config.js`，然后打开 Firefox，调整好导航栏排序，再恢复 `config.js`。
 
+
 在「自定义工具栏」页面左下角，点击「密度」按钮，可以选择不同导航栏宽度。
 - **「标准（Windows 下默认）」** 的地址栏上下边距和 Catalina − 一致，亦推荐 Catalina − 的用户设置成这个。
 - **「触控（macOS 下默认）」** 的导航栏宽度和 Big Sur + 一致。
 - 还可以通过 `about:config` 开启 **「紧凑」** ，它和 Big Sur + 上的原生紧凑工具栏样式宽度一致。
+
 
 ### 一些可以根据需要调整的 `about:config` 的值（设置为 `true` 时）：
 - `extensions.unifiedExtensions.enabled` 显示扩展按钮（如果你用扩展的话还是很有用的）
@@ -99,5 +108,6 @@ Firefox 版本 128 及更高。
 - `userChrome.urlbar.starButton.enabled` 显示地址栏最右侧的星星收藏按钮（在网页空白处按右键就会有）
 - `browser.tabs.tabmanager.enabled` 显示标签右侧的所有标签页按钮（仅 Firefox 131−，132 起可以自行移除）
 - `browser.compactmode.show` 在「密度」菜单中显示「紧凑」选项（没什么用）
+
 
 推荐禁用更新（默认），因为新版本很可能会改变浏览器界面结构导致未适配的 Surfox 无法使用。如果需要启用更新，请打开 `autoconfig.js` 文件，删除 `pref("app.update.channel", "");` 这一行，并保存。
