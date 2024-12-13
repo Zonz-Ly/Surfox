@@ -8,7 +8,7 @@ Firefox version 128 and above.
 
 (Actually, it can support version 117, but you’ll need to tweak a few details—DIY!)
 
-(Versions 117 and below don’t support CSS nesting and light-dark syntax, so modifications are more complicated. However, if you’re willing to put in the effort to adapt it, support is still possible.)
+(Versions 116 and below don’t support CSS nesting and light-dark syntax, so modifications are more complicated. However, if you’re willing to put in the effort to adapt it, support is still possible.)
 
 ## **Installation**
 
@@ -65,7 +65,7 @@ Firefox 版本 128 及更高。
 
 （其实可以支持到 117，但是需要修改一小部分细节，自己动手！）
 
-（117 及更低由于不支持 css 嵌套和 light-dark 语法，修改起来比较麻烦，但如果你愿意花一些精力转译，也可以支持。）
+（116 及更低由于不支持 css 嵌套和 light-dark 语法，修改起来比较麻烦，但如果你愿意花一些精力转译，也可以支持。）
 
 ## **安装**
 
