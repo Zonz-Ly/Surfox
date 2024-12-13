@@ -38,7 +38,7 @@ In the "Customize Toolbar" page, click the "Density" button in the lower-left co
 - **Touch (default on macOS):** The navigation bar width matches that of Big Sur + and is recommended for Windows 11 users.  
 - You can also enable **Compact** through `about:config`, which matches the native compact toolbar style width on Big Sur +.  
 
-### Some configurable `about:config` values (set to `true`):  
+### Some configurable `about:config` values (if set to `true`):  
 - `extensions.unifiedExtensions.enabled`: Show the unified extensions button (quite useful if you use extensions).  
 - `userChrome.menuButton.enabled`: Show the menu button (Why not just use the menu bar instead? On macOS, it's natively built-in, and on Windows and Linux, it appears by pressing the Alt key).  
 - `userChrome.urlbar.starButton.enabled`: Show the star button for bookmarks at the far right of the address bar (you can also access it by right-clicking on a blank area of the webpage).  
