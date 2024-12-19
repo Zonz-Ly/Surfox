@@ -42,6 +42,7 @@
     --panel-banner-item-hover-bgcolor: var(--button-background-color-hover) !important;
     --toolbarbutton-hover-background: var(--button-background-color-hover) !important;
     --button-background-color-ghost-hover: var(--button-background-color-hover) !important;
+    --tab-hover-background-color: var(--button-background-color-hover) !important;
     --button-active-bgcolor: var(--button-background-color-active) !important;
     --newtab-element-active-color: var(--button-background-color-active) !important;
     --panel-item-active-bgcolor: var(--button-background-color-active) !important;
@@ -125,6 +126,9 @@ tooltip {
     --toolbar-start-end-padding: 8px !important;
     --toolbarbutton-outer-padding: 4px !important;
     --toolbarbutton-inner-padding: 6px !important;
+    --toolbarbutton-border-radius: 6px !important;
+    --button-border-radius: 6px !important;
+    --tab-border-radius: 6px !important;
     --urlbar-min-height: 28px !important;
     --urlbar-margin-inline: 0px !important;
     --tab-shadow-max-size: 0px !important;
@@ -147,7 +151,6 @@ tooltip {
     font-size: 13px !important;
     height: 42px !important;
     align-items: center !important;
-    --toolbarbutton-border-radius: 5px !important;
     --toolbar-field-border-color: light-dark( rgba(0, 0, 0, .12), rgba(255, 255, 255, .12) ) !important;
     --toolbar-field-background-color: transparent !important;
     [uidensity="mac"] & {
@@ -429,7 +432,7 @@ tooltip {
 }
 
 @media (-moz-platform: windows) {
-    :root[uidensity="mac"] #PanelUI-button {
+    :root[uidensity="mac"]:is([tabsintitlebar], [inFullscreen]) #PanelUI-button {
         padding-inline-end: 0 !important;
     }
 }
