@@ -128,7 +128,6 @@ queueMicrotask(() => {
             beforeBarWidth += windowControls[0].clientWidth;
         }
 
-        let rightNavBarElementsWidth = 0;
         let isAfterNavBarTarget = false;
         for (let element of navBar.children) {
             if (element === navBarTarget) {
@@ -139,10 +138,9 @@ queueMicrotask(() => {
                 continue;
             }
             if (isAfterNavBarTarget) {
-                rightNavBarElementsWidth += element.clientWidth;
+                afterBarWidth += element.clientWidth;
             }
         }
-        afterBarWidth += rightNavBarElementsWidth;
 
         let leftFlexibleSpaceCount = leftFlexibleSpaces.length;
         let rightFlexibleSpaceCount = rightFlexibleSpaces.length;
@@ -205,8 +203,8 @@ queueMicrotask(() => {
         }
 
         delayedUrlbarSizing = true;
+        urlbarSizer();
         queueMicrotask(() => {
-            urlbarSizer();
             delayedUrlbarSizing = false;
         });
     }
@@ -307,8 +305,8 @@ queueMicrotask(() => {
         }
 
         delayedSizingSpacer = type;
+        spaceSizer(delayedSizingSpacer === 2);
         queueMicrotask(() => {
-            spaceSizer(delayedSizingSpacer === 2);
             delayedSizingSpacer = 0;   
         });
     }
