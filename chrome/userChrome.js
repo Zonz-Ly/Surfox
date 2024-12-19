@@ -73,16 +73,74 @@ queueMicrotask(() => {
         }
     } catch(e) {}
 
-    //  Absolute URL bar.
+    //  Move Selected Tab.
     let urlbarToolbarItem = document.querySelector("#urlbar-container");
-    let navBarTarget = navBar.querySelector("#nav-bar-customization-target");
+    let tabbrowserTabs = document.querySelector("#tabbrowser-tabs");
+    let tabScrollbox = tabbrowserTabs.querySelector("#tabbrowser-arrowscrollbox");
+    urlbarToolbarItem.before(tabbrowserTabs);
 
-    function urlbarSizer() {
+    let selectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
+
+    function updateSelectedTabPosition() {
         if (document.documentElement.hasAttribute("customizing")) {
-            urlbarToolbarItem.style.marginLeft = '4px';
-            urlbarToolbarItem.style.marginRight = '4px';
-            urlbarToolbarItem.style.minWidth ='';
-            urlbarToolbarItem.style.maxWidth ='';
+            urlbarToolbarItem.style.position = '';
+            return;
+        }
+
+        if (!selectedTab || selectedTab.hasAttribute("movingtab") || selectedTab.hasAttribute("pinned")) {
+            urlbarToolbarItem.style.visibility = 'collapse';
+            return;
+        }
+
+        let tabRect = selectedTab.getBoundingClientRect();
+        urlbarToolbarItem.style.visibility = '';
+        urlbarToolbarItem.style.position = 'absolute';
+        urlbarToolbarItem.style.width = `${tabRect.width}px`;
+        urlbarToolbarItem.style.height = `${tabRect.height}px`;
+        urlbarToolbarItem.style.top = `${tabRect.top}px`;
+
+        if (tabbrowserTabs.hasAttribute("overflow")) {
+            let tabsRect = tabScrollbox.getBoundingClientRect();
+            urlbarToolbarItem.style.left = `${Math.min(
+                Math.max(tabsRect.left + 36, tabRect.left), 
+                tabsRect.right - tabRect.width - 36
+            )}px`;
+        } else {
+            urlbarToolbarItem.style.left = `${tabRect.left}px`;
+        }
+    }
+
+    function updateSelectedTab() {
+        let newSelectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
+        if (newSelectedTab !== selectedTab) {
+            selectedTab = newSelectedTab;
+            updateSelectedTabPosition();
+        }
+    }
+
+    function trackTabPosition() {
+        updateSelectedTabPosition();
+        requestAnimationFrame(trackTabPosition);
+    }
+    updateSelectedTabPosition();
+    requestAnimationFrame(trackTabPosition);
+    tabbrowserTabs.addEventListener('TabSelect', updateSelectedTab);
+
+
+    if (tabScrollbox && tabScrollbox.shadowRoot) {
+        let scrollbox = tabScrollbox.shadowRoot.querySelector("scrollbox");
+        if (scrollbox) {
+            scrollbox.style.borderRadius = "var(--tab-border-radius)";
+        }
+        let tabOverflowIndicator = tabScrollbox.shadowRoot.querySelectorAll("spacer");
+        tabOverflowIndicator.forEach(spacer => spacer.remove());
+    }
+
+    let navBarTarget = navBar.querySelector("#nav-bar-customization-target");
+    
+    function tabsMover() {
+        if (document.documentElement.hasAttribute("customizing")) {
+            tabbrowserTabs.style.visibility = 'collapse';
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
             flexibleSpaces.forEach(space => {
                 space.style.minWidth = '';
@@ -91,19 +149,28 @@ queueMicrotask(() => {
             return;
         }
 
-        urlbarToolbarItem.style.minWidth = (navBar.clientWidth * 0.41 - 8) + 'px';
-        urlbarToolbarItem.style.maxWidth = (navBar.clientWidth * 0.41 - 8) + 'px';
+        tabbrowserTabs.style.visibility = '';
+        let unselectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned])').length;
+        let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned])').length;
+        let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]').length;
+    
+        let tabsMaxWidth = pinnedTabs * 42 + unselectedTabs * 156 + selectedTabs * 488;
+        tabbrowserTabs.style.maxWidth = tabsMaxWidth + 'px';
+    
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
-        let beforeBarWidth = 0;
+        let beforeBarWidth = 8;
         let afterBarWidth = 0;
-
+    
         let isLeft = true;
         let isRight = false;
         for (let element of navBarTarget.children) {
-            if (element === urlbarToolbarItem) {
+            if (element === tabbrowserTabs) {
                 isLeft = false;
                 isRight = true;
+                continue;
+            }
+            if (element === urlbarToolbarItem) {
                 continue;
             }
             if (element.matches("toolbarspring")) {
@@ -121,13 +188,13 @@ queueMicrotask(() => {
                 afterBarWidth += element.clientWidth;
             }
         }
-
+    
         if (parseInt(window.getComputedStyle(windowControls[0]).order, 10) > 0) {
             afterBarWidth += windowControls[0].clientWidth;
         } else {
             beforeBarWidth += windowControls[0].clientWidth;
         }
-
+    
         let isAfterNavBarTarget = false;
         for (let element of navBar.children) {
             if (element === navBarTarget) {
@@ -141,53 +208,47 @@ queueMicrotask(() => {
                 afterBarWidth += element.clientWidth;
             }
         }
-
+    
         let leftFlexibleSpaceCount = leftFlexibleSpaces.length;
         let rightFlexibleSpaceCount = rightFlexibleSpaces.length;
-
+    
         if (beforeBarWidth > afterBarWidth) {
             if (leftFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginLeft = Math.max(4, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                tabbrowserTabs.style.marginLeft = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - beforeBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
             } else {
-                urlbarToolbarItem.style.marginLeft = '4px';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
+                tabbrowserTabs.style.marginLeft = '0';
+                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - beforeBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                if ((navBar.clientWidth * 0.295) - afterBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
-                    urlbarToolbarItem.style.marginRight = 'auto';
-                } else {
-                    urlbarToolbarItem.style.marginRight = '4px';
-                }
+                tabbrowserTabs.style.marginRight = 'auto';
             } else {
-                urlbarToolbarItem.style.marginRight = '4px';
+                tabbrowserTabs.style.marginRight = '0';
+                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - afterBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
-                    space.style.minWidth = '0';
-                    space.style.maxWidth = 'none';
+                    space.style.minWidth = spaceWidth + '0';
+                    space.style.maxWidth = spaceWidth + 'px';
                 }
             }
         } else {
             if (leftFlexibleSpaceCount === 0) {
-                if ((navBar.clientWidth * 0.295) - beforeBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
-                    urlbarToolbarItem.style.marginLeft = 'auto';
-                } else {
-                    urlbarToolbarItem.style.marginLeft = '4px';
-                }
+                tabbrowserTabs.style.marginLeft = 'auto';
             } else {
-                urlbarToolbarItem.style.marginLeft = '4px';
+                tabbrowserTabs.style.marginLeft = '0';
+                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - beforeBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
-                    space.style.minWidth = '0';
-                    space.style.maxWidth = 'none';
+                    space.style.minWidth = spaceWidth + '0';
+                    space.style.maxWidth = spaceWidth + 'px';
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginRight = Math.max(4, Math.min((navBar.clientWidth * 0.295) - afterBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                tabbrowserTabs.style.marginRight = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - afterBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
             } else {
-                urlbarToolbarItem.style.marginRight = '4px';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - afterBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
+                tabbrowserTabs.style.marginRight = '0';
+                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - afterBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
@@ -195,23 +256,39 @@ queueMicrotask(() => {
             }
         }
     }
-
-    let delayedUrlbarSizing = false;
-    function delayedUrlbarSizer() {
-        if (delayedUrlbarSizing) {
+    
+    let delayedtabsMover = false;
+    let delayedcustomizing = false;
+    function delayedtabsMoverHandler() {
+        if (delayedtabsMover) {
             return;
         }
 
-        delayedUrlbarSizing = true;
-        urlbarSizer();
-        queueMicrotask(() => {
-            delayedUrlbarSizing = false;
-        });
-    }
+        delayedtabsMover = true;
+        if (delayedcustomizing) {
+            tabsMover();
+            requestAnimationFrame(() => {
+                delayedtabsMover = false;
+            });
+        } else {
+            tabsMover();
+            queueMicrotask(() => {
+                delayedtabsMover = false;
+            });
+        }
 
-    urlbarSizer();
-    (new ResizeObserver(() => delayedUrlbarSizer())).observe(navBar);
-    (new MutationObserver(() => delayedUrlbarSizer())).observe(navBar, {
+        if (document.documentElement.hasAttribute("customizing")) {
+            delayedcustomizing = true;
+        } else {
+            requestAnimationFrame(() => {
+                delayedcustomizing = false;
+            });
+        }
+    }
+    
+    tabsMover();
+    (new ResizeObserver(() => delayedtabsMoverHandler())).observe(navBar);
+    (new MutationObserver(() => delayedtabsMoverHandler())).observe(navBar, {
         subtree: true,
         attributes: true
     });
@@ -348,68 +425,22 @@ queueMicrotask(() => {
     spacer.addEventListener("mousedown", eventListener);
     spacer.addEventListener("mouseup", eventListener);
 
-    //  Customize tab bar.
-    let tabStrip = document.querySelector("#TabsToolbar-customization-target");
+    //  Center tab text.
     function layoutTabs() {
-        let tabs = tabStrip.querySelectorAll(".tabbrowser-tab");
-        let canHideTabBar = tabStrip.childElementCount <= 1 && tabs.length <= 1;
-        canHideTabBar &= !document.documentElement.hasAttribute("customizing");
-        tabBar.style.visibility = canHideTabBar ? "collapse" : "";
-
         //  We can’t override `flex` using CSS because of style sheet precedence.
-        tabStrip.querySelectorAll(`.tab-label-container[flex="1"]`).forEach (t => {
+        tabbrowserTabs.querySelectorAll(`.tab-label-container[flex="1"]`).forEach (t => {
             t.removeAttribute("flex");
         });
-        if (tabs.length <= 1) {
-            tabStrip.querySelectorAll('.tab-close-button').forEach(button => {
-                button.style.visibility = 'hidden';
-            });
-        } else {
-            tabStrip.querySelectorAll('.tab-close-button').forEach(button => {
-                button.style.visibility = '';
-            });
-        }
     }
 
     layoutTabs();
     let tabMutationObserver = new MutationObserver(() => layoutTabs());
-    tabMutationObserver.observe(tabStrip, {subtree: true, childList: true});
-    gBrowser.tabContainer.addEventListener("TabClose", () => {
-        let tabs = tabStrip.querySelectorAll(".tabbrowser-tab");
-        let canHideTabBar = tabStrip.childElementCount <= 1 && tabs.length <= 2;
-        canHideTabBar &= !document.documentElement.hasAttribute("customizing");
-        if (canHideTabBar) {
-            tabBar.style.visibility = "collapse";
-        } else {
-            if (tabs.length <= 2) {
-                tabStrip.querySelectorAll('.tab-close-button').forEach(button => {
-                    button.style.visibility = 'hidden';
-                });
-            }
-        }
-    });
-
-    //  Add touch options on Mac.
-    if (navigator.platform.startsWith("Mac")) {
-        new MutationObserver(() => {
-            let uidensityMenu = document.querySelector("#customization-uidensity-menu");
-            let normalItem = uidensityMenu.querySelector("#customization-uidensity-menuitem-normal");
-            if (normalItem) {
-                let touchItem = normalItem.cloneNode(true);
-                touchItem.setAttribute("id", "customization-uidensity-menuitem-touch");
-                touchItem.setAttribute("data-l10n-id", "customize-mode-uidensity-menu-touch");
-                uidensityMenu.appendChild(touchItem);
-                observer.disconnect();
-            }
-        }).observe(document.querySelector("body"), {
-            childList: true
-        });
-    }
+    tabMutationObserver.observe(tabbrowserTabs, {subtree: true, childList: true});
 
     //  Prevents uidensity from setting to touch.
     function setUidensity() {
         if (document.documentElement.getAttribute('uidensity') === 'touch') {
-            document.documentElement.setAttribute('uidensity', 'mac');
+            document.documentElement.setAttribute('uidensity', '');
         }
     }
 
