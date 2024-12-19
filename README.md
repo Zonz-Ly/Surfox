@@ -35,9 +35,8 @@ When there is only one tab and the tab bar contains no tool icons, it will hide 
 Right-click on a blank area in the window to set the position of the bookmarks toolbar:
 - When **"Always Show"** is selected, it will appear above the tab bar.
 - When **"Only Show on New Tabs"** is selected, it will appear below the tab bar.
-- Alternatively, you can try placing the "Bookmarks Toolbar Items" on the **tab bar**—there might be a pleasant surprise waiting for you!
-- If you want to place the "Bookmarks toolbar items" on the **navigation bar**, make sure there is 'Flexible Space' on both sides of the URL bar. Otherwise, Firefox's bug may cause it to crash. If you're unlucky to encounter this issue, temporarily delete the `config.js` file, then open Firefox, adjust the navigation bar layout, and restore the `config.js` file.
-
+- Alternatively, you can try placing the "Bookmarks Toolbar Items" on the **tab bar**—you might like it!
+- If you want to place the "Bookmarks Toolbar Items" on the **navigation bar**, make sure there is 'Flexible Space' on both sides of the address bar. Otherwise, the address bar may not center properly.
 
 In the "Customize Toolbar" page, click the "Density" button in the lower-left corner to choose different navigation bar widths:
 - **Standard (default on Windows):** The vertical padding of the address bar matches that of Catalina − and is recommended for Catalina − users.
@@ -92,8 +91,8 @@ Firefox 版本 128 及更高。
 在窗口空白处点右键，可以设置书签工具栏的位置：
 - 当选择 **「始终显示」** 时，它将出现在标签栏上方；
 - 当选择 **「只在新标签页显示」** 时，它将出现在标签栏下方。
-- 或者你可以试试把「书签工具栏项目」放在**标签栏**上，也许会有惊喜！
-- 如果你想把「书签工具栏项目」放在**导航栏**上，请确保地址栏左右均放置有「弹性空白」，否则 Firefox 的罢虼将导致其崩溃。如果你不幸中招了，请暂时先删除 `config.js`，然后打开 Firefox，调整好导航栏排序，再恢复 `config.js`。
+- 或者你可以试试把「书签工具栏项目」放在**标签栏**上，也许你会喜欢！
+- 如果你想把「书签工具栏项目」放在**导航栏**上，请确保地址栏左右均放置有「弹性空白」，不然地址栏无法居中。
 
 
 在「自定义工具栏」页面左下角，点击「密度」按钮，可以选择不同导航栏宽度。
