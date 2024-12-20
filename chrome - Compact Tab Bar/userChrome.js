@@ -175,7 +175,14 @@ queueMicrotask(() => {
 
         let tabsMaxFreeWidth = Math.max((navBar.clientWidth * (0.41 - (unselectedTabs * 0.0425) - (pinnedTabs * 0.00919))), 248) + pinnedTabs * 40 + unselectedTabs * 156;
         let tabsMaxLimitedWidth = pinnedTabs * 40 + unselectedTabs * 156 + selectedTabs * 488;
-        let oneTabMaxWidth = navBar.clientWidth * 0.41
+        let oneTabMaxWidth = 0;
+        if (selectedTabs) {
+            oneTabMaxWidth = navBar.clientWidth * 0.41;
+        } else {
+            if (TabClosing) {
+                return;
+            }
+        }
         let tabsMaxWidth = Math.max(Math.min(tabsMaxFreeWidth, tabsMaxLimitedWidth), oneTabMaxWidth);
         tabbrowserTabs.style.maxWidth = tabsMaxWidth + 'px';
     
