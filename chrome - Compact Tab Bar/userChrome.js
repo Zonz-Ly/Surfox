@@ -90,7 +90,7 @@ queueMicrotask(() => {
             return;
         }
 
-        if (!selectedTab || selectedTab.hasAttribute("movingtab") || selectedTab.hasAttribute("pinned")) {
+        if (!selectedTab || selectedTab.hasAttribute("movingtab") || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
             urlbarToolbarItem.style.visibility = 'collapse';
             return;
         }
@@ -141,7 +141,6 @@ queueMicrotask(() => {
     tabScrollbox.addEventListener("scroll", () => delayedUpdateSelectedTabPosition());
     tabbrowserTabs.addEventListener('TabSelect', updateSelectedTab);
 
-
     if (tabScrollbox && tabScrollbox.shadowRoot) {
         let scrollbox = tabScrollbox.shadowRoot.querySelector("scrollbox");
         if (scrollbox) {
@@ -165,9 +164,9 @@ queueMicrotask(() => {
         }
 
         tabbrowserTabs.style.visibility = '';
-        let unselectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned])').length;
-        let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned])').length;
-        let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]').length;
+        let unselectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned]):not([hidden])').length;
+        let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
+        let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
     
         if (TabClosing) {
             unselectedTabs = unselectedTabs - 1;
