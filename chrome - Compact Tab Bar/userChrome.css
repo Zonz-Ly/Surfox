@@ -72,7 +72,7 @@
     --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
     --background-color-box: light-dark(#FFFFFF, #272727) !important;
     --in-content-table-background: var(--background-color-box) !important;
-    --chrome-content-separator-color: light-dark( rgba(0, 0, 0, .1), rgba(0, 0, 0, .6) ) !important;
+    --chrome-content-separator-color: light-dark( rgba(0, 0, 0, .15), rgba(0, 0, 0) ) !important;
     --toolbarbutton-icon-fill: light-dark( rgba(0, 0, 0, .555), rgba(255, 255, 255, .637) ) !important;
     --toolbarbutton-disabled-opacity: .3 !important;
     --color-accent-primary: light-dark(#2266EE, #50A6FA) !important;
@@ -777,7 +777,7 @@ toolbarspring {
 .browserContainer > findbar {
     order: -1;
     border-top: none !important;
-    border-bottom: 1px solid ThreeDShadow;
+    border-bottom: 0.5px solid ThreeDShadow;
     border-bottom-color: var(--chrome-content-separator-color);
     padding-block: 4px !important;
     &:where([hidden]) {
