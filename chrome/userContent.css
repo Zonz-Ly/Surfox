@@ -9,7 +9,7 @@
         --newtab-button-static-background: light-dark(#F6F6F6, #3C3C3C) !important;
         --newtab-button-static-hover-background: light-dark(#EFEFEF, #424242) !important;
         --newtab-button-static-active-background: light-dark(#E0E0E0, #4E4E4E) !important;
-        --newtab-background-color: light-dark(#FEFEFE, #363636) !important;
+        --newtab-background-color: light-dark(#FDFDFD, #363636) !important;
         --newtab-background-color-secondary: light-dark(#FFFFFF, #444444) !important;
         --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
         --background-color-box: light-dark(#FFFFFF, #272727) !important;
@@ -18,7 +18,7 @@
         --button-text-color-hover: var(--button-text-color) !important;
         --button-text-color-active: var(--button-text-color) !important;
         --button-text-color-disabled: var(--button-text-color) !important;
-        --button-text-color-primary: light-dark(#FEFEFE, #363636) !important;
+        --button-text-color-primary: light-dark(#FDFDFD, #363636) !important;
         --button-text-color-primary-hover: var(--button-text-color-primary) !important;
         --button-text-color-primary-active: var(--button-text-color-primary) !important;
         --button-text-color-primary-disabled: var(--button-text-color-primary) !important;
