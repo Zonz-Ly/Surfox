@@ -684,9 +684,9 @@ toolbarspring {
     #tabbrowser-tabs .tab-close-button {
         order: -1 !important;
         margin: 0 !important;
-        margin-inline-start: -6px !important;
-        margin-inline-end: 4px !important;
-        margin-top: 0.99px !important;
+        margin-inline-start: -7px !important;
+        margin-inline-end: 3px !important;
+        margin-top: 0.75px !important;
         padding: 3px !important;
         width: 16px !important;
         height: 16px !important;
@@ -718,7 +718,7 @@ toolbarspring {
         flex: auto 0 1 !important;
         margin-inline-end: auto !important;
         padding-inline-start: 0 !important;
-        padding-inline-end: 14px !important;
+        padding-inline-end: 12px !important;
     }
 }
 
