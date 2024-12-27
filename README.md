@@ -52,7 +52,8 @@ In the "Customize Toolbar" page, click the "Density" button in the lower-left co
 - `browser.tabs.tabmanager.enabled`: Show the "All Tabs" button to the right of the tabs (only in Firefox 131−, can be removed manually starting from version 132).  
 
 
-It is recommended to disable updates (default) as new versions are likely to adjust the browser's UI structure, causing the unadapted Surfox to stop working. If you need to enable updates, open the `autoconfig.js` file, delete the line `pref("app.update.channel", "");` then save.
+It is recommended to disable updates, as new versions may change the browser's interface structure, causing Surfox to become incompatible.
+How to disable updates: Locate the `channel-prefs.js` file in the same directory as `autoconfig.js` (create it if it doesn't exist), modify its content to: `pref("app.update.channel", "");` Then save the file.
 
 ##
 
@@ -109,4 +110,5 @@ Firefox 版本 128 及更高。
 - `browser.tabs.tabmanager.enabled` 显示标签右侧的所有标签页按钮（仅 Firefox 131−，132 起可以自行移除）
 
 
-推荐禁用更新（默认），因为新版本很可能会改变浏览器界面结构导致未适配的 Surfox 无法使用。如果需要启用更新，请打开 `autoconfig.js` 文件，删除 `pref("app.update.channel", "");` 这一行，并保存。
+推荐禁用更新，因为新版本很可能会改变浏览器界面结构导致未适配的 Surfox 无法使用。
+禁用方法：打开和 `autoconfig.js` 文件相同目录下的 `channel-prefs.js`（如果没有，请新建），修改内容为 `pref("app.update.channel", "");`，并保存。
