@@ -1,5 +1,5 @@
 ## Introduction
-A Firefox userChrome.CSS theme that mimics the new UI of Safari on macOS Big Sur and above.
+A Firefox userChrome.CSS theme that mirrors the new UI of Safari on macOS Big Sur and above.
 
 While there are many similar themes on GitHub, none of them met my expectations, so I created my own. It not only replicates the interface but also the operational logic, with some optimizations and adjustments for a more perfect user experience. This is my first time working with CSS and JS, and I spent a lot of time and effort to complete it, with a great help and guidance from my boyfriend.
 
@@ -38,10 +38,10 @@ Right-click on a blank area in the window to set the position of the bookmarks t
 - Alternatively, you can try placing the "Bookmarks Toolbar Items" on the **tab bar**—you might like it!
 - If you want to place the "Bookmarks Toolbar Items" on the **navigation bar**, make sure there is 'Flexible Space' on both sides of the address bar. Otherwise, the address bar may not center properly.
 
-In the "Customize Toolbar" page, click the "Density" button in the lower-left corner to choose different navigation bar layouts:  
-- **Standard (default on Windows):** The vertical padding of the address bar matches that of Catalina − and is recommended for Catalina − users and those who enable the title bar.  
-- **Touch (default on macOS):** The navigation bar width matches that of Big Sur +. if you reset the toolbar to defaults on macOS, remember to reselect this option.  
-- **Compact (Beta):** Mimics the compact tab layout of Monterey +. currently under development and needs to be enabled via `about:config`. It will be officially released in version 2.0.
+In the "Customize Toolbar" page, click the "Density" button in the lower-left corner to choose different navigation bar layouts:
+- **Standard (default on Windows):** The vertical padding of the address bar matches that of Catalina and earlier and is recommended for Catalina and earlier users and those who enable the title bar.
+- **Touch (default on macOS):** The navigation bar width matches that of Big Sur and above. if you reset the toolbar to defaults on macOS, remember to reselect this option.
+- **Compact (Beta):** Imitates the compact tab layout of Monterey and above. currently under development and needs to be enabled via `about:config`. It will be officially released in version 2.0.
 
 
 ### Some configurable `about:config` values (if set to `true`):
@@ -96,9 +96,9 @@ Firefox 版本 128 及更高。
 
 
 在「自定义工具栏」页面左下角，点击「密度」按钮，可以选择不同导航栏布局。
-- **「标准（Windows 下默认）」** 的地址栏上下边距和 Catalina − 一致，亦推荐 Catalina − 的用户和启用标题栏的用户设置成这个。
-- **「触控（macOS 下默认）」** 的导航栏宽度和 Big Sur + 一致；如果你在 macOS 上恢复工具栏默认设置，记得重新选择它。
-- **「紧凑（Beta）」** 模仿 Monterey + 上的标签页布局的紧凑模式；目前还在施工中，需要通过 `about:config` 开启，2.0 会正式发佈。
+- **「标准（Windows 下默认）」** 的地址栏上下边距和 Catalina 以前一致，亦推荐 Catalina 以前的用户和启用标题栏的用户设置成这个。
+- **「触控（macOS 下默认）」** 的导航栏宽度和 Big Sur 以上一致；如果你在 macOS 上恢复工具栏默认设置，记得重新选择它。
+- **「紧凑（Beta）」** 模仿 Monterey 以上的标签页布局的紧凑模式；目前还在施工中，需要通过 `about:config` 开启，2.0 会正式发佈。
 
 
 ### 一些可以根据需要调整的 `about:config` 的值（设置为 `true` 时）：
