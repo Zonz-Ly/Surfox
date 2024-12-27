@@ -412,7 +412,6 @@ queueMicrotask(() => {
             unpinnedTabs -= 1
         }
         tabbrowserTabs.style.setProperty('--tab-max-width', 100 / unpinnedTabs + '%');
-        console.log(unpinnedTabs)
     }
 
     let tabBarMutationObserver = new MutationObserver(() => {
@@ -650,7 +649,6 @@ queueMicrotask(() => {
 
     let tabAnimate = true;
     let tabsSizerResizeObserver = new ResizeObserver(() => {
-        console.log('tabsSizerResizeObserver')
         if (!tabAnimate) {
             return;
         }
@@ -670,7 +668,6 @@ queueMicrotask(() => {
         delayedUpdateSelectedTabPosition();
     })
     let tabsSizerMutationObserver = new MutationObserver(() => {
-        console.log('tabsSizerMutationObserver')
         if (!tabAnimate) {
             return;
         }
