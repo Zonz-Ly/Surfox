@@ -132,7 +132,7 @@ tooltip {
     --tab-shadow-max-size: 0px !important;
     --tab-min-height: 28px !important;
     --tab-max-width: 100%;
-    --tab-transition: min-width 300ms, max-width 300ms;
+    --tab-transition: min-width 200ms, max-width 200ms;
     @media (-moz-platform: windows) {
         /*  Make same as Windows 11  */
         --toolbox-non-lwt-bgcolor-inactive: light-dark(#F3F3F3, #202020) !important;
@@ -596,6 +596,7 @@ toolbarspring {
         &::part(scrollbutton-up),
         &::part(scrollbutton-down) {
             & {
+                /* This strange nesting is to avoid a Firefox bug. */
                 border: 0 !important;
                 border-radius: 0 !important;
                 padding: 0 calc(var(--toolbarbutton-inner-padding) - 2px) !important;
@@ -662,7 +663,7 @@ toolbarspring {
     }
     
     .tabbrowser-tab:not([pinned]) {
-        transition: var(--tab-transition) !important;
+        transition: min-width 350ms, max-width 350ms !important;
             margin-inline-start: 0 !important;
         &[fadein]:not([style*="max-width"]) {
             max-width: var(--tab-max-width) !important;
@@ -681,11 +682,15 @@ toolbarspring {
         display: none !important;
     }
     
+    .tab-content {
+        padding: 0 10px !important;
+    }
+    
     #tabbrowser-tabs .tab-close-button {
         order: -1 !important;
         margin: 0 !important;
-        margin-inline-start: -7px !important;
-        margin-inline-end: 3px !important;
+        margin-inline-start: -8px !important;
+        margin-inline-end: 4px !important;
         margin-top: 0.75px !important;
         padding: 3px !important;
         width: 16px !important;
@@ -707,6 +712,10 @@ toolbarspring {
             &[pinned] {
                 display: none !important;
             }
+        }
+        .tab-label-container:not([textoverflow]) ~ & {
+            margin-inline-start: -7px !important;
+            margin-inline-end: 3px !important;
         }
     }
 
