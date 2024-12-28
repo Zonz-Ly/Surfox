@@ -31,9 +31,11 @@ queueMicrotask(() => {
     });
 
     //  Move reload button into urlbar.
-    let reloadButton = document.querySelector("#stop-reload-button");
     let actionBox = document.querySelector("#page-action-buttons");
-    actionBox.after(reloadButton);
+    let reloadButton = document.querySelector("#stop-reload-button");
+    if (reloadButton) {
+        actionBox.after(reloadButton);
+    }
 
     //  Move permission box after tracking protection button.
     let permissionButton = document.querySelector("#identity-permission-box");
