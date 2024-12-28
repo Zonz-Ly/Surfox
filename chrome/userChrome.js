@@ -36,7 +36,7 @@ queueMicrotask(() => {
     if (reloadButton) {
         actionBox.after(reloadButton);
     }
-
+        
     //  Move permission box after tracking protection button.
     let permissionButton = document.querySelector("#identity-permission-box");
     let notificationButton = document.querySelector("#notification-popup-box");
@@ -94,9 +94,9 @@ queueMicrotask(() => {
     let urlbarCloseButton = document.createElement("image");
     urlbarCloseButton.classList.add("tab-close-button", "close-icon");
     urlbarCloseButton.addEventListener("click", () => selectedTabCloseButton.click());
-    urlbarCloseButtonContainer.appendChild(urlbarCloseButton);
+    urlbarCloseButtonContainer.prepend(urlbarCloseButton);
     urlbarInputContainer.prepend(urlbarCloseButtonContainer);
-
+    
     //  Centering/flushing left the URL input field may be optionally animated.
     let urlbarTransitionTimer = 0;
     function spaceSizer(animated) {
@@ -165,7 +165,7 @@ queueMicrotask(() => {
         delayedSizingSpacer = type;
         spaceSizer(delayedSizingSpacer === 2);
         queueMicrotask(() => {
-            delayedSizingSpacer = 0;   
+            delayedSizingSpacer = 0;
         });
     }
 
@@ -216,24 +216,24 @@ queueMicrotask(() => {
     centerTabText();
 
     //  Observe if a tab is closing.
-    let TabClosing = false;
-    let TabMultipleClosing = false;
+    let tabClosing = false;
+    let tabMultipleClosing = false;
     gBrowser.tabContainer.addEventListener("TabClose", () => {
-        if (TabClosing) {
-            TabMultipleClosing = true;
+        if (tabClosing) {
+            tabMultipleClosing = true;
             return;
         }
-        TabClosing = true;
-        TabClosingObserver.observe(tabScrollbox, {subtree: true, childList: true});
+        tabClosing = true;
+        tabClosingObserver.observe(tabScrollbox, {subtree: true, childList: true});
     });
-    let TabClosingObserver = new MutationObserver(() => {
-        if (TabMultipleClosing) {
-            TabMultipleClosing = false;
+    let tabClosingObserver = new MutationObserver(() => {
+        if (tabMultipleClosing) {
+            tabMultipleClosing = false;
             return;
         }
 
-        TabClosing = false;
-        TabClosingObserver.disconnect()
+        tabClosing = false;
+        tabClosingObserver.disconnect()
     });
 
     //  ----------------------------------------------------------------------------------------------------  //
@@ -397,8 +397,8 @@ queueMicrotask(() => {
         });
     }
 
-    let urlbarSizerResizeObserver = new ResizeObserver(() => delayedUrlbarSizer());
-    let urlbarSizerMutationObserver = new MutationObserver(() => delayedUrlbarSizer());
+    let urlbarSizerResizeObserver = new ResizeObserver(delayedUrlbarSizer);
+    let urlbarSizerMutationObserver = new MutationObserver(delayedUrlbarSizer);
 
     //  Customize tab bar.
     let tabStrip = document.querySelector("#TabsToolbar-customization-target");
@@ -413,8 +413,7 @@ queueMicrotask(() => {
             button.style.visibility = canHideTabCloseButton ? "hidden" : "";
         });
         let unpinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([pinned], [hidden])').length;
-        let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
-        if (TabClosing) {
+        if (tabClosing) {
             unpinnedTabs -= 1
         }
         tabbrowserTabs.style.setProperty('--tab-max-width', 100 / unpinnedTabs + '%');
@@ -429,10 +428,19 @@ queueMicrotask(() => {
     //  **Compact Tab bar functions**  //
 
 
+    function urlbarCloseButtonHover() {
+        urlbarCloseButton.setAttribute("hovered", "");
+        urlbarInputContainer.addEventListener("mouseleave", inputContainerNotHover);
+    }
+    
+    function inputContainerNotHover() {
+        urlbarCloseButton.removeAttribute("hovered");
+        urlbarInputContainer.removeEventListener("mouseleave", inputContainerNotHover);
+    }
 
     //  Move URL bar to the position of selected tab.
 
-    let selectedTabResizeObserver = new ResizeObserver(() => delayedUpdateSelectedTabPosition());
+    let selectedTabResizeObserver = new ResizeObserver(delayedUpdateSelectedTabPosition);
 
     function updateSelectedTabPosition() {
         if (document.documentElement.hasAttribute("customizing")) {
@@ -504,7 +512,7 @@ queueMicrotask(() => {
         let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
         let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
     
-        if (TabClosing) {
+        if (tabClosing) {
             unselectedTabs -= 1;
         }
 
@@ -515,7 +523,7 @@ queueMicrotask(() => {
         if (selectedTabs) {
             oneTabMaxWidth = navBar.clientWidth * 0.41;
         } else {
-            if (TabClosing) {
+            if (tabClosing) {
                 return;
             }
         }
@@ -682,6 +690,18 @@ queueMicrotask(() => {
         delayedUpdateSelectedTabPosition();
     })
 
+    function tabCloseButtonHover(event) {
+        if (!event.target.matches(".tab-close-button")) {return;}
+        event.target.parentElement.setAttribute("hovered", "");
+    }
+
+    function tabNotHover(event) {
+        if (!event.target.matches(".tabbrowser-tab")) {return;}
+        let closeButton = event.target.querySelector(".tab-close-button");
+        closeButton?.parentElement.removeAttribute("hovered");
+    }
+
+
     //  ----------------------------------------------------------------------------------------------------  //
     //  **Setup Tab bar functions**  //
 
@@ -695,7 +715,7 @@ queueMicrotask(() => {
                     let touchItem = normalItem.cloneNode(true);
                     touchItem.setAttribute("id", "customization-uidensity-menuitem-touch");
                     touchItem.setAttribute("data-l10n-id", "customize-mode-uidensity-menu-touch");
-                    uidensityMenu.appendChild(touchItem);
+                    uidensityMenu.append(touchItem);
                     uidensityMenuMutationObserver.disconnect();
                 }
             }
@@ -717,8 +737,9 @@ queueMicrotask(() => {
                 //  fallthrough,
             case null:
                 if (currentUidensity !== 'separate') {
-                    moveBookmarkBar();
-                    Services.prefs.addObserver("browser.toolbars.bookmarks.visibility", moveBookmarkBar);
+                    urlbarCloseButton.removeEventListener("mouseenter", urlbarCloseButtonHover);
+                    tabScrollbox.removeEventListener("mouseenter", tabCloseButtonHover, true);
+                    tabScrollbox.removeEventListener("mouseleave", tabNotHover, true);
                     selectedTabResizeObserver.disconnect();
                     tabScrollbox.removeEventListener("scroll", delayedUpdateSelectedTabPosition);
                     tabbrowserTabs.removeEventListener('TabSelect', updateSelectedTab);
@@ -728,8 +749,10 @@ queueMicrotask(() => {
                     tabbrowserTabs.style.cssText = '';
                     tabShadowRoot.querySelector("scrollbox").style.borderRadius = "";
     
+                    moveBookmarkBar();
+                    Services.prefs.addObserver("browser.toolbars.bookmarks.visibility", moveBookmarkBar);
                     if (tabbrowserTabs.parentElement !== tabStrip) {
-                        tabStrip.appendChild(tabbrowserTabs);
+                        tabStrip.append(tabbrowserTabs);
                     }
                     urlbarSizer();
                     urlbarSizerResizeObserver.observe(navBar);
@@ -754,6 +777,9 @@ queueMicrotask(() => {
                     urlbarToolbarItem.style.cssText = '';
                     tabShadowRoot.querySelector("scrollbox").style.borderRadius = "var(--tab-border-radius)";
     
+                    urlbarCloseButton.addEventListener("mouseenter", urlbarCloseButtonHover);
+                    tabScrollbox.addEventListener("mouseenter", tabCloseButtonHover, true);
+                    tabScrollbox.addEventListener("mouseleave", tabNotHover, true);
                     if (urlbarToolbarItem.nextElementSibling !== tabbrowserTabs) {
                         if (urlbarToolbarItem.parentElement === document.querySelector('#wrapper-urlbar-container')) {
                             if (urlbarToolbarItem.parentElement.nextElementSibling !== tabbrowserTabs) {
@@ -787,8 +813,7 @@ queueMicrotask(() => {
     }
 
     setUidensity();
-    setUidensity();
-    (new MutationObserver(() => setUidensity())).observe(document.documentElement, {
+    (new MutationObserver(setUidensity)).observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['uidensity'],
     });
