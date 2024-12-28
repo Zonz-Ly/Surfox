@@ -774,6 +774,10 @@ toolbarspring {
         padding: 0 8px !important;
     }
     
+    .tab-content:not([pinned]) {
+        padding: 0 10px !important;
+    }
+    
     #tabbrowser-tabs {
         font-size: 12px !important;
         min-height: var(--tab-min-height) !important;
@@ -846,23 +850,24 @@ toolbarspring {
     #tabbrowser-tabs .tab-close-button {
         order: -1 !important;
         margin: 0 !important;
-        margin-inline-start: -3px !important;
-        margin-inline-end: -13px !important;
+        margin-inline-start: -4px !important;
+        margin-inline-end: -12px !important;
         padding: 3px !important;
         width: 16px !important;
         height: 16px !important;
         border-radius: 2px !important;
         opacity: 0;
         transition: opacity 200ms, margin-inline-end 200ms !important;
+        z-index: 1;
         &:hover {
             background-color: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .17) ) !important;
         }
         &:hover:active {
             background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
         }
-        .tabbrowser-tab:hover & {
+        .tab-content[hovered] & {
             opacity: 1;
-            margin-inline-end: 4px !important;
+            margin-inline-end: 5px !important;
         }
         &[pinned], #tabbrowser-tabs[closebuttons="activetab"]:not([orient="vertical"]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-content > &:not([selected]) {
             display: flex !important;
@@ -871,16 +876,22 @@ toolbarspring {
             }
         }
     }
-
+    
+    .tab-label-container {
+        flex: auto 0 1 !important;
+        margin-inline-end: auto !important;
+        padding-inline-start: 0 !important;
+        padding-inline-end: 0 !important;
+        transition: padding-inline-end 200ms !important;
+        .tab-content[hovered] & {
+            padding-inline-end: 17px !important;
+        }
+    }
+    
     #urlbar .tab-close-button-container {
         display: flex;
         margin-inline-start: 4px !important;
         margin-inline-end: -4px !important;
-/*         &::before {
-          content: '';
-          display: inline-block;
-          width: 4px;
-        } */
     }
 
     #urlbar .tab-close-button {
@@ -905,24 +916,15 @@ toolbarspring {
             visibility: hidden !important;
             opacity: 0 !important;
         }
-        #urlbar:not([focused]) &:hover {
+        #urlbar:not([focused]) &[hovered] {
             margin-inline-end: 4px !important;
             opacity: 1 !important;
+        }
+        #urlbar:not([focused]) &:hover {
             background-color: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .17) ) !important;
             &:active {
                 background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
             }
-        }
-    }
-    
-    .tab-label-container {
-        flex: auto 0 1 !important;
-        margin-inline-end: auto !important;
-        padding-inline-start: 0 !important;
-        padding-inline-end: 0 !important;
-        transition: padding-inline-end 200ms !important;
-        .tabbrowser-tab:hover & {
-            padding-inline-end: 17px !important;
         }
     }
 }
