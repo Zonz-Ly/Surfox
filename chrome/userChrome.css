@@ -729,7 +729,7 @@ toolbarspring {
     }
 
     #urlbar .tab-close-button-container {
-        visibility: collapse !important;
+        display: none !important;
     }
     
     .tab-label-container {
@@ -911,7 +911,7 @@ toolbarspring {
 
     #urlbar .tab-close-button {
         visibility: visible !important;
-        display: inline-flex !important;
+        display: inline-flex;
         padding: 0 !important;
         margin-block: 0 !important;
         margin-inline-end: -16px !important;
