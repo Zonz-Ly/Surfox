@@ -299,8 +299,10 @@ tooltip {
 }
 
 #urlbar-container {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    padding-block: 0 !important;
+    :root[uidensity="mix"] & {
+        position: absolute !important;
+    }
 }
 
 #urlbar, #searchbar {
@@ -773,8 +775,14 @@ toolbarspring {
         &[fadein][selected] {
             min-width: 240px !important;
             max-width: var(--tab-max-width) !important;
-            visibility: hidden !important;
+            :root:not([customizing]) & {
+                visibility: hidden !important;
+            }
         }
+    }
+    
+    #wrapper-urlbar-container {
+        display: none !important;
     }
     
     .tab-content[pinned] {
@@ -1090,6 +1098,10 @@ toolbarspring {
     #PlacesToolbarItems > toolbarseparator {
         padding: 4px !important;
     }
+}
+
+#PersonalToolbar #wrapper-personal-bookmarks {
+      justify-content: center !important;
 }
 
 /* menu bar */
