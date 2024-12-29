@@ -444,18 +444,16 @@ queueMicrotask(() => {
 
     function updateSelectedTabPosition() {
         if (document.documentElement.hasAttribute("customizing")) {
-            urlbarToolbarItem.style.position = '';
             return;
         }
 
         if (!selectedTab || selectedTab.hasAttribute("movingtab") || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
-            urlbarToolbarItem.style.visibility = 'collapse';
+            urlbarToolbarItem.style.display = 'none';
             return;
         }
 
         let tabRect = selectedTab.getBoundingClientRect();
-        urlbarToolbarItem.style.visibility = '';
-        urlbarToolbarItem.style.position = 'absolute';
+        urlbarToolbarItem.style.display = '';
         urlbarToolbarItem.style.width = `${tabRect.width}px`;
         urlbarToolbarItem.style.height = `${tabRect.height}px`;
         urlbarToolbarItem.style.top = `${tabRect.top}px`;
@@ -498,16 +496,16 @@ queueMicrotask(() => {
 
     function tabsSizer() {
         if (document.documentElement.hasAttribute("customizing")) {
-            tabbrowserTabs.style.visibility = 'collapse';
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
             flexibleSpaces.forEach(space => {
                 space.style.minWidth = '';
                 space.style.maxWidth = '';
             });
+            tabbrowserTabs.style.maxWidth = '';
+            tabbrowserTabs.style.setProperty('--tab-max-width', '');
             return;
         }
 
-        tabbrowserTabs.style.visibility = '';
         let unselectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned]):not([hidden])').length;
         let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
         let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
@@ -783,10 +781,10 @@ queueMicrotask(() => {
                     if (urlbarToolbarItem.nextElementSibling !== tabbrowserTabs) {
                         if (urlbarToolbarItem.parentElement === document.querySelector('#wrapper-urlbar-container')) {
                             if (urlbarToolbarItem.parentElement.nextElementSibling !== tabbrowserTabs) {
-                                urlbarToolbarItem.parentElement.before(tabbrowserTabs);
+                                urlbarToolbarItem.parentElement.after(tabbrowserTabs);
                             }
                         } else {
-                            urlbarToolbarItem.before(tabbrowserTabs);
+                            urlbarToolbarItem.after(tabbrowserTabs);
                         }
                     }
                     if (bookmarkBar.previousElementSibling !== navBar) {
