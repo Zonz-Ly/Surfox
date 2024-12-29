@@ -408,11 +408,13 @@ queueMicrotask(() => {
         let canHideTabBar = tabStrip.childElementCount <= 1 && tabsLength <= minRequiredTabs;
         canHideTabBar &= !document.documentElement.hasAttribute("customizing");
         tabBar.style.visibility = canHideTabBar ? "collapse" : "";
-        let canHideTabCloseButton = tabsLength <= minRequiredTabs;
+        let unpinnedTabs = tabbrowserTabs.querySelectorAll('.tabbrowser-tab:not([pinned], [hidden])').length;
+        let canHideTabCloseButton = unpinnedTabs <= minRequiredTabs;
+        console.log(unpinnedTabs);
+        console.log(minRequiredTabs);
         tabbrowserTabs.querySelectorAll('.tab-close-button').forEach(button => {
             button.style.visibility = canHideTabCloseButton ? "hidden" : "";
         });
-        let unpinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([pinned], [hidden])').length;
         if (tabClosing) {
             unpinnedTabs -= 1
         }
@@ -436,6 +438,15 @@ queueMicrotask(() => {
     function inputContainerNotHover() {
         urlbarCloseButton.removeAttribute("hovered");
         urlbarInputContainer.removeEventListener("mouseleave", inputContainerNotHover);
+    }
+
+    function hideShowUrlbarCloseButton() {
+        let unpinnedTabs = tabbrowserTabs.querySelectorAll('.tabbrowser-tab:not([pinned], [hidden])').length;
+        if (tabClosing) {
+            unpinnedTabs -= 1
+        }
+        let canHideUrlbarCloseButton = unpinnedTabs <= 1;
+        urlbarCloseButton.style.display = canHideUrlbarCloseButton ? "none" : "";
     }
 
     //  Move URL bar to the position of selected tab.
@@ -686,6 +697,7 @@ queueMicrotask(() => {
         centerTabText();
         delayedtabsSizerHandler();
         delayedUpdateSelectedTabPosition();
+        hideShowUrlbarCloseButton();
     })
 
     function tabCloseButtonHover(event) {
@@ -724,6 +736,7 @@ queueMicrotask(() => {
     }
 
     //  Setting uidensity attributes.
+    let tabPinHideShowTabBar = () => hideShowTabBar(1);
     let tabClosingHideShowTabBar = () => hideShowTabBar(2);
     let currentUidensity = null;
     let uidensity = null;
@@ -758,7 +771,8 @@ queueMicrotask(() => {
                     hideShowTabBar();
                     tabBarMutationObserver.observe(tabbrowserTabs, {subtree: true, childList: true});
                     gBrowser.tabContainer.addEventListener("TabClose", tabClosingHideShowTabBar);
-                    gBrowser.tabContainer.addEventListener("TabPin", hideShowTabBar);
+                    gBrowser.tabContainer.addEventListener("TabPinned", tabPinHideShowTabBar);
+                    gBrowser.tabContainer.addEventListener("TabUnpinned", tabPinHideShowTabBar);
 
                     currentUidensity = 'separate';
                 }
@@ -772,6 +786,8 @@ queueMicrotask(() => {
                     urlbarSizerMutationObserver.disconnect();
                     tabBarMutationObserver.disconnect();
                     gBrowser.tabContainer.removeEventListener("TabClose", tabClosingHideShowTabBar);
+                    gBrowser.tabContainer.removeEventListener("TabPinned", tabPinHideShowTabBar);
+                    gBrowser.tabContainer.removeEventListener("TabUnpinned", tabPinHideShowTabBar);
                     urlbarToolbarItem.style.cssText = '';
                     tabShadowRoot.querySelector("scrollbox").style.borderRadius = "var(--tab-border-radius)";
     
@@ -798,7 +814,6 @@ queueMicrotask(() => {
                     tabbrowserTabs.addEventListener('TabSelect', updateSelectedTab);
                     tabsSizer();
                     tabsSizerResizeObserver.observe(navBar);
-                    tabsSizerMutationObserver.observe(navBar, {childList: true, attributes: true});
                     tabsSizerMutationObserver.observe(navBar, {subtree: true, childList: true, attributes: true});
                     hideShowTabBar(0);
 
