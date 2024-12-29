@@ -49,6 +49,9 @@
     --panel-banner-item-active-bgcolor: var(--button-background-color-active) !important;
     --toolbarbutton-active-background: var(--button-background-color-active) !important;
     --button-background-color-ghost-active: var(--button-background-color-active) !important;
+    --input-border-color: var(--button-background-color-active) !important;
+    --urlbarView-separator-color: var(--button-background-color-active) !important;
+    --sidebar-border-color: light-dark( rgb(224, 224, 224), rgb(91, 91, 91) ) !important;
     --newtab-button-static-background: light-dark(#F6F6F6, #3C3C3C) !important;
     --newtab-button-static-hover-background: light-dark(#EFEFEF, #424242) !important;
     --newtab-button-static-active-background: light-dark(#E0E0E0, #4E4E4E) !important;
@@ -163,8 +166,12 @@ tooltip {
     height: 42px !important;
     align-items: center !important;
     :root:not([uidensity="mix"]) & {
+        --arrowpanel-border-color: var(--button-background-color-active) !important;
         --toolbar-field-border-color: var(--button-background-color-active) !important;
         --toolbar-field-background-color: transparent !important;
+    }
+    :root[uidensity="mix"] & {
+        --arrowpanel-border-color: var(--input-bgcolor) !important;
     }
     :root[uidensity] & {
         height: 52px !important;
