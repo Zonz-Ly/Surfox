@@ -353,7 +353,7 @@ queueMicrotask(() => {
             } else {
                 urlbarToolbarItem.style.marginRight = '4px';
                 for (let space of rightFlexibleSpaces) {
-                    space.style.minWidth = '0';
+                    space.style.minWidth = '0px';
                     space.style.maxWidth = 'none';
                 }
             }
@@ -367,7 +367,7 @@ queueMicrotask(() => {
             } else {
                 urlbarToolbarItem.style.marginLeft = '4px';
                 for (let space of leftFlexibleSpaces) {
-                    space.style.minWidth = '0';
+                    space.style.minWidth = '0px';
                     space.style.maxWidth = 'none';
                 }
             }
@@ -602,7 +602,7 @@ queueMicrotask(() => {
                 tabbrowserTabs.style.marginRight = '0';
                 let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - afterBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
-                    space.style.minWidth = spaceWidth + '0';
+                    space.style.minWidth = '0px';
                     space.style.maxWidth = spaceWidth + 'px';
                 }
             }
@@ -613,7 +613,7 @@ queueMicrotask(() => {
                 tabbrowserTabs.style.marginLeft = '0';
                 let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - beforeBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
-                    space.style.minWidth = spaceWidth + '0';
+                    space.style.minWidth = '0px';
                     space.style.maxWidth = spaceWidth + 'px';
                 }
             }
