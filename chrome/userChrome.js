@@ -410,8 +410,6 @@ queueMicrotask(() => {
         tabBar.style.visibility = canHideTabBar ? "collapse" : "";
         let unpinnedTabs = tabbrowserTabs.querySelectorAll('.tabbrowser-tab:not([pinned], [hidden])').length;
         let canHideTabCloseButton = unpinnedTabs <= minRequiredTabs;
-        console.log(unpinnedTabs);
-        console.log(minRequiredTabs);
         tabbrowserTabs.querySelectorAll('.tab-close-button').forEach(button => {
             button.style.visibility = canHideTabCloseButton ? "hidden" : "";
         });
