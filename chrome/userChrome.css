@@ -132,6 +132,7 @@ tooltip {
     --tab-border-radius: 6px !important;
     --urlbar-min-height: 28px !important;
     --urlbar-margin-inline: 0px !important;
+    --tab-selected-shadow: none !important;
     --tab-shadow-max-size: 0px !important;
     --tab-min-height: 28px !important;
     --tab-max-width: 100%;
@@ -738,6 +739,19 @@ toolbarspring {
         padding-inline-start: 0 !important;
         padding-inline-end: 12px !important;
     }
+    
+    #TabsToolbar #firefox-view-button[open] {
+        background-color: var(--toolbar-bgcolor) !important;
+        background-clip: padding-box !important;
+        > .toolbarbutton-icon {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            color: inherit !important;
+            outline-color: var(--toolbarbutton-active-outline-color) !important;
+            color-scheme: light dark !important;
+            transition: none !important;
+        }
+    }
 }
 
 :root[uidensity="mix"] {
@@ -941,6 +955,14 @@ toolbarspring {
                 background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
             }
         }
+    }
+    
+    #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon {
+        box-shadow: none !important;
+        background-color: var(--toolbarbutton-active-background) !important;
+        color: inherit !important;
+        outline-color: var(--toolbarbutton-active-outline-color) !important;
+        color-scheme: light dark !important;
     }
 }
 
