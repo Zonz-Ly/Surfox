@@ -57,7 +57,7 @@
     --newtab-button-static-active-background: light-dark(#E0E0E0, #4E4E4E) !important;
     --toolbar-bgcolor: light-dark(#FDFDFD, #363636) !important;
     --input-bgcolor: light-dark(#FFFFFF, #444444) !important;
-    --tabpanel-background-color: var(--toolbar-bgcolor) !important;
+    --tabpanel-background-color: light-dark(#FDFDFD, #363636) !important;
     --newtab-background-color: var(--toolbar-bgcolor) !important;
     --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
     --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
@@ -161,6 +161,7 @@ tooltip {
         --toolbar-start-end-padding: 12px !important;
     }
 }
+
 #nav-bar {
     background-color: transparent !important;
     font-size: 13px !important;
@@ -419,6 +420,11 @@ tooltip {
 }
 
 /* Buttons */
+
+#customization-container{
+    background-color: var(--tabpanel-background-color) !important;
+    background-image: none !important;
+}
 
 #nav-bar-customization-target {
     padding-inline-start: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
