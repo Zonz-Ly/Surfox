@@ -512,6 +512,8 @@ queueMicrotask(() => {
             });
             tabbrowserTabs.style.maxWidth = '';
             tabbrowserTabs.style.setProperty('--tab-max-width', '');
+            tabbrowserTabs.style.marginLeft = '';
+            tabbrowserTabs.style.marginRight = '';
             return;
         }
 
