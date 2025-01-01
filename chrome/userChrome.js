@@ -279,8 +279,9 @@ queueMicrotask(() => {
             return;
         }
 
-        urlbarToolbarItem.style.minWidth = (navBar.clientWidth * 0.41 - 8) + 'px';
-        urlbarToolbarItem.style.maxWidth = (navBar.clientWidth * 0.41 - 8) + 'px';
+        let windowWidth = navBar.clientWidth
+        urlbarToolbarItem.style.minWidth = (windowWidth * 0.41 - 8) + 'px';
+        urlbarToolbarItem.style.maxWidth = (windowWidth * 0.41 - 8) + 'px';
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
         let beforeBarWidth = 0;
@@ -335,17 +336,17 @@ queueMicrotask(() => {
 
         if (beforeBarWidth > afterBarWidth) {
             if (leftFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginLeft = Math.max(4, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                urlbarToolbarItem.style.marginLeft = Math.max(4, Math.min((windowWidth * 0.295) - beforeBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
                 urlbarToolbarItem.style.marginLeft = '4px';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - beforeBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((windowWidth * 0.295) - beforeBarWidth, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                if ((navBar.clientWidth * 0.295) - afterBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
+                if ((windowWidth * 0.295) - afterBarWidth > 0 && (windowWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
                     urlbarToolbarItem.style.marginRight = 'auto';
                 } else {
                     urlbarToolbarItem.style.marginRight = '4px';
@@ -359,7 +360,7 @@ queueMicrotask(() => {
             }
         } else {
             if (leftFlexibleSpaceCount === 0) {
-                if ((navBar.clientWidth * 0.295) - beforeBarWidth > 0 && (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
+                if ((windowWidth * 0.295) - beforeBarWidth > 0 && (windowWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
                     urlbarToolbarItem.style.marginLeft = 'auto';
                 } else {
                     urlbarToolbarItem.style.marginLeft = '4px';
@@ -372,10 +373,10 @@ queueMicrotask(() => {
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginRight = Math.max(4, Math.min((navBar.clientWidth * 0.295) - afterBarWidth + 4, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                urlbarToolbarItem.style.marginRight = Math.max(4, Math.min((windowWidth * 0.295) - afterBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
                 urlbarToolbarItem.style.marginRight = '4px';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth * 0.295) - afterBarWidth, (navBar.clientWidth * 0.59) - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((windowWidth * 0.295) - afterBarWidth, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
@@ -465,7 +466,6 @@ queueMicrotask(() => {
         urlbarToolbarItem.style.display = '';
         urlbarToolbarItem.style.width = `${tabRect.width}px`;
         urlbarToolbarItem.style.height = `${tabRect.height}px`;
-        urlbarToolbarItem.style.top = `${tabRect.top}px`;
 
         if (tabbrowserTabs.hasAttribute("overflow")) {
             let tabsRect = tabScrollbox.getBoundingClientRect();
@@ -515,35 +515,12 @@ queueMicrotask(() => {
             return;
         }
 
-        let unselectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned]):not([hidden])').length;
-        let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
-        let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
-    
-        if (tabClosing) {
-            unselectedTabs -= 1;
-        }
-
-        let tabsNotSelectedFreeWidth = pinnedTabs * 40 + unselectedTabs * 156;
-        let tabsMaxFreeWidth = Math.max((navBar.clientWidth * (0.41 - (unselectedTabs * 0.0425) - (pinnedTabs * 0.00919))), 248) + tabsNotSelectedFreeWidth;
-        let tabsMaxLimitedWidth = tabsNotSelectedFreeWidth + selectedTabs * 488;
-        let oneTabMaxWidth = 0;
-        if (selectedTabs) {
-            oneTabMaxWidth = navBar.clientWidth * 0.41;
-        } else {
-            if (tabClosing) {
-                return;
-            }
-        }
-        let tabsMaxWidth = Math.max(Math.min(tabsMaxFreeWidth, tabsMaxLimitedWidth), oneTabMaxWidth);
-        let tabMaxWidth = Math.max((tabsMaxWidth - tabsNotSelectedFreeWidth - 8), 240);
-        tabbrowserTabs.style.maxWidth = tabsMaxWidth + 'px';
-        tabbrowserTabs.style.setProperty('--tab-max-width', tabMaxWidth + 'px');
-
+        let windowWidth = navBar.clientWidth
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
         let beforeBarWidth = 8;
         let afterBarWidth = 0;
-    
+
         let isLeft = true;
         let isRight = false;
         for (let element of navBarTarget.children) {
@@ -590,16 +567,38 @@ queueMicrotask(() => {
                 afterBarWidth += element.clientWidth;
             }
         }
-    
+
+        let restBarWidth = windowWidth - beforeBarWidth - afterBarWidth;
+        let unselectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned]):not([hidden])').length;
+        let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
+        let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
+        
+        if (tabClosing) {
+            unselectedTabs -= 1;
+        }
+        
+        let tabFreeMargin = (0.01 * restBarWidth) / (unselectedTabs + selectedTabs + (0.25 * pinnedTabs)) + 3;
+        let tabMargin = Math.max(4, Math.min(tabFreeMargin, 6));
+        tabbrowserTabs.style.setProperty('--tab-margin', tabMargin + 'px');
+        
+        let tabsNotSelectedFreeWidth = pinnedTabs * (32 + (2 * tabMargin)) + unselectedTabs * (148 + (2 * tabMargin));
+        let tabsMaxFreeWidth = Math.max((windowWidth * (0.41 - (unselectedTabs * 0.0425) - (pinnedTabs * 0.01))), (240 + (2 * tabMargin))) + tabsNotSelectedFreeWidth;
+        let tabsMaxLimitedWidth = tabsNotSelectedFreeWidth + selectedTabs * (480 + (2 * tabMargin));
+        let oneTabMaxWidth = selectedTabs ? windowWidth * 0.41 : 0;
+        let tabsMaxWidth = Math.max(Math.min(tabsMaxFreeWidth, tabsMaxLimitedWidth), oneTabMaxWidth);
+        let tabMaxWidth = Math.max((tabsMaxWidth - tabsNotSelectedFreeWidth - (2 * tabMargin)), 240);
+        tabbrowserTabs.style.maxWidth = tabsMaxWidth + 'px';
+        tabbrowserTabs.style.setProperty('--tab-max-width', tabMaxWidth + 'px');
+
         let leftFlexibleSpaceCount = leftFlexibleSpaces.length;
         let rightFlexibleSpaceCount = rightFlexibleSpaces.length;
-    
+
         if (beforeBarWidth > afterBarWidth) {
             if (leftFlexibleSpaceCount === 0) {
-                tabbrowserTabs.style.marginLeft = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - beforeBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
+                tabbrowserTabs.style.marginLeft = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - beforeBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
             } else {
                 tabbrowserTabs.style.marginLeft = '0';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - beforeBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - beforeBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
@@ -609,7 +608,7 @@ queueMicrotask(() => {
                 tabbrowserTabs.style.marginRight = 'auto';
             } else {
                 tabbrowserTabs.style.marginRight = '0';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - afterBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - afterBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = '0px';
                     space.style.maxWidth = spaceWidth + 'px';
@@ -620,23 +619,27 @@ queueMicrotask(() => {
                 tabbrowserTabs.style.marginLeft = 'auto';
             } else {
                 tabbrowserTabs.style.marginLeft = '0';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - beforeBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - beforeBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = '0px';
                     space.style.maxWidth = spaceWidth + 'px';
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                tabbrowserTabs.style.marginRight = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - afterBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
+                tabbrowserTabs.style.marginRight = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - afterBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
             } else {
                 tabbrowserTabs.style.marginRight = '0';
-                let spaceWidth = Math.max(0, Math.min((navBar.clientWidth - tabsMaxWidth) / 2 - afterBarWidth, navBar.clientWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
+                let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - afterBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
                     space.style.maxWidth = spaceWidth + 'px';
                 }
             }
         }
+
+        let canHideScroll = restBarWidth - tabsMaxWidth > 1;
+        tabShadowRoot.querySelector("#scrollbutton-up").style.visibility = canHideScroll ? "collapse" : "";
+        tabShadowRoot.querySelector("#scrollbutton-down").style.visibility = canHideScroll ? "collapse" : "";
     }
     
     let delayedtabsSizer = false;
