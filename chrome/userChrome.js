@@ -760,6 +760,8 @@ queueMicrotask(() => {
                     urlbarToolbarItem.style.cssText = '';
                     tabbrowserTabs.style.cssText = '';
                     tabShadowRoot.querySelector("scrollbox").style.borderRadius = "";
+                    tabShadowRoot.querySelector("#scrollbutton-up").style.visibility = "";
+                    tabShadowRoot.querySelector("#scrollbutton-down").style.visibility = "";
     
                     moveBookmarkBar();
                     Services.prefs.addObserver("browser.toolbars.bookmarks.visibility", moveBookmarkBar);
