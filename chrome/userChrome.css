@@ -134,6 +134,7 @@ tooltip {
     --urlbar-margin-inline: 0px !important;
     --tab-selected-shadow: none !important;
     --tab-shadow-max-size: 0px !important;
+    --tab-margin: var(--toolbarbutton-outer-padding);
     --tab-min-height: 28px !important;
     --tab-max-width: 100%;
     --tab-transition: min-width 200ms, max-width 200ms;
@@ -781,18 +782,19 @@ toolbarspring {
     }
     
     .tabbrowser-tab[pinned] {
-        padding: 0 var(--toolbarbutton-outer-padding) !important;
+        padding: 0 var(--tab-margin) !important;
     }
     
     .tabbrowser-tab:not([pinned]) {
         transition: var(--tab-transition) !important;
-        margin: 0 var(--toolbarbutton-outer-padding) !important;
         padding: 0 !important;
         &[fadein]:not([selected]) {
+            margin: 0 var(--tab-margin) !important;
             min-width: 74px !important;
             max-width: 148px !important;
         }
         &[fadein][selected] {
+            margin: 0 var(--tab-margin) !important;
             min-width: 240px !important;
             max-width: var(--tab-max-width) !important;
             :root:not([customizing]) & {
@@ -858,13 +860,13 @@ toolbarspring {
         
         &::part(scrollbutton-up) {
             & {
-                padding: 0 calc(var(--toolbarbutton-outer-padding) * 2) 0 var(--toolbarbutton-outer-padding) !important;
+                padding: 0 calc(var(--tab-margin) * 2) 0 var(--tab-margin) !important;
             }
         }
         
         &::part(scrollbutton-down) {
             & {
-                padding: 0 var(--toolbarbutton-outer-padding) 0 calc(var(--toolbarbutton-outer-padding) * 2) !important;
+                padding: 0 var(--tab-margin) 0 calc(var(--tab-margin) * 2) !important;
             }
         }
     }
@@ -1061,7 +1063,12 @@ toolbarspring {
     padding-bottom: 1px !important;
     margin-bottom: -1px !important;
     z-index: 100 !important;
-    background: linear-gradient(to top, light-dark(#0000000D, #00000040) 0px, light-dark(#0000000D, #00000040) 0.44px, light-dark(#00000026, #000000FF) 0.44px, light-dark(#00000026, #000000FF) 0.99px, var(--toolbar-bgcolor) 0.99px) !important;
+    &:not(.fullscreen-with-menubar) {
+        background: linear-gradient(to top, light-dark(#0000000D, #00000040) 0px, light-dark(#0000000D, #00000040) 0.44px, light-dark(#00000026, #000000FF) 0.44px, light-dark(#00000026, #000000FF) 0.99px, var(--toolbar-bgcolor) 0.99px) !important;
+    }
+    &.fullscreen-with-menubar {
+        background-color: var(--toolbar-bgcolor) !important;
+    }
 }
 
 :root:not([uidensity="mix"]) {
