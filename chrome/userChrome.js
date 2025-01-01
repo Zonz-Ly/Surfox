@@ -450,59 +450,7 @@ queueMicrotask(() => {
 
     //  Move URL bar to the position of selected tab.
 
-    let selectedTabResizeObserver = new ResizeObserver(delayedUpdateSelectedTabPosition);
-
-    function updateSelectedTabPosition() {
-        if (document.documentElement.hasAttribute("customizing")) {
-            return;
-        }
-
-        if (!selectedTab || selectedTab.hasAttribute("movingtab") || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
-            urlbarToolbarItem.style.display = 'none';
-            return;
-        }
-
-        let tabRect = selectedTab.getBoundingClientRect();
-        urlbarToolbarItem.style.display = '';
-        urlbarToolbarItem.style.width = `${tabRect.width}px`;
-        urlbarToolbarItem.style.height = `${tabRect.height}px`;
-
-        if (tabbrowserTabs.hasAttribute("overflow")) {
-            let tabsRect = tabScrollbox.getBoundingClientRect();
-            urlbarToolbarItem.style.left = `${Math.min(
-                Math.max(tabsRect.left + 36, tabRect.left), 
-                tabsRect.right - tabRect.width - 36
-            )}px`;
-        } else {
-            urlbarToolbarItem.style.left = `${tabRect.left}px`;
-        }
-    }
-
-    function updateSelectedTab() {
-        let newSelectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
-        if (newSelectedTab !== selectedTab) {
-            selectedTab = newSelectedTab;
-            selectedTabCloseButton = selectedTab.querySelector('.tab-close-button');
-            selectedTabResizeObserver.disconnect();
-            selectedTabResizeObserver.observe(selectedTab);
-            updateSelectedTabPosition();
-        }
-    }
-
-    let delayedTabPositionUpdating = false;
-
-    function delayedUpdateSelectedTabPosition() {
-        if (delayedTabPositionUpdating) {
-            return;
-        }
-    
-        delayedTabPositionUpdating = true;
-        updateSelectedTabPosition();
-        queueMicrotask(() => {
-            delayedTabPositionUpdating = false;
-        });
-    }
-
+    let tabMargin = 0;
     function tabsSizer() {
         if (document.documentElement.hasAttribute("customizing")) {
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
@@ -580,7 +528,7 @@ queueMicrotask(() => {
         }
         
         let tabFreeMargin = (0.01 * restBarWidth) / (unselectedTabs + selectedTabs + (0.25 * pinnedTabs)) + 3;
-        let tabMargin = Math.max(4, Math.min(tabFreeMargin, 6));
+        tabMargin = Math.max(4, Math.min(tabFreeMargin, 6));
         tabbrowserTabs.style.setProperty('--tab-margin', tabMargin + 'px');
         
         let tabsNotSelectedFreeWidth = pinnedTabs * (32 + (2 * tabMargin)) + unselectedTabs * (148 + (2 * tabMargin));
@@ -702,6 +650,59 @@ queueMicrotask(() => {
         delayedUpdateSelectedTabPosition();
         hideShowUrlbarCloseButton();
     })
+
+    let selectedTabResizeObserver = new ResizeObserver(delayedUpdateSelectedTabPosition);
+
+    function updateSelectedTabPosition() {
+        if (document.documentElement.hasAttribute("customizing")) {
+            return;
+        }
+
+        if (!selectedTab || selectedTab.hasAttribute("movingtab") || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
+            urlbarToolbarItem.style.display = 'none';
+            return;
+        }
+
+        let tabRect = selectedTab.getBoundingClientRect();
+        urlbarToolbarItem.style.display = '';
+        urlbarToolbarItem.style.width = `${tabRect.width}px`;
+        urlbarToolbarItem.style.height = `${tabRect.height}px`;
+
+        if (tabbrowserTabs.hasAttribute("overflow")) {
+            let tabsRect = tabScrollbox.getBoundingClientRect();
+            urlbarToolbarItem.style.left = `${Math.min(
+                Math.max(tabsRect.left + 24 + (3 * tabMargin), tabRect.left), 
+                tabsRect.right - tabRect.width - 24 - (3 * tabMargin)
+            )}px`;
+        } else {
+            urlbarToolbarItem.style.left = `${tabRect.left}px`;
+        }
+    }
+
+    function updateSelectedTab() {
+        let newSelectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
+        if (newSelectedTab !== selectedTab) {
+            selectedTab = newSelectedTab;
+            selectedTabCloseButton = selectedTab.querySelector('.tab-close-button');
+            selectedTabResizeObserver.disconnect();
+            selectedTabResizeObserver.observe(selectedTab);
+            updateSelectedTabPosition();
+        }
+    }
+
+    let delayedTabPositionUpdating = false;
+
+    function delayedUpdateSelectedTabPosition() {
+        if (delayedTabPositionUpdating) {
+            return;
+        }
+    
+        delayedTabPositionUpdating = true;
+        updateSelectedTabPosition();
+        queueMicrotask(() => {
+            delayedTabPositionUpdating = false;
+        });
+    }
 
     function tabCloseButtonHover(event) {
         if (!event.target.matches(".tab-close-button")) {return;}
