@@ -450,7 +450,7 @@ queueMicrotask(() => {
 
     //  Move URL bar to the position of selected tab.
 
-    let tabMargin = 0;
+    let tabMargin = 6;
     function tabsSizer() {
         if (document.documentElement.hasAttribute("customizing")) {
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
