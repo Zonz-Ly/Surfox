@@ -655,6 +655,7 @@ toolbarspring {
     
     .tabbrowser-tab {
         min-height: var(--tab-min-height) !important;
+        background-clip: padding-box !important;
         &:hover {
             background-color: var(--toolbarbutton-hover-background) !important;
         }
@@ -665,12 +666,10 @@ toolbarspring {
     
     .tabbrowser-tab[selected] {
         background-color: var(--toolbar-bgcolor) !important;
-        background-clip: padding-box !important;
         box-shadow: none !important;
     }
     
     .tabbrowser-tab[multiselected]:not([selected]) {
-        background-clip: padding-box !important;
         @media (prefers-color-scheme: light) {
             background: linear-gradient(to bottom, #00000023 0px, #00000023 0.55px, #00000015 0.55px, #00000015 1.01px, #0000000D 1.01px, #0000000D 1.55px, #00000007 1.55px, #00000007 2.01px, #00000003 2.01px, #00000003 2.55px, #00000002 2.55px, #00000002 3.01px, #00000001 3.01px, #00000001 4.01px, transparent 4.01px), var(--toolbar-bgcolor) !important;
         }
@@ -1081,6 +1080,7 @@ toolbarspring {
     #TabsToolbar-customization-target > #personal-bookmarks #PlacesToolbarItems > .bookmark-item {
         border-radius: 0px !important;
         margin: 0 !important;
+        background-clip: padding-box !important;
         transition: background-color 200ms !important;
         .toolbarbutton-text {
             display: none !important;
