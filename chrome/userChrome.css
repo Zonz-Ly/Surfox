@@ -501,15 +501,18 @@ findbar:-moz-window-inactive {
 }
 
 :root:not([customizing]) #TabsToolbar .toolbarbutton-1:not(:hover):not([disabled]):-moz-window-inactive,
-:root[customizing] #TabsToolbar .toolbarbutton-1:-moz-window-inactive,
-#scrollbutton-up:not(:hover):not([disabled]):-moz-window-inactive,
-#scrollbutton-down:not(:hover):not([disabled]):-moz-window-inactive {
+:root[customizing] #TabsToolbar .toolbarbutton-1:-moz-window-inactive {
     opacity: 1 !important;
     > .toolbarbutton-icon,
     > .toolbarbutton-text,
     > .toolbarbutton-badge-stack {
         opacity: var(--inactive-titlebar-opacity) !important;
     }
+}
+
+#scrollbutton-up:not(:hover):not([disabled]):-moz-window-inactive,
+#scrollbutton-down:not(:hover):not([disabled]):-moz-window-inactive {
+    fill-opacity: var(--inactive-titlebar-opacity) !important;
 }
 
 .tab-icon-stack:-moz-window-inactive,
@@ -848,12 +851,16 @@ toolbarspring {
             &:not([disabled]):hover {
                 background-color: transparent !important;
                 .toolbarbutton-icon {
-                    background-color: var(--toolbarbutton-hover-background) !important;
+                    background-color: var(--toolbarbutton-active-background) !important;
+                }
+                &:active .toolbarbutton-icon {
+                    background-color: var(--toolbar-field-background-color) !important;
                 }
             }
             .toolbarbutton-icon {
                 border-radius: var(--tab-border-radius) !important;
                 padding: var(--toolbarbutton-inner-padding) calc(var(--toolbarbutton-inner-padding) - 2px) !important;
+                background-color: var(--toolbarbutton-hover-background) !important;
             }
         }
         
