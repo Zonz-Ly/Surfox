@@ -663,6 +663,14 @@ toolbarspring {
         transition: min-width 350ms, max-width 350ms !important;
     }
     
+    .tabbrowser-tab {
+        @media (prefers-reduced-motion: no-preference) {
+            #tabbrowser-tabs[movingtab] &[fadein]:not([selected]):not([multiselected]), &[multiselected-move-together], &[tabdrop-samewindow] {
+                transition: transform 350ms !important;
+            }
+        }
+    }
+    
     .tabbrowser-tab:not([pinned]) {
         margin-inline-start: 0 !important;
         &[fadein]:not([style*="max-width"]) {
@@ -778,6 +786,14 @@ toolbarspring {
     
     #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab:not([pinned]) {
         transition: var(--tab-transition) !important;
+    }
+    
+    .tabbrowser-tab {
+        @media (prefers-reduced-motion: no-preference) {
+            #tabbrowser-tabs[movingtab] &[fadein]:not([selected]):not([multiselected]), &[multiselected-move-together], &[tabdrop-samewindow] {
+                transition: transform 200ms !important;
+            }
+        }
     }
     
     .tabbrowser-tab:not([pinned]) {
