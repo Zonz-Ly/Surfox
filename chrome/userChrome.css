@@ -288,16 +288,10 @@ tooltip {
     }
 }
 
-:root[sizemode="normal"][tabsintitlebar] {
+:root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
     /*  Windows has eaten the topmost pixel, now let's make it spit it out.  */
-    #nav-bar {
-        @media (-moz-platform: windows) {
-            padding-top: 1px !important;
-            height: 43px !important;
-            [uidensity] & {
-                height: 53px !important;
-            }
-        }
+    @media (-moz-platform: windows) {
+        padding-top: 1px !important;
     }
 }
 
@@ -648,20 +642,10 @@ toolbarspring {
         }
     }
     
-    #TabsToolbar:hover .tabbrowser-tab {
-      transition: 200ms !important;
-    }
-    
-    #TabsToolbar:active .tabbrowser-tab {
-      transition: none !important;
-    }
-    
     .tabbrowser-tab {
+        padding: 0 !important;
         min-height: var(--tab-min-height) !important;
         background-clip: padding-box !important;
-        &:hover {
-            background-color: var(--toolbarbutton-hover-background) !important;
-        }
         #tabbrowser-tabs[positionpinnedtabs] > #tabbrowser-arrowscrollbox > &[pinned] {
             display: flex !important; 
         }
@@ -689,20 +673,33 @@ toolbarspring {
         }
     }
     
+    .tab-background:is([selected], [multiselected]) {
+        display: none !important;
+    }
+    
+    .tab-background {
+        transition: background-color 200ms !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    .tab-content[pinned] {
+        padding: 0 10px !important;
+    }
+    
+    .tab-content:not([pinned]) {
+        padding: 0 12px !important;
+    }
+    
     .tab-label-container[pinned] {
         display: none !important;
     }
     
-    .tabbrowser-tab[pinned] {
-        padding: 0 !important;
-    }
-    
-    .tab-background {
-        display: none !important;
-    }
-    
-    .tab-content {
-        padding: 0 10px !important;
+    .tab-label-container {
+        flex: auto 0 1 !important;
+        margin-inline-end: auto !important;
+        padding-inline-start: 0 !important;
+        padding-inline-end: 12px !important;
     }
     
     #tabbrowser-tabs .tab-close-button {
@@ -737,16 +734,9 @@ toolbarspring {
             margin-inline-end: 3px !important;
         }
     }
-
+    
     #urlbar .tab-close-button-container {
         display: none !important;
-    }
-    
-    .tab-label-container {
-        flex: auto 0 1 !important;
-        margin-inline-end: auto !important;
-        padding-inline-start: 0 !important;
-        padding-inline-end: 12px !important;
     }
     
     #TabsToolbar #firefox-view-button[open] {
@@ -978,6 +968,10 @@ toolbarspring {
         outline-color: var(--toolbarbutton-active-outline-color) !important;
         color-scheme: light dark !important;
     }
+}
+
+.tab-loading-burst {
+    visibility: collapse !important;
 }
 
 .tab-icon-stack {
