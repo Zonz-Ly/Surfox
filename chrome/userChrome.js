@@ -658,7 +658,7 @@ queueMicrotask(() => {
             return;
         }
 
-        if (!selectedTab || selectedTab.hasAttribute("movingtab") || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
+        if (!selectedTab || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
             urlbarToolbarItem.style.display = 'none';
             return;
         }
