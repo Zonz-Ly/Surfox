@@ -312,11 +312,6 @@ tooltip {
     --urlbar-icon-fill-opacity: 1 !important;
 }
 
-.urlbar-input-container {
-    height: var(--urlbar-height) !important;
-    padding: var(--urlbar-container-padding) !important;
-}
-
 .urlbar-input, .searchbar-textbox {
     border-radius: 0 !important;
 }
