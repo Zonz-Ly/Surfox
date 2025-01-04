@@ -168,6 +168,7 @@ tooltip {
     font-size: 13px !important;
     height: 42px !important;
     align-items: center !important;
+    z-index: 100 !important;
     :root:not([uidensity="mix"]) & {
         --arrowpanel-border-color: var(--button-background-color-active) !important;
         --toolbar-field-border-color: var(--button-background-color-active) !important;
@@ -189,7 +190,7 @@ tooltip {
 }
 
 #nav-bar-customization-target {
-    height: 28px !important;
+    height: var(--urlbar-min-height) !important;
 }
 
 :root[tabsintitlebar] .browser-titlebar:-moz-window-inactive {
@@ -735,7 +736,7 @@ toolbarspring {
         }
     }
     
-    #urlbar .tab-close-button-container {
+    #urlbar #tab-close-button-container {
         display: none !important;
     }
     
@@ -843,6 +844,7 @@ toolbarspring {
     }
 
     #tabbrowser-arrowscrollbox {
+        pointer-events: auto !important;
         &::part(scrollbutton-up),
         &::part(scrollbutton-down) {
             & {
@@ -932,42 +934,40 @@ toolbarspring {
         }
     }
     
-    #urlbar .tab-close-button-container {
+    #urlbar #tab-close-button-container {
         display: flex;
         margin-inline-start: 4px !important;
         margin-inline-end: -4px !important;
-    }
-
-    #urlbar .tab-close-button {
-        visibility: visible !important;
-        display: inline-flex;
-        padding: 0 !important;
-        margin-block: 0 !important;
-        margin-inline-end: -16px !important;
-        width: 16px !important;
-        height: 16px !important;
-        border-radius: 2px !important;
-        align-self: center !important;
-        box-sizing: border-box !important;
-        background-image: url(chrome://global/skin/icons/close-12.svg) !important;
-        background-position: center;
-        background-size: 10px 10px;
-        background-repeat: no-repeat;
-        opacity: 0 !important;
-        z-index: 100 !important;
-        transition: opacity 200ms, margin-inline-end 200ms !important;
-        #urlbar[focused] & {
-            visibility: hidden !important;
+        .tab-close-button {
+            visibility: visible !important;
+            display: inline-flex;
+            padding: 0 !important;
+            margin-block: 0 !important;
+            margin-inline-end: -16px !important;
+            width: 16px !important;
+            height: 16px !important;
+            border-radius: 2px !important;
+            align-self: center !important;
+            box-sizing: border-box !important;
+            background-image: url(chrome://global/skin/icons/close-12.svg) !important;
+            background-position: center;
+            background-size: 10px 10px;
+            background-repeat: no-repeat;
             opacity: 0 !important;
-        }
-        #urlbar:not([focused]) &[hovered] {
-            margin-inline-end: 4px !important;
-            opacity: 1 !important;
-        }
-        #urlbar:not([focused]) &:hover {
-            background-color: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .17) ) !important;
-            &:active {
-                background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
+            z-index: 100 !important;
+            transition: opacity 200ms, margin-inline-end 200ms !important;
+            #urlbar[focused] & {
+                pointer-events: none !important;
+            }
+            #urlbar:not([focused]) &:hover {
+                background-color: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .17) ) !important;
+                &:active {
+                    background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
+                }
+            }
+            #urlbar:not([focused]) &[hovered] {
+                margin-inline-end: 4px !important;
+                opacity: 1 !important;
             }
         }
     }
