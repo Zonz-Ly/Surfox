@@ -63,8 +63,8 @@ queueMicrotask(() => {
     } catch(e) {}
 
     //  Customize search bars.
-    let urlbarToolbarItem = document.querySelector("#urlbar-container");
-    let urlbar = urlbarToolbarItem.querySelector("#urlbar");
+    let urlbarContainer = document.querySelector("#urlbar-container");
+    let urlbar = urlbarContainer.querySelector("#urlbar");
     let urlbarInputContainer = urlbar.querySelector(".urlbar-input-container");
     let urlIdentityBox = urlbarInputContainer.querySelector("#identity-box");
     let urlbarInputBox = urlbarInputContainer.querySelector(".urlbar-input-box");
@@ -90,7 +90,7 @@ queueMicrotask(() => {
     let selectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
     let selectedTabCloseButton = selectedTab.querySelector('.tab-close-button');
     let urlbarCloseButtonContainer = document.createElement("box");
-    urlbarCloseButtonContainer.classList.add("tab-close-button-container");
+    urlbarCloseButtonContainer.id = "tab-close-button-container";
     let urlbarCloseButton = document.createElement("image");
     urlbarCloseButton.classList.add("tab-close-button", "close-icon");
     urlbarCloseButton.addEventListener("click", () => selectedTabCloseButton.click());
@@ -267,10 +267,10 @@ queueMicrotask(() => {
     
     function urlbarSizer() {
         if (document.documentElement.hasAttribute("customizing")) {
-            urlbarToolbarItem.style.marginLeft = '4px';
-            urlbarToolbarItem.style.marginRight = '4px';
-            urlbarToolbarItem.style.minWidth ='';
-            urlbarToolbarItem.style.maxWidth ='';
+            urlbarContainer.style.marginLeft = '4px';
+            urlbarContainer.style.marginRight = '4px';
+            urlbarContainer.style.minWidth ='';
+            urlbarContainer.style.maxWidth ='';
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
             flexibleSpaces.forEach(space => {
                 space.style.minWidth = '';
@@ -280,8 +280,8 @@ queueMicrotask(() => {
         }
 
         let windowWidth = navBar.clientWidth
-        urlbarToolbarItem.style.minWidth = (windowWidth * 0.41 - 8) + 'px';
-        urlbarToolbarItem.style.maxWidth = (windowWidth * 0.41 - 8) + 'px';
+        urlbarContainer.style.minWidth = (windowWidth * 0.41 - 8) + 'px';
+        urlbarContainer.style.maxWidth = (windowWidth * 0.41 - 8) + 'px';
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
         let beforeBarWidth = 0;
@@ -290,7 +290,7 @@ queueMicrotask(() => {
         let isLeft = true;
         let isRight = false;
         for (let element of navBarTarget.children) {
-            if (element === urlbarToolbarItem) {
+            if (element === urlbarContainer) {
                 isLeft = false;
                 isRight = true;
                 continue;
@@ -336,9 +336,9 @@ queueMicrotask(() => {
 
         if (beforeBarWidth > afterBarWidth) {
             if (leftFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginLeft = Math.max(4, Math.min((windowWidth * 0.295) - beforeBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                urlbarContainer.style.marginLeft = Math.max(4, Math.min((windowWidth * 0.295) - beforeBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
-                urlbarToolbarItem.style.marginLeft = '4px';
+                urlbarContainer.style.marginLeft = '4px';
                 let spaceWidth = Math.max(0, Math.min((windowWidth * 0.295) - beforeBarWidth, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
@@ -347,12 +347,12 @@ queueMicrotask(() => {
             }
             if (rightFlexibleSpaceCount === 0) {
                 if ((windowWidth * 0.295) - afterBarWidth > 0 && (windowWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
-                    urlbarToolbarItem.style.marginRight = 'auto';
+                    urlbarContainer.style.marginRight = 'auto';
                 } else {
-                    urlbarToolbarItem.style.marginRight = '4px';
+                    urlbarContainer.style.marginRight = '4px';
                 }
             } else {
-                urlbarToolbarItem.style.marginRight = '4px';
+                urlbarContainer.style.marginRight = '4px';
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = '0px';
                     space.style.maxWidth = 'none';
@@ -361,21 +361,21 @@ queueMicrotask(() => {
         } else {
             if (leftFlexibleSpaceCount === 0) {
                 if ((windowWidth * 0.295) - beforeBarWidth > 0 && (windowWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
-                    urlbarToolbarItem.style.marginLeft = 'auto';
+                    urlbarContainer.style.marginLeft = 'auto';
                 } else {
-                    urlbarToolbarItem.style.marginLeft = '4px';
+                    urlbarContainer.style.marginLeft = '4px';
                 }
             } else {
-                urlbarToolbarItem.style.marginLeft = '4px';
+                urlbarContainer.style.marginLeft = '4px';
                 for (let space of leftFlexibleSpaces) {
                     space.style.minWidth = '0px';
                     space.style.maxWidth = 'none';
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                urlbarToolbarItem.style.marginRight = Math.max(4, Math.min((windowWidth * 0.295) - afterBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                urlbarContainer.style.marginRight = Math.max(4, Math.min((windowWidth * 0.295) - afterBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
             } else {
-                urlbarToolbarItem.style.marginRight = '4px';
+                urlbarContainer.style.marginRight = '4px';
                 let spaceWidth = Math.max(0, Math.min((windowWidth * 0.295) - afterBarWidth, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
                     space.style.minWidth = spaceWidth + 'px';
@@ -479,7 +479,7 @@ queueMicrotask(() => {
                 isRight = true;
                 continue;
             }
-            if (element === urlbarToolbarItem) {
+            if (element === urlbarContainer) {
                 continue;
             }
             if (element.matches("toolbarspring")) {
@@ -659,23 +659,23 @@ queueMicrotask(() => {
         }
 
         if (!selectedTab || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
-            urlbarToolbarItem.style.display = 'none';
+            urlbarContainer.style.display = 'none';
             return;
         }
 
         let tabRect = selectedTab.getBoundingClientRect();
-        urlbarToolbarItem.style.display = '';
-        urlbarToolbarItem.style.width = `${tabRect.width}px`;
-        urlbarToolbarItem.style.height = `${tabRect.height}px`;
+        urlbarContainer.style.display = '';
+        urlbarContainer.style.width = `${tabRect.width}px`;
+        urlbarContainer.style.height = `${tabRect.height}px`;
 
         if (tabbrowserTabs.hasAttribute("overflow")) {
             let tabsRect = tabScrollbox.getBoundingClientRect();
-            urlbarToolbarItem.style.left = `${Math.min(
+            urlbarContainer.style.left = `${Math.min(
                 Math.max(tabsRect.left + 24 + (3 * tabMargin), tabRect.left), 
                 tabsRect.right - tabRect.width - 24 - (3 * tabMargin)
             )}px`;
         } else {
-            urlbarToolbarItem.style.left = `${tabRect.left}px`;
+            urlbarContainer.style.left = `${tabRect.left}px`;
         }
     }
 
@@ -715,6 +715,46 @@ queueMicrotask(() => {
         closeButton?.parentElement.removeAttribute("hovered");
     }
 
+    const setURLBarForwardsEventsToTab = (() => {
+        //  MozTabbrowserTabs handles the wheel event manually to scroll the tabs — which doesn’t rely on
+        //  the default action and the event target — so we can directly forward the event to the tabs.
+        function forwardWheel(event) {
+            if (!urlbarContainer.matches(":focus-within")) {
+                let copyEvent = new WheelEvent(event.type, event);
+                tabScrollbox.dispatchEvent(copyEvent);
+                event.preventDefault();
+            }
+        }
+
+        //  Mid-click to close tab.
+        function forwardClickCapture(event) {
+            if (event.button === 1) {
+                let copyEvent = new MouseEvent(event.type, event);
+                selectedTab.dispatchEvent(copyEvent);
+            }
+        }
+
+        //  FireFox localizes menu items lazily on the first shown.
+        function forwardContextMenuCaptureOnce(event) {
+            let copyEvent = new Event(event.type, event);
+            selectedTab.dispatchEvent(copyEvent);
+            urlbarContainer.removeEventListener("contextmenu", forwardContextMenuCaptureOnce, true);
+        }
+
+        return function setURLBarContainerForwardsEventsToTab(forward) {
+            if (forward) {
+                urlbarContainer.addEventListener("wheel", forwardWheel);
+                urlbarContainer.addEventListener("click", forwardClickCapture, true);
+                urlbarContainer.addEventListener("contextmenu", forwardContextMenuCaptureOnce, true);
+                urlbarInputContainer.setAttribute("context", "tabContextMenu");
+            } else {
+                urlbarContainer.removeEventListener("wheel", forwardWheel);
+                urlbarContainer.removeEventListener("click", forwardClickCapture, true);
+                urlbarContainer.removeEventListener("contextmenu", forwardContextMenuCaptureOnce, true);
+                urlbarInputContainer.removeAttribute("context");
+            }
+        }
+    })();
 
     //  ----------------------------------------------------------------------------------------------------  //
     //  **Setup Tab bar functions**  //
@@ -760,8 +800,9 @@ queueMicrotask(() => {
                     tabbrowserTabs.removeEventListener('TabSelect', updateSelectedTab);
                     tabsSizerResizeObserver.disconnect();
                     tabsSizerMutationObserver.disconnect();
-                    urlbarToolbarItem.style.cssText = '';
+                    urlbarContainer.style.cssText = '';
                     tabbrowserTabs.style.cssText = '';
+                    setURLBarForwardsEventsToTab(false);
                     tabShadowRoot.querySelector("scrollbox").style.borderRadius = "";
                     tabShadowRoot.querySelector("#scrollbutton-up").style.visibility = "";
                     tabShadowRoot.querySelector("#scrollbutton-down").style.visibility = "";
@@ -794,19 +835,20 @@ queueMicrotask(() => {
                     gBrowser.tabContainer.removeEventListener("TabClose", tabClosingHideShowTabBar);
                     gBrowser.tabContainer.removeEventListener("TabPinned", tabPinHideShowTabBar);
                     gBrowser.tabContainer.removeEventListener("TabUnpinned", tabPinHideShowTabBar);
-                    urlbarToolbarItem.style.cssText = '';
+                    urlbarContainer.style.cssText = '';
                     tabShadowRoot.querySelector("scrollbox").style.borderRadius = "var(--tab-border-radius)";
     
                     urlbarCloseButton.addEventListener("mouseenter", urlbarCloseButtonHover);
                     tabScrollbox.addEventListener("mouseenter", tabCloseButtonHover, true);
                     tabScrollbox.addEventListener("mouseleave", tabNotHover, true);
-                    if (urlbarToolbarItem.nextElementSibling !== tabbrowserTabs) {
-                        if (urlbarToolbarItem.parentElement === document.querySelector('#wrapper-urlbar-container')) {
-                            if (urlbarToolbarItem.parentElement.nextElementSibling !== tabbrowserTabs) {
-                                urlbarToolbarItem.parentElement.after(tabbrowserTabs);
+                    setURLBarForwardsEventsToTab(true);
+                    if (urlbarContainer.nextElementSibling !== tabbrowserTabs) {
+                        if (urlbarContainer.parentElement === document.querySelector('#wrapper-urlbar-container')) {
+                            if (urlbarContainer.parentElement.nextElementSibling !== tabbrowserTabs) {
+                                urlbarContainer.parentElement.after(tabbrowserTabs);
                             }
                         } else {
-                            urlbarToolbarItem.after(tabbrowserTabs);
+                            urlbarContainer.after(tabbrowserTabs);
                         }
                     }
                     if (bookmarkBar.previousElementSibling !== navBar) {
