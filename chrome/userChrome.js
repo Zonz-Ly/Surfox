@@ -818,7 +818,7 @@ queueMicrotask(() => {
                             break;
                       }
                       touchItem.setAttribute("accesskey", "S");
-                }, 1000);
+                }, 500);
             }
         }
     })
