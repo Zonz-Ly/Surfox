@@ -3,7 +3,7 @@
 Services.prefs.setBoolPref("svg.context-properties.content.enabled", true);
 Services.prefs.setBoolPref("layout.css.light-dark.enabled", true);
 Services.prefs.setBoolPref("layout.css.nesting.enabled", true);
-// Services.prefs.setBoolPref("browser.compactmode.show", true);
+Services.prefs.setBoolPref("browser.compactmode.show", true);
 Services.prefs.setBoolPref("browser.touchmode.auto", false);
 if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
     Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
@@ -51,8 +51,8 @@ queueMicrotask(() => {
 
     //  Remove tab bar spacers.
     let tabbrowserTabs = document.querySelector("#tabbrowser-tabs");
-    let tabScrollbox = tabbrowserTabs.querySelector("#tabbrowser-arrowscrollbox");
-    let tabShadowRoot = tabScrollbox.shadowRoot;
+    let tabsArrowScrollBox = tabbrowserTabs.querySelector("#tabbrowser-arrowscrollbox");
+    let tabShadowRoot = tabsArrowScrollBox.shadowRoot;
     let tabOverflowIndicator = tabShadowRoot.querySelectorAll("spacer");
     tabOverflowIndicator.forEach(spacer => spacer.remove());
 
@@ -225,7 +225,7 @@ queueMicrotask(() => {
             return;
         }
         tabClosing = true;
-        tabClosingObserver.observe(tabScrollbox, {subtree: true, childList: true});
+        tabClosingObserver.observe(tabsArrowScrollBox, {subtree: true, childList: true});
     });
     let tabClosingObserver = new MutationObserver(() => {
         if (tabMultipleClosing) {
@@ -441,6 +441,8 @@ queueMicrotask(() => {
 
     //  Move URL bar to the position of selected tab.
 
+    let tabScrollUpButton = tabShadowRoot.querySelector("#scrollbutton-up")
+    let tabScrollDownButton = tabShadowRoot.querySelector("#scrollbutton-down")
     let tabMargin = 6;
     function tabsSizer() {
         if (document.documentElement.hasAttribute("customizing")) {
@@ -510,9 +512,9 @@ queueMicrotask(() => {
         }
 
         let restBarWidth = windowWidth - beforeBarWidth - afterBarWidth;
-        let unselectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned]):not([hidden])').length;
-        let selectedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
-        let pinnedTabs = tabScrollbox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
+        let unselectedTabs = tabsArrowScrollBox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned]):not([hidden])').length;
+        let selectedTabs = tabsArrowScrollBox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
+        let pinnedTabs = tabsArrowScrollBox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
         
         if (tabClosing) {
             unselectedTabs -= 1;
@@ -579,8 +581,8 @@ queueMicrotask(() => {
         }
 
         let canHideScroll = restBarWidth - tabsMaxWidth > 1;
-        tabShadowRoot.querySelector("#scrollbutton-up").style.visibility = canHideScroll ? "collapse" : "";
-        tabShadowRoot.querySelector("#scrollbutton-down").style.visibility = canHideScroll ? "collapse" : "";
+        tabScrollUpButton.style.visibility = canHideScroll ? "collapse" : "";
+        tabScrollDownButton.style.visibility = canHideScroll ? "collapse" : "";
     }
     
     let delayedtabsSizer = false;
@@ -660,7 +662,7 @@ queueMicrotask(() => {
         urlbarContainer.style.height = `${tabRect.height}px`;
 
         if (tabbrowserTabs.hasAttribute("overflow")) {
-            let tabsRect = tabScrollbox.getBoundingClientRect();
+            let tabsRect = tabsArrowScrollBox.getBoundingClientRect();
             urlbarContainer.style.left = `${Math.min(
                 Math.max(tabsRect.left + 24 + (3 * tabMargin), tabRect.left), 
                 tabsRect.right - tabRect.width - 24 - (3 * tabMargin)
@@ -706,7 +708,7 @@ queueMicrotask(() => {
         function forwardWheel(event) {
             if (!urlbarContainer.matches(":focus-within")) {
                 let copyEvent = new WheelEvent(event.type, event);
-                tabScrollbox.dispatchEvent(copyEvent);
+                tabsArrowScrollBox.dispatchEvent(copyEvent);
                 event.preventDefault();
             }
         }
@@ -754,16 +756,16 @@ queueMicrotask(() => {
                 urlbarContainer.addEventListener("contextmenu", forwardContextMenuCaptureOnce, true);
                 urlbarInputContainer.setAttribute("context", "tabContextMenu");
                 urlbarCloseButton.addEventListener("mouseenter", urlbarCloseButtonHover);
-                tabScrollbox.addEventListener("mouseenter", tabCloseButtonHover, true);
-                tabScrollbox.addEventListener("mouseleave", tabNotHover, true);
+                tabsArrowScrollBox.addEventListener("mouseenter", tabCloseButtonHover, true);
+                tabsArrowScrollBox.addEventListener("mouseleave", tabNotHover, true);
             } else {
                 urlbarContainer.removeEventListener("wheel", forwardWheel);
                 urlbarContainer.removeEventListener("click", forwardClickCapture, true);
                 urlbarContainer.removeEventListener("contextmenu", forwardContextMenuCaptureOnce, true);
                 urlbarInputContainer.removeAttribute("context");
                 urlbarCloseButton.removeEventListener("mouseenter", urlbarCloseButtonHover);
-                tabScrollbox.removeEventListener("mouseenter", tabCloseButtonHover, true);
-                tabScrollbox.removeEventListener("mouseleave", tabNotHover, true);
+                tabsArrowScrollBox.removeEventListener("mouseenter", tabCloseButtonHover, true);
+                tabsArrowScrollBox.removeEventListener("mouseleave", tabNotHover, true);
             }
         }
     })();
@@ -800,6 +802,7 @@ queueMicrotask(() => {
     });
 
     //  Setting uidensity attributes.
+    let tabsScrollBox = tabShadowRoot.querySelector("scrollbox");
     let tabPinHideShowTabBar = () => hideShowTabBar(1);
     let tabClosingHideShowTabBar = () => hideShowTabBar(2);
     let currentUidensity = null;
@@ -815,16 +818,16 @@ queueMicrotask(() => {
             case null:
                 if (currentUidensity !== 'separate') {
                     selectedTabResizeObserver.disconnect();
-                    tabScrollbox.removeEventListener("scroll", delayedUpdateSelectedTabPosition);
+                    tabsArrowScrollBox.removeEventListener("scroll", delayedUpdateSelectedTabPosition);
                     tabbrowserTabs.removeEventListener('TabSelect', updateSelectedTab);
                     tabsSizerResizeObserver.disconnect();
                     tabsSizerMutationObserver.disconnect();
                     setURLBarForwardsEventsToTab(false);
                     urlbarContainer.style.cssText = '';
                     tabbrowserTabs.style.cssText = '';
-                    tabShadowRoot.querySelector("scrollbox").style.borderRadius = "";
-                    tabShadowRoot.querySelector("#scrollbutton-up").style.visibility = "";
-                    tabShadowRoot.querySelector("#scrollbutton-down").style.visibility = "";
+                    tabsScrollBox.style.borderRadius = "";
+                    tabScrollUpButton.style.visibility = "";
+                    tabScrollDownButton.style.visibility = "";
     
                     moveBookmarkBar();
                     Services.prefs.addObserver("browser.toolbars.bookmarks.visibility", moveBookmarkBar);
@@ -855,7 +858,7 @@ queueMicrotask(() => {
                     gBrowser.tabContainer.removeEventListener("TabPinned", tabPinHideShowTabBar);
                     gBrowser.tabContainer.removeEventListener("TabUnpinned", tabPinHideShowTabBar);
                     urlbarContainer.style.cssText = '';
-                    tabShadowRoot.querySelector("scrollbox").style.borderRadius = "var(--tab-border-radius)";
+                    tabsScrollBox.style.borderRadius = "var(--tab-border-radius)";
 
                     tabbrowserTabs.after(tabsPlaceHolder);
                     if (urlbarContainer.parentElement.matches('#wrapper-urlbar-container')) {
@@ -871,7 +874,7 @@ queueMicrotask(() => {
                     selectedTabResizeObserver.observe(selectedTab);
                     updateSelectedTab()
                     updateSelectedTabPosition();
-                    tabScrollbox.addEventListener("scroll", delayedUpdateSelectedTabPosition);
+                    tabsArrowScrollBox.addEventListener("scroll", delayedUpdateSelectedTabPosition);
                     tabbrowserTabs.addEventListener('TabSelect', updateSelectedTab);
                     tabsSizer();
                     tabsSizerResizeObserver.observe(navBar);
