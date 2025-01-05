@@ -38,14 +38,14 @@ Right-click on a blank area in the window to set the position of the bookmarks t
 - Alternatively, you can try placing the "Bookmarks Toolbar Items" on the **tab bar**—you might like it!
 - If you want to place the "Bookmarks Toolbar Items" on the **navigation bar**, make sure there is 'Flexible Space' on both sides of the address bar. Otherwise, the address bar may not center properly.
 
-In the "Customize Toolbar" page, click the "Density" button in the lower-left corner to choose different navigation bar layouts:
-- **Separate-Narrow (default on Windows):** The vertical padding of the address bar matches that of Catalina and earlier and is recommended for Catalina and earlier users and those who enable the title bar.
+In the "Customize Toolbar" page, click the "Tab layout" button in the lower-left corner to choose different navigation bar layouts:
+- **Separate (Narrow) (default on Windows):** The vertical padding of the address bar matches that of Catalina and earlier and is recommended for Catalina and earlier users and those who enable the title bar.
 - **Separate (default on macOS):** The navigation bar width matches that of Big Sur and above. if you reset the toolbar to defaults on macOS, remember to reselect this option.
 - **Compact (Beta):** Imitates the compact tab layout of Monterey and above. currently under development and needs to be enabled via `about:config`. It will be officially released in version 2.0.
 
 
 ### Some configurable `about:config` values (if set to `true`):
-- `browser.compactmode.show`: Display the "Compact" option in the "Density" menu.
+- `browser.compactmode.show`: Display the "Compact" option in the "Tab layout" menu.
 - `extensions.unifiedExtensions.enabled`: Show the unified extensions button (quite useful if you use extensions).
 - `userChrome.menuButton.enabled`: Show the menu button (Why not just use the menu bar instead? On macOS, it's natively built-in, and on Windows and Linux, it appears by pressing the Alt key).
 - `userChrome.urlbar.starButton.enabled`: Show the star button for bookmarks at the far right of the address bar (you can also access it by right-clicking on a blank area of the webpage).
@@ -96,14 +96,14 @@ Firefox 版本 128 及更高。
 - 如果你想把「书签工具栏项目」放在**导航栏**上，请确保地址栏左右均放置有「弹性空白」，不然地址栏无法居中。
 
 
-在「自定义工具栏」页面左下角，点击「密度」按钮，可以选择不同导航栏布局。
-- **「Separate-Narrow（Windows 下默认）」** 的地址栏上下边距和 Catalina 以前一致，亦推荐 Catalina 以前的用户和启用标题栏的用户设置成这个。
-- **「Separate（macOS 下默认）」** 的导航栏宽度和 Big Sur 以上一致；如果你在 macOS 上恢复工具栏默认设置，记得重新选择它。
-- **「Compact（Beta）」** 模仿 Monterey 以上的标签页布局的紧凑模式；目前还在施工中，需要通过 `about:config` 开启，2.0 会正式发佈。
+在「自定义工具栏」页面左下角，点击「标签页布局」按钮，可以选择不同导航栏布局。
+- **「单独（窄）（Windows 下默认）」** 的地址栏上下边距和 Catalina 以前一致，亦推荐 Catalina 以前的用户和启用标题栏的用户设置成这个。
+- **「单独（macOS 下默认）」** 的导航栏宽度和 Big Sur 以上一致；如果你在 macOS 上恢复工具栏默认设置，记得重新选择它。
+- **「紧凑（Beta）」** 模仿 Monterey 以上的标签页布局的紧凑模式；目前还在施工中，需要通过 `about:config` 开启，2.0 会正式发佈。
 
 
 ### 一些可以根据需要调整的 `about:config` 的值（设置为 `true` 时）：
-- `browser.compactmode.show` 在「密度」菜单中显示「紧凑」选项
+- `browser.compactmode.show` 在「标签页布局」菜单中显示「紧凑」选项
 - `extensions.unifiedExtensions.enabled` 显示扩展按钮（如果你用扩展的话还是很有用的）
 - `userChrome.menuButton.enabled`: 显示菜单按钮（为什么不用菜单栏代替呢？macOS 原生自带，Windows 和 Linux 下按一下 alt 就会出现）
 - `userChrome.urlbar.starButton.enabled` 显示地址栏最右侧的星星收藏按钮（在网页空白处按右键就会有）
