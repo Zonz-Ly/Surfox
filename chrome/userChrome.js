@@ -3,6 +3,7 @@
 Services.prefs.setBoolPref("svg.context-properties.content.enabled", true);
 Services.prefs.setBoolPref("layout.css.light-dark.enabled", true);
 Services.prefs.setBoolPref("layout.css.nesting.enabled", true);
+Services.prefs.setBoolPref("browser.compactmode.show", true);
 Services.prefs.setBoolPref("browser.touchmode.auto", false);
 if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
     Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
@@ -284,7 +285,7 @@ queueMicrotask(() => {
         urlbarContainer.style.maxWidth = (windowWidth * 0.41 - 8) + 'px';
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
-        let beforeBarWidth = 0;
+        let beforeBarWidth = 8;
         let afterBarWidth = 0;
 
         let isLeft = true;
