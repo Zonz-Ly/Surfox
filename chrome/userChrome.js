@@ -772,27 +772,52 @@ queueMicrotask(() => {
 
     //  Add touch options on Mac.
     let uidensityMenuMutationObserver = new MutationObserver(() => {
-        let uidensityMenu = document.querySelector("#customization-uidensity-menu");
-        if (uidensityMenu) {
-            let normalItem = uidensityMenu.querySelector("#customization-uidensity-menuitem-normal");
+        let uidensityButton = document.querySelector("#customization-uidensity-button");
+        if (uidensityButton) {
+            let normalItem = uidensityButton.querySelector("#customization-uidensity-menuitem-normal");
             if (normalItem) {
                 uidensityMenuMutationObserver.disconnect();
-                let touchItem = uidensityMenu.querySelector("#customization-uidensity-menuitem-touch");
+                let touchItem = uidensityButton.querySelector("#customization-uidensity-menuitem-touch");
                 if (!touchItem) {
                     touchItem = normalItem.cloneNode(true);
                     touchItem.setAttribute("id", "customization-uidensity-menuitem-touch");
                     touchItem.setAttribute("data-l10n-id", "customize-mode-uidensity-menu-touch");
-                    uidensityMenu.append(touchItem);
+                    normalItem.after(touchItem);
                 }
-                let compactItem = uidensityMenu.querySelector("#customization-uidensity-menuitem-compact");
+                let compactItem = uidensityButton.querySelector("#customization-uidensity-menuitem-compact");
                 touchItem.after(compactItem);
+                var currentLocale = navigator.language;
                 setTimeout(() => {
-                compactItem.setAttribute("label", "Compact");
-                compactItem.setAttribute("tooltiptext", "Compact");
-                touchItem.setAttribute("label", "Separate");
-                touchItem.setAttribute("tooltiptext", "Separate");
-                normalItem.setAttribute("label", "Separate-Narrow");
-                normalItem.setAttribute("tooltiptext", "Separate-Narrow");
+                    switch (currentLocale) {
+                        case "zh-TW":
+                            uidensityButton.setAttribute("label", "分頁佈局");
+                            compactItem.setAttribute("label", "精簡");
+                            compactItem.setAttribute("tooltiptext", "精簡");
+                            touchItem.setAttribute("label", "個別");
+                            touchItem.setAttribute("tooltiptext", "個別");
+                            normalItem.setAttribute("label", "個別（窄）");
+                            normalItem.setAttribute("tooltiptext", "個別（窄）");
+                          break;
+                        case "zh-CN":
+                            uidensityButton.setAttribute("label", "标签页布局");
+                            compactItem.setAttribute("label", "紧凑");
+                            compactItem.setAttribute("tooltiptext", "紧凑");
+                            touchItem.setAttribute("label", "单独");
+                            touchItem.setAttribute("tooltiptext", "单独");
+                            normalItem.setAttribute("label", "单独（窄）");
+                            normalItem.setAttribute("tooltiptext", "单独（窄）");
+                          break;
+                        default:
+                            uidensityButton.setAttribute("label", "Tab layout");
+                            compactItem.setAttribute("label", "Compact");
+                            compactItem.setAttribute("tooltiptext", "Compact");
+                            touchItem.setAttribute("label", "Separate");
+                            touchItem.setAttribute("tooltiptext", "Separate");
+                            normalItem.setAttribute("label", "Separate (Narrow)");
+                            normalItem.setAttribute("tooltiptext", "Separate (Narrow)");
+                            break;
+                      }
+                      touchItem.setAttribute("accesskey", "S");
                 }, 1000);
             }
         }
