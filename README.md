@@ -37,8 +37,10 @@ When there is only one tab and the tab bar contains no tool icons, it will hide 
 ### Customize Bookmark Toolbar Position  
 Right-click on a blank area in the window to set how the bookmark toolbar shows. It adjusts its position automatically.
 - **Always Show**: Shows above the tab bar.  
-- **Only Show on New Tabs**: Shows below the tab bar.  
+- **Only Show on New Tabs**: Shows below the tab bar.
+
 Alternatively, try placing the "Bookmarks Toolbar Items" on the **tab bar**. Especially with the compact tab layout, you might like it!
+
 If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
 <img width="1112" alt="Two bookmark bar positions" src="https://github.com/user-attachments/assets/c59040b3-1df2-4133-a59f-8161be63ea09" />
 
@@ -100,7 +102,9 @@ Firefox 版本 128 及更高。
 在窗口空白处点右键，设定书签工具栏的显示方式，它将自动匹配位置：
 - **「始终显示」** 显示在标签栏上方；
 - **「只在新标签页显示」** 显示在标签栏下方。
+
 或者你可以试试把「书签工具栏项目」放在**标签栏**上，特别是在紧凑标签页布局时，也许你会喜欢！
+
 如果你想把「书签工具栏项目」放在**导航栏**上，请确保地址栏左右均放置有「**弹性空白**」，不然地址栏无法居中。
 
 
