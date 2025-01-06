@@ -34,12 +34,12 @@ The URL bar remains centered, including its content, same as Safari.
 When there is only one tab and the tab bar contains no tool icons, it will hide automatically. Alternatively, you can place a tool icon (e.g., a new tab button) on the tab bar to prevent it from hiding.
 <img width="1112" alt="Always centered URL bar" src="https://github.com/user-attachments/assets/b71f8b64-cba3-4bf8-b700-b96e7db28899" />
 
-### Configure Bookmark Toolbar Position  
-Right-click on a blank area in the window to configure the bookmark toolbar position:  
+### Customize Bookmark Toolbar Position  
+Right-click on a blank area in the window to set how the bookmark toolbar shows. It adjusts its position automatically.
 - **Always Show**: Shows above the tab bar.  
 - **Only Show on New Tabs**: Shows below the tab bar.  
-- Alternatively, try placing the "Bookmarks Toolbar Items" on the **tab bar**—you might like it!  
-- If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
+Alternatively, try placing the "Bookmarks Toolbar Items" on the **tab bar**. Especially with the compact tab layout, you might like it!
+If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
 <img width="1112" alt="Two bookmark bar positions" src="https://github.com/user-attachments/assets/c59040b3-1df2-4133-a59f-8161be63ea09" />
 
 ### Customize Browser Appearance  
@@ -96,12 +96,12 @@ Firefox 版本 128 及更高。
 当只有一个标签页且标签栏没有工具图标时，标签栏将自动隐藏；或者你可以在标签栏放入一个工具图标（例如打开新标签页），这样它就不会自动隐藏了。
 
 
-### 设定书签工具栏的位置
-在窗口空白处点右键，可以设定书签工具栏的位置：
+### 自定义书签工具栏的位置
+在窗口空白处点右键，设定书签工具栏的显示方式，它将自动匹配位置：
 - **「始终显示」** 显示在标签栏上方；
 - **「只在新标签页显示」** 显示在标签栏下方。
-- 或者你可以试试把「书签工具栏项目」放在**标签栏**上，也许你会喜欢！
-- 如果你想把「书签工具栏项目」放在**导航栏**上，请确保地址栏左右均放置有「**弹性空白**」，不然地址栏无法居中。
+或者你可以试试把「书签工具栏项目」放在**标签栏**上，特别是在紧凑标签页布局时，也许你会喜欢！
+如果你想把「书签工具栏项目」放在**导航栏**上，请确保地址栏左右均放置有「**弹性空白**」，不然地址栏无法居中。
 
 
 ### 设定浏览器外观
