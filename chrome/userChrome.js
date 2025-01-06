@@ -580,9 +580,11 @@ queueMicrotask(() => {
             }
         }
 
-        let canHideScroll = restBarWidth - tabsMaxWidth > 1;
-        tabScrollUpButton.style.visibility = canHideScroll ? "collapse" : "";
-        tabScrollDownButton.style.visibility = canHideScroll ? "collapse" : "";
+        let tabsMinWidth = pinnedTabs * (32 + (2 * tabMargin)) + unselectedTabs * (74 + (2 * tabMargin)) + selectedTabs * (240 + (2 * tabMargin));
+        let showScrollButtons = restBarWidth < tabsMinWidth;
+        tabScrollUpButton.style.visibility = showScrollButtons ? "" : "collapse";
+        tabScrollDownButton.style.visibility = showScrollButtons ? "" : "collapse";
+        tabbrowserTabs.style.minWidth = showScrollButtons && selectedTabs ? 288 + tabMargin * 6 + "px" : "";
     }
     
     let delayedtabsSizer = false;
@@ -834,6 +836,7 @@ queueMicrotask(() => {
     let uidensity = null;
     let tabsPlaceHolder = document.createElement("span");
     tabsPlaceHolder.style.display = 'none';
+    tabbrowserTabs.setAttribute("overflows", "false");
     function setUidensity() {
         uidensity = document.documentElement.getAttribute('uidensity');
         switch (uidensity) {
