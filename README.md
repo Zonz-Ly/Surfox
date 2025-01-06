@@ -38,11 +38,11 @@ When there is only one tab and the tab bar contains no tool icons, it will hide 
 Right-click on a blank area in the window to set how the bookmark toolbar shows. It adjusts its position automatically.
 - **Always Show**: Shows above the tab bar.  
 - **Only Show on New Tabs**: Shows below the tab bar.
-
+<img width="1112" alt="Two bookmark bar positions" src="https://github.com/user-attachments/assets/c59040b3-1df2-4133-a59f-8161be63ea09" />
 Alternatively, try placing the "Bookmarks Toolbar Items" on the **tab bar**. Especially with the compact tab layout, you might like it!
 
 If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
-<img width="1112" alt="Two bookmark bar positions" src="https://github.com/user-attachments/assets/c59040b3-1df2-4133-a59f-8161be63ea09" />
+
 
 ### Customize Browser Appearance  
 In the "Customize Toolbar" page, click the "Tab layout" button in the lower-left corner to choose navigation bar layouts:  
