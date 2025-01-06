@@ -48,9 +48,9 @@ If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there
 
 ### Customize Browser Appearance  
 In the "Customize Toolbar" page, click the "Tab layout" button in the lower-left corner to choose navigation bar layouts:  
-- **Separate (Narrow) (default on Windows)**: Matches the vertical padding of Catalina and earlier; recommended for Catalina users or those enabling the title bar.  
-- **Separate (default on macOS)**: Matches the navigation bar width of Big Sur and later. If resetting the toolbar to defaults on macOS, remember to reselect this option.  
-- **Compact (Beta)**: Imitates the compact tab layout of Monterey and later (as shown below). This feature is under development and requires enabling via `about:config`. Official release is planned for version 2.0.  
+- **Separate (Narrow)** (default on Windows): Matches the vertical padding of Catalina and earlier; recommended for Catalina users or those enabling the title bar.  
+- **Separate** (default on macOS): Matches the navigation bar width of Big Sur and later. If resetting the toolbar to defaults on macOS, remember to reselect this option.  
+- **Compact** (Beta): Imitates the compact tab layout of Monterey and later (as shown below). This feature is under development and requires enabling via `about:config`. Official release is planned for version 2.0.  
 <img width="1112" alt="Compact tab layout" src="https://github.com/user-attachments/assets/bb3aa3fb-b6e3-4a19-900e-467ee4b8724e" />
 
 ### Some configurable `about:config` values (if set to `true`):
@@ -102,8 +102,8 @@ Firefox 版本 128 及更高。
 
 ### 自定义书签工具栏的位置
 在窗口空白处点右键，设定书签工具栏的显示方式，它将自动匹配位置：
-- **「始终显示」** 显示在标签栏上方；
-- **「只在新标签页显示」** 显示在标签栏下方。
+- **始终显示** 显示在标签栏上方；
+- **只在新标签页显示** 显示在标签栏下方。
 
 或者你可以试试把「书签工具栏项目」放在**标签栏**上，特别是在紧凑标签页布局时，也许你会喜欢！
 
@@ -112,9 +112,9 @@ Firefox 版本 128 及更高。
 
 ### 设定浏览器外观
 在「自定义工具栏」页面左下角，点击「标签页布局」按钮，可以选择不同标签页的位置和导航栏宽度。
-- **「单独（窄）（Windows 下默认）」** 的地址栏上下边距和 Catalina 以前一致，亦推荐 Catalina 以前的用户和启用标题栏的用户设置成这个。
-- **「单独（macOS 下默认）」** 的导航栏宽度和 Big Sur 以上一致；如果你在 macOS 上恢复工具栏默认设置，记得重新选择它。
-- **「紧凑（Beta）」** 模仿 Monterey 以上的标签页布局的紧凑模式；目前还在施工中，需要通过 `about:config` 开启，2.0 会正式发佈。
+- **单独（窄）**（Windows 下默认）：地址栏上下边距和 Catalina 以前一致，亦推荐 Catalina 以前的用户和启用标题栏的用户设置成这个。
+- **单独**（macOS 下默认）：导航栏宽度和 Big Sur 以上一致；如果你在 macOS 上恢复工具栏默认设置，记得重新选择它。
+- **紧凑**（Beta）：模仿 Monterey 以上的标签页布局的紧凑模式；目前还在施工中，需要通过 `about:config` 开启，2.0 会正式发佈。
 
 
 ### 一些可以根据需要调整的 `about:config` 的值（设置为 `true` 时）：
