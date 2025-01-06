@@ -1,6 +1,7 @@
 ## Introduction
 A Firefox userChrome.CSS theme that mirrors the new UI of Safari on macOS Big Sur and above.
 <img width="1112" alt="Available on multiple platforms" src="https://github.com/user-attachments/assets/482ede59-3879-431a-abe4-a83374414552" />
+
 While there are many similar themes on GitHub, none of them met my expectations, so I created my own. It not only replicates the interface but also the operational logic, with some optimizations and adjustments for a more perfect user experience. This is my first time working with CSS and JS, and I spent a lot of time and effort to complete it, with a great help and guidance from my boyfriend.
 
 ## Requirement
@@ -39,9 +40,11 @@ Right-click on a blank area in the window to set how the bookmark toolbar shows.
 - **Always Show**: Shows above the tab bar.  
 - **Only Show on New Tabs**: Shows below the tab bar.
 <img width="1112" alt="Two bookmark bar positions" src="https://github.com/user-attachments/assets/c59040b3-1df2-4133-a59f-8161be63ea09" />
+
 Alternatively, try placing the "Bookmarks Toolbar Items" on the **tab bar**. Especially with the compact tab layout, you might like it!
 
 If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
+
 
 ### Customize Browser Appearance  
 In the "Customize Toolbar" page, click the "Tab layout" button in the lower-left corner to choose navigation bar layouts:  
