@@ -43,7 +43,6 @@ Alternatively, try placing the "Bookmarks Toolbar Items" on the **tab bar**. Esp
 
 If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
 
-
 ### Customize Browser Appearance  
 In the "Customize Toolbar" page, click the "Tab layout" button in the lower-left corner to choose navigation bar layouts:  
 - **Separate (Narrow) (default on Windows)**: Matches the vertical padding of Catalina and earlier; recommended for Catalina users or those enabling the title bar.  
