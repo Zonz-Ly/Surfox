@@ -30,9 +30,9 @@
 
 /*  Delete until the next comment to get Firefox default background color (especially it will appear slightly bluish in dark mode).  */
 :root {
-    --button-background-color: light-dark( rgba(0, 0, 0, .03), rgba(255, 255, 255, .03) ) !important;
-    --button-background-color-hover: light-dark( rgba(0, 0, 0, .06), rgba(255, 255, 255, .06) ) !important;
-    --button-background-color-active: light-dark( rgba(0, 0, 0, .12), rgba(255, 255, 255, .12) ) !important;
+    --button-background-color: light-dark( rgba(0, 0, 0, .0275), rgba(255, 255, 255, .0325) ) !important;
+    --button-background-color-hover: light-dark( rgba(0, 0, 0, .055), rgba(255, 255, 255, .065) ) !important;
+    --button-background-color-active: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .13) ) !important;
     --newtab-button-background: transparent !important;
     --button-bgcolor: var(--button-background-color) !important;
     --panel-banner-item-background-color: var(--button-background-color) !important;
@@ -43,7 +43,6 @@
     --panel-banner-item-hover-bgcolor: var(--button-background-color-hover) !important;
     --toolbarbutton-hover-background: var(--button-background-color-hover) !important;
     --button-background-color-ghost-hover: var(--button-background-color-hover) !important;
-    --tab-hover-background-color: var(--button-background-color-hover) !important;
     --button-active-bgcolor: var(--button-background-color-active) !important;
     --newtab-element-active-color: var(--button-background-color-active) !important;
     --panel-item-active-bgcolor: var(--button-background-color-active) !important;
@@ -52,12 +51,13 @@
     --button-background-color-ghost-active: var(--button-background-color-active) !important;
     --input-border-color: var(--button-background-color-active) !important;
     --urlbarView-separator-color: var(--button-background-color-active) !important;
+    --tab-hover-background-color: light-dark( rgba(0, 0, 0, .058), rgba(255, 255, 255, .075) ) !important;
     --sidebar-border-color: light-dark( rgb(224, 224, 224), rgb(91, 91, 91) ) !important;
     --newtab-button-static-background: light-dark(#F6F6F6, #3C3C3C) !important;
-    --newtab-button-static-hover-background: light-dark(#EFEFEF, #424242) !important;
-    --newtab-button-static-active-background: light-dark(#E0E0E0, #4E4E4E) !important;
+    --newtab-button-static-hover-background: light-dark(#EFEFEF, #434343) !important;
+    --newtab-button-static-active-background: light-dark(#E1E1E1, #505050) !important;
     --toolbar-bgcolor: light-dark(#FDFDFD, #363636) !important;
-    --input-bgcolor: light-dark(#FFFFFF, #444444) !important;
+    --input-bgcolor: light-dark(#FFFFFF, #434343) !important;
     --tabpanel-background-color: light-dark(#FDFDFD, #363636) !important;
     --newtab-background-color: var(--toolbar-bgcolor) !important;
     --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
@@ -116,7 +116,7 @@ tooltip {
 }
 
 .infobar {
-    --info-bar-background-color: light-dark(rgba(255, 255, 255, .75), rgba(255, 255, 255, .06)) !important;
+    --info-bar-background-color: light-dark(rgba(255, 255, 255, .75), rgba(255, 255, 255, .065)) !important;
     --info-bar-text-color: var(--input-color) !important;
 }
 
@@ -836,7 +836,7 @@ toolbarspring {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
         .tabbrowser-tab > .tab-stack > &:not([selected], [multiselected]) {
-            background-color: var(--tab-hover-background-color) !important;
+            background-color: var(--toolbarbutton-hover-background) !important;
         }
         .tabbrowser-tab:hover > .tab-stack > &:not([selected], [multiselected]) {
             background-color: var(--toolbarbutton-active-background) !important;
