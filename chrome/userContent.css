@@ -14,7 +14,7 @@
         --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
         --background-color-box: light-dark(#FFFFFF, #272727) !important;
         --in-content-table-background: var(--background-color-box) !important;
-        --button-text-color: light-dark( rgba(0, 0, 0, .8), rgb(255, 255, 255) ) !important;
+        --button-text-color: light-dark( rgba(0, 0, 0, .9), rgb(255, 255, 255) ) !important;
         --button-text-color-hover: var(--button-text-color) !important;
         --button-text-color-active: var(--button-text-color) !important;
         --button-text-color-disabled: var(--button-text-color) !important;
