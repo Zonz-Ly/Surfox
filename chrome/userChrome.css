@@ -2,16 +2,13 @@
 
 /*  Delete this text to get Firefox default text color (especially it will appear darker in light mode). */
 :root {
-    --input-color: light-dark( rgba(0, 0, 0, .8), rgb(255, 255, 255) ) !important;
+    --input-color: light-dark( rgba(0, 0, 0, .72), rgba(255, 255, 255, .9) ) !important;
     --toolbox-non-lwt-textcolor: var(--input-color) !important;
     --lwt-text-color: var(--input-color) !important;
     --urlbarView-highlight-color: var(--input-color) !important;
     --arrowpanel-color: var(--input-color) !important;
     --sidebar-text-color: var(--input-color) !important;
-    --tab-selected-textcolor: var(--input-color) !important;
     --toolbar-color: var(--input-color) !important;
-    --toolbar-field-color: var(--input-color) !important;
-    --toolbar-field-focus-color: var(--input-color) !important;
     --newtab-text-primary-color: var(--input-color) !important;
     --newtab-contextual-text-primary-color: var(--input-color) !important;
     --toolbar-non-lwt-textcolor: var(--input-color) !important;
@@ -23,8 +20,11 @@
     --button-text-color-disabled: var(--input-color) !important;
     --toolbar-color: var(--input-color) !important;
     --in-content-page-color: var(--input-color) !important;
+    --toolbar-field-color: light-dark( rgba(0, 0, 0, .72), rgb(255, 255, 255) ) !important;
+    --toolbar-field-focus-color: var(--toolbar-field-color) !important;
+    --tab-selected-textcolor: var(--toolbar-field-color) !important;
     @media (prefers-color-scheme: dark) {
-        --toolbar-color: rgb(255, 255, 255) !important;
+        --toolbar-color: rgba(255, 255, 255, .9) !important;
     }
 }
 
@@ -126,7 +126,7 @@ tooltip {
 :root {
     --urlbarView-hover-background: var(--button-background-color-hover) !important;
     --urlbarView-highlight-background: var(--button-background-color-active) !important;
-    --tabbar-separator-color: light-dark( rgba(0, 0, 0, .08), rgba(255, 255, 255, .25) );
+    --tabbar-separator-color: light-dark( rgba(0, 0, 0, .075), rgba(255, 255, 255, .223) );
 	--toolbox-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
     --lwt-accent-color: var(--toolbar-bgcolor) !important;
     --lwt-accent-color-inactive: var(--toolbox-non-lwt-bgcolor-inactive) !important;
@@ -177,9 +177,9 @@ tooltip {
     align-items: center !important;
     z-index: 100 !important;
     :root:not([uidensity="mix"]) & {
-        --arrowpanel-border-color: var(--button-background-color-active) !important;
-        --toolbar-field-border-color: var(--button-background-color-active) !important;
+        --toolbar-field-border-color: light-dark( rgba(0, 0, 0, .1185), rgba(255, 255, 255, .1194) ) !important;
         --toolbar-field-background-color: transparent !important;
+        --arrowpanel-border-color: var(--toolbar-field-border-color) !important;
     }
     :root[uidensity="mix"] & {
         --arrowpanel-border-color: var(--input-bgcolor) !important;
@@ -723,10 +723,10 @@ toolbarspring {
         opacity: 0;
         transition: opacity 200ms !important;
         &:hover {
-            background-color: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .17) ) !important;
+            background-color: light-dark( rgba(0, 0, 0, .10), rgba(255, 255, 255, .17) ) !important;
         }
         &:hover:active {
-            background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
+            background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .315) ) !important;
         }
         .tabbrowser-tab:hover & {
             opacity: 1;
@@ -1023,6 +1023,17 @@ toolbarspring {
 
 #new-tab-button {
     list-style-image: url(chrome://global/skin/icons/plus.svg) !important;
+}
+
+.tabbrowser-tab {
+/*  Fix Firefox's Confusing Lore  */
+  &:is([visuallyselected], [multiselected]) {
+    @media (prefers-color-scheme: light) {
+      :root:not([lwtheme]) & {
+        color: var(--tab-selected-textcolor) !important;
+      }
+    }
+  }
 }
 
 /* bookmark bar */
