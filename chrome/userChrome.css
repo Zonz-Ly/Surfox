@@ -68,6 +68,7 @@
     --button-text-color-primary-disabled: var(--toolbar-bgcolor) !important;
     --newtab-background-color-secondary: var(--input-bgcolor) !important;
     --arrowpanel-background: var(--input-bgcolor) !important;
+    --arrowpanel-border-color: light-dark( rgba(0, 0, 0, .1185), rgba(255, 255, 255, .1194) ) !important;
     --toolbar-field-focus-background-color: var(--input-bgcolor) !important;
     --urlbarView-result-button-hover-color: var(--input-bgcolor) !important;
     --in-content-page-background: var(--input-bgcolor) !important;
@@ -177,12 +178,11 @@ tooltip {
     align-items: center !important;
     z-index: 100 !important;
     :root:not([uidensity="mix"]) & {
-        --toolbar-field-border-color: light-dark( rgba(0, 0, 0, .1185), rgba(255, 255, 255, .1194) ) !important;
+        --toolbar-field-border-color: var(--arrowpanel-border-color) !important;
         --toolbar-field-background-color: transparent !important;
-        --arrowpanel-border-color: var(--toolbar-field-border-color) !important;
     }
     :root[uidensity="mix"] & {
-        --arrowpanel-border-color: var(--input-bgcolor) !important;
+        --arrowpanel-border-color: transparent !important;
     }
     :root[uidensity] & {
         height: 52px !important;
