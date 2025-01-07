@@ -17,7 +17,7 @@ Firefox version 128 and above.
 1. **config.js** → `Installation directory/`
 2. **autoconfig.js** → `Installation directory/defaults/pref/`
    (Create this folder if it doesn't exist)
-3. **chrome** → Open `about:support` in Firefox, find the "Profile Folder" section and click the "Open Folder" button on the right.
+3. **chrome** → Open `about:support` in Firefox, find the “Profile Folder” section and click the “Open Folder” button on the right.
    (You should see numerous files and folders. If you see only a few, open the automatically selected folder.) Move the entire chrome folder into this directory.
 
 ### On macOS:
@@ -25,7 +25,7 @@ Firefox version 128 and above.
    (Press ⇧⌘G in Finder, paste the path above, and you'll go directly to the location)
 2. **autoconfig.js** → `/Applications/Firefox.app/Contents/Resources/defaults/pref/`
    (Create this folder if it doesn't exist)
-3. **chrome** → Open `about:support` in Firefox, find the "Profile Folder" section and click the "Open Folder" button on the right.
+3. **chrome** → Open `about:support` in Firefox, find the “Profile Folder” section and click the “Open Folder” button on the right.
    (You should see numerous files and folders. If you see only a few, open the automatically selected folder.) Move the entire chrome folder into this directory.
 
 ## Features
@@ -41,24 +41,24 @@ Right-click on a blank area in the window to set how the bookmark toolbar shows.
 - **Only Show on New Tabs**: Shows below the tab bar.
 <img width="1112" alt="Two bookmark bar positions" src="https://github.com/user-attachments/assets/c59040b3-1df2-4133-a59f-8161be63ea09" />
 
-Alternatively, try placing the "Bookmarks Toolbar Items" on the **tab bar**. Especially with the compact tab layout, you might like it!
+Alternatively, try placing the “Bookmarks Toolbar Items” on the **tab bar**. Especially with the compact tab layout, you might like it!
 
-If placing the "Bookmarks Toolbar Items" on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
+If placing the “Bookmarks Toolbar Items” on the **navigation bar**, ensure there is **Flexible Space** on both sides of the address bar; otherwise, the address bar won't center properly.  
 
 
 ### Customize Browser Appearance  
-In the "Customize Toolbar" page, click the "Tab layout" button in the lower-left corner to choose navigation bar layouts:  
+In the “Customize Toolbar” page, click the “Tab layout” button in the lower-left corner to choose navigation bar layouts:  
 - **Separate (Narrow)** (default on Windows): Matches the vertical padding of Catalina and earlier; recommended for Catalina users or those enabling the title bar.  
 - **Separate** (default on macOS): Matches the navigation bar width of Big Sur and later. If resetting the toolbar to defaults on macOS, remember to reselect this option.  
 - **Compact** (Beta): Imitates the compact tab layout of Monterey and later (as shown below). This feature is under development and requires enabling via `about:config`. Official release is planned for version 2.0.  
 <img width="1112" alt="Compact tab layout" src="https://github.com/user-attachments/assets/bb3aa3fb-b6e3-4a19-900e-467ee4b8724e" />
 
 ### Some configurable `about:config` values (if set to `true`):
-- `browser.compactmode.show`: Display the "Compact" option in the "Tab layout" menu.
+- `browser.compactmode.show`: Display the “Compact” option in the “Tab layout” menu.
 - `extensions.unifiedExtensions.enabled`: Show the unified extensions button (quite useful if you use extensions).
 - `userChrome.menuButton.enabled`: Show the menu button (Why not just use the menu bar instead? On macOS, it's natively built-in, and on Windows and Linux, it appears by pressing the Alt key).
 - `userChrome.urlbar.starButton.enabled`: Show the star button for bookmarks at the far right of the address bar (you can also access it by right-clicking on a blank area of the webpage).
-- `browser.tabs.tabmanager.enabled`: Show the "All Tabs" button to the right of the tabs (only in Firefox 131−, can be removed manually starting from version 132).  
+- `browser.tabs.tabmanager.enabled`: Show the “All Tabs” button to the right of the tabs (only in Firefox 131−, can be removed manually starting from version 132).  
 
 
 **It is recommended to disable updates**, as new versions may change the browser's interface structure, causing Surfox to become incompatible.
