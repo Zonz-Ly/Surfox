@@ -22,6 +22,7 @@
     --button-text-color-active: var(--input-color) !important;
     --button-text-color-disabled: var(--input-color) !important;
     --toolbar-color: var(--input-color) !important;
+    --in-content-page-color: var(--input-color) !important;
     @media (prefers-color-scheme: dark) {
         --toolbar-color: rgb(255, 255, 255) !important;
     }
@@ -69,6 +70,7 @@
     --arrowpanel-background: var(--input-bgcolor) !important;
     --toolbar-field-focus-background-color: var(--input-bgcolor) !important;
     --urlbarView-result-button-hover-color: var(--input-bgcolor) !important;
+    --in-content-page-background: var(--input-bgcolor) !important;
     --toolbarbutton-icon-fill-attention-text: light-dark(rgba(0, 0, 0, .05), rgba(0, 0, 0, .3)) !important;
     --lwt-sidebar-background-color: light-dark(#FDFDFD, #1D1D1D) !important;
     --sidebar-background-color: light-dark(#FDFDFD, #1D1D1D) !important;
@@ -111,6 +113,11 @@ menupopup:not(.toolbar-menupopup):not([placespopup="true"]) {
 
 tooltip {
     background-color: light-dark(#FAFAFA, #2B2B2B) !important;
+}
+
+.infobar {
+    --info-bar-background-color: light-dark(rgba(255, 255, 255, .75), rgba(255, 255, 255, .06)) !important;
+    --info-bar-text-color: var(--input-color) !important;
 }
 
 /*  Delete up to here.  */
