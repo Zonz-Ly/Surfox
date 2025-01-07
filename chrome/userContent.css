@@ -7,8 +7,8 @@
         --newtab-element-hover-color: var(--button-background-color-hover) !important;
         --newtab-element-active-color: var(--button-background-color-active) !important;
         --newtab-button-static-background: light-dark(#F6F6F6, #3C3C3C) !important;
-        --newtab-button-static-hover-background: light-dark(#EFEFEF, #434343) !important;
-        --newtab-button-static-active-background: light-dark(#E1E1E1, #505050) !important;
+        --newtab-button-static-hover-background: light-dark(#F0F0F0, #434343) !important;
+        --newtab-button-static-active-background: light-dark(#E3E3E3, #505050) !important;
         --newtab-background-color: light-dark(#FDFDFD, #363636) !important;
         --newtab-background-color-secondary: light-dark(#FFFFFF, #434343) !important;
         --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
@@ -22,9 +22,9 @@
         --button-text-color-primary-hover: var(--button-text-color-primary) !important;
         --button-text-color-primary-active: var(--button-text-color-primary) !important;
         --button-text-color-primary-disabled: var(--button-text-color-primary) !important;
-        --button-background-color: light-dark( rgba(0, 0, 0, .0275), rgba(255, 255, 255, .0325) ) !important;
-        --button-background-color-hover: light-dark( rgba(0, 0, 0, .055), rgba(255, 255, 255, .065) ) !important;
-        --button-background-color-active: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .13) ) !important;
+        --button-background-color: light-dark( rgba(0, 0, 0, .0255), rgba(255, 255, 255, .0325) ) !important;
+        --button-background-color-hover: light-dark( rgba(0, 0, 0, .051), rgba(255, 255, 255, .065) ) !important;
+        --button-background-color-active: light-dark( rgba(0, 0, 0, .102), rgba(255, 255, 255, .13) ) !important;
         --button-background-color-disabled: var(--button-background-color) !important;
         --button-bgcolor: var(--button-background-color) !important;
         --button-hover-bgcolor: var(--button-background-color-hover) !important;
