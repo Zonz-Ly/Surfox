@@ -1045,12 +1045,12 @@ toolbarspring {
     .toolbarbutton-1 {
         height: 20px !important;
         margin: 4px 0px !important;
-        border-radius: 4px !important;
         > .toolbarbutton-icon,
         > .toolbarbutton-text,
         > .toolbarbutton-badge-stack {
             padding-top: 3px !important;
             padding-bottom: 3px !important;
+            border-radius: 4px !important;
             min-height: 0 !important;
         }
     }
