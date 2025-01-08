@@ -438,6 +438,9 @@ queueMicrotask(() => {
         }
         let canHideUrlbarCloseButton = unpinnedTabs <= 1;
         urlbarCloseButton.style.display = canHideUrlbarCloseButton ? "none" : "";
+        if (canHideUrlbarCloseButton) {
+            urlbarInputContainer.removeAttribute("hovered");
+        }
     }
 
     //  Move URL bar to the position of selected tab.
