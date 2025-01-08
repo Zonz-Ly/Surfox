@@ -11,6 +11,7 @@
     --toolbar-color: var(--input-color) !important;
     --newtab-text-primary-color: var(--input-color) !important;
     --newtab-contextual-text-primary-color: var(--input-color) !important;
+    --toolbox-textcolor: var(--input-color) !important;
     --toolbar-non-lwt-textcolor: var(--input-color) !important;
     --toolbox-non-lwt-textcolor-inactive: var(--input-color) !important;
     --panel-banner-item-color: var(--input-color) !important;
@@ -77,6 +78,7 @@
     --sidebar-background-color: light-dark(#FDFDFD, #1D1D1D) !important;
     --background-color-canvas: light-dark(#FFFFFF, #222222) !important;
     --background-color-box: light-dark(#FFFFFF, #272727) !important;
+    --toolbox-bgcolor: light-dark(#F1F1F1, #1F1F1F) !important;
     --in-content-table-background: var(--background-color-box) !important;
     --chrome-content-separator-color: light-dark( rgba(0, 0, 0, .15), rgba(0, 0, 0) ) !important;
     --toolbarbutton-icon-fill: light-dark( rgba(0, 0, 0, .555), rgba(255, 255, 255, .637) ) !important;
@@ -325,7 +327,12 @@ tooltip {
 }
 
 .urlbar-input::placeholder, .searchbar-textbox::placeholder {
-    opacity: 0.4 !important;
+    @media (prefers-color-scheme: light) {
+        opacity: 0.65 !important;
+    }
+    @media (prefers-color-scheme: dark) {
+        opacity: 0.46 !important;
+    }
 }
 
 #identity-box {
@@ -743,7 +750,7 @@ toolbarspring {
         }
     }
     
-    #urlbar #tab-close-button-container {
+    #urlbar .tab-close-button {
         display: none !important;
     }
     
@@ -757,6 +764,15 @@ toolbarspring {
             outline-color: var(--toolbarbutton-active-outline-color) !important;
             color-scheme: light dark !important;
             transition: none !important;
+        }
+    }
+    
+    .tab-label-container:not([selected], [multiselected]):not(:-moz-window-inactive) {
+        @media (prefers-color-scheme: light) {
+            opacity: .735 !important;
+        }
+        @media (prefers-color-scheme: dark) {
+            opacity: .612 !important;
         }
     }
 }
@@ -941,41 +957,44 @@ toolbarspring {
         }
     }
     
-    #urlbar #tab-close-button-container {
+    #urlbar .tab-close-button {
+        visibility: visible !important;
         display: flex;
+        padding: 0 !important;
+        margin-block: 0 !important;
         margin-inline-start: 4px !important;
-        margin-inline-end: -4px !important;
-        .tab-close-button {
-            visibility: visible !important;
-            display: inline-flex;
-            padding: 0 !important;
-            margin-block: 0 !important;
-            margin-inline-end: -16px !important;
-            width: 16px !important;
-            height: 16px !important;
-            border-radius: 2px !important;
-            align-self: center !important;
-            box-sizing: border-box !important;
-            background-image: url(chrome://global/skin/icons/close-12.svg) !important;
-            background-position: center;
-            background-size: 10px 10px;
-            background-repeat: no-repeat;
-            opacity: 0 !important;
-            z-index: 100 !important;
-            transition: opacity 200ms, margin-inline-end 200ms !important;
-            #urlbar[focused] & {
-                pointer-events: none !important;
+        margin-inline-end: -20px !important;
+        width: 16px !important;
+        height: 16px !important;
+        border-radius: 2px !important;
+        align-self: center !important;
+        box-sizing: border-box !important;
+        background-image: url(chrome://global/skin/icons/close-12.svg) !important;
+        background-position: center;
+        background-size: 10px 10px;
+        background-repeat: no-repeat;
+        opacity: 0 !important;
+        z-index: 100 !important;
+        transition: opacity 200ms, margin-inline-end 200ms !important;
+        #urlbar[focused] & {
+            pointer-events: none !important;
+        }
+        #urlbar:not([focused]) &:hover {
+            background-color: light-dark( rgba(0, 0, 0, .10), rgba(255, 255, 255, .17) ) !important;
+            &:active {
+                background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .315) ) !important;
             }
-            #urlbar:not([focused]) &:hover {
-                background-color: light-dark( rgba(0, 0, 0, .10), rgba(255, 255, 255, .17) ) !important;
-                &:active {
-                    background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .315) ) !important;
-                }
-            }
-            #urlbar:not([focused]) &[hovered] {
-                margin-inline-end: 4px !important;
-                opacity: 1 !important;
-            }
+        }
+        #urlbar:not([focused]) .urlbar-input-container[hovered] & {
+            margin-inline-end: 0 !important;
+            opacity: 1 !important;
+        }
+    }
+    
+    #urlbar .urlbar-input-container >span {
+        transition: margin-inline-end 200ms;
+        #urlbar:not([focused]) .urlbar-input-container[hovered] & {
+            margin-inline-end: max(calc(-1 * var(--span-width)), -20px) !important;
         }
     }
     
@@ -985,6 +1004,15 @@ toolbarspring {
         color: inherit !important;
         outline-color: var(--toolbarbutton-active-outline-color) !important;
         color-scheme: light dark !important;
+    }
+    
+    .tab-label-container:not([selected], [multiselected]):not(:-moz-window-inactive) {
+        @media (prefers-color-scheme: light) {
+            opacity: .9 !important;
+        }
+        @media (prefers-color-scheme: dark) {
+            opacity: .8 !important;
+        }
     }
 }
 
@@ -1025,15 +1053,9 @@ toolbarspring {
     list-style-image: url(chrome://global/skin/icons/plus.svg) !important;
 }
 
-.tabbrowser-tab {
-/*  Fix Firefox's Confusing Lore  */
-  &:is([visuallyselected], [multiselected]) {
-    @media (prefers-color-scheme: light) {
-      :root:not([lwtheme]) & {
-        color: var(--tab-selected-textcolor) !important;
-      }
-    }
-  }
+.tabbrowser-tab:is([selected], [visuallyselected], [multiselected]) {
+    /*  Fix Firefox's Confusing Lore  */
+    color: var(--tab-selected-textcolor) !important;
 }
 
 /* bookmark bar */
