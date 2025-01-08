@@ -325,7 +325,7 @@ tooltip {
 }
 
 .urlbar-input::placeholder, .searchbar-textbox::placeholder {
-    opacity: 0.35 !important;
+    opacity: 0.4 !important;
 }
 
 #identity-box {
