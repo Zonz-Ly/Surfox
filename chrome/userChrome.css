@@ -913,10 +913,10 @@ toolbarspring {
         transition: opacity 200ms, margin-inline-end 200ms !important;
         z-index: 1;
         &:hover {
-            background-color: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .17) ) !important;
+            background-color: light-dark( rgba(0, 0, 0, .10), rgba(255, 255, 255, .17) ) !important;
         }
         &:hover:active {
-            background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
+            background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .315) ) !important;
         }
         .tab-content[hovered] & {
             opacity: 1;
@@ -967,9 +967,9 @@ toolbarspring {
                 pointer-events: none !important;
             }
             #urlbar:not([focused]) &:hover {
-                background-color: light-dark( rgba(0, 0, 0, .11), rgba(255, 255, 255, .17) ) !important;
+                background-color: light-dark( rgba(0, 0, 0, .10), rgba(255, 255, 255, .17) ) !important;
                 &:active {
-                    background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .32) ) !important;
+                    background-color: light-dark( rgba(0, 0, 0, .27), rgba(255, 255, 255, .315) ) !important;
                 }
             }
             #urlbar:not([focused]) &[hovered] {
