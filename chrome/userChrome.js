@@ -90,13 +90,10 @@ queueMicrotask(() => {
     //  Add close tab button in URL bar.
     let selectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
     let selectedTabCloseButton = selectedTab.querySelector('.tab-close-button');
-    let urlbarCloseButtonContainer = document.createElement("box");
-    urlbarCloseButtonContainer.id = "tab-close-button-container";
-    let urlbarCloseButton = document.createElement("image");
+    let urlbarCloseButton = document.createElement("box");
     urlbarCloseButton.classList.add("tab-close-button", "close-icon");
     urlbarCloseButton.addEventListener("click", () => selectedTabCloseButton.click());
-    urlbarCloseButtonContainer.prepend(urlbarCloseButton);
-    urlbarInputContainer.prepend(urlbarCloseButtonContainer);
+    urlbarInputContainer.prepend(urlbarCloseButton);
     
     //  Centering/flushing left the URL input field may be optionally animated.
     let urlbarTransitionTimer = 0;
@@ -115,6 +112,9 @@ queueMicrotask(() => {
 
             for (let element of urlbarInputContainer.children) {
                 let elementWidth = element.clientWidth;
+                if (element === urlbarCloseButton) {
+                    continue;
+                }
                 if (element === spacer) {
                     isInCenterSection = true;
                     continue;
@@ -151,6 +151,7 @@ queueMicrotask(() => {
         }
 
         spacer.style.setProperty("width", space + "px", "important");
+        spacer.style.setProperty("--span-width", space + "px");
     }
 
     let delayedSizingSpacer = 0;  // 0: none, 1: non-animated sizing, 2: animated sizing.
@@ -731,12 +732,12 @@ queueMicrotask(() => {
         }
 
         function urlbarCloseButtonHover() {
-            urlbarCloseButton.setAttribute("hovered", "");
+            urlbarInputContainer.setAttribute("hovered", "");
             urlbarInputContainer.addEventListener("mouseleave", inputContainerNotHover);
         }
         
         function inputContainerNotHover() {
-            urlbarCloseButton.removeAttribute("hovered");
+            urlbarInputContainer.removeAttribute("hovered");
             urlbarInputContainer.removeEventListener("mouseleave", inputContainerNotHover);
         }
 
