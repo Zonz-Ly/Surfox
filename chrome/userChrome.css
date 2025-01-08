@@ -1042,6 +1042,7 @@ toolbarspring {
     background-color: transparent !important;
     font-size: 11px !important;
     align-items: center !important;
+    --toolbarbutton-border-radius: 4px !important;
     .toolbarbutton-1 {
         height: 20px !important;
         margin: 4px 0px !important;
@@ -1050,7 +1051,6 @@ toolbarspring {
         > .toolbarbutton-badge-stack {
             padding-top: 3px !important;
             padding-bottom: 3px !important;
-            border-radius: 4px !important;
             min-height: 0 !important;
         }
     }
@@ -1060,7 +1060,6 @@ toolbarspring {
         height: 20px !important;
         padding: 0px 6px !important;
         margin: 4px 2px !important;
-        border-radius: 4px !important;
     }
     #PlacesToolbarItems {
         height: 20px !important;
@@ -1069,7 +1068,6 @@ toolbarspring {
         > .bookmark-item {
         padding: 0px 6px !important;
         margin: 0px 2px !important;
-        border-radius: 4px !important;
         }
     }
 }
