@@ -809,8 +809,11 @@ toolbarspring {
     
     .tabbrowser-tab {
         @media (prefers-reduced-motion: no-preference) {
-            #tabbrowser-tabs[movingtab] &[fadein]:not([selected]):not([multiselected]), &[multiselected-move-together], &[tabdrop-samewindow] {
+            #tabbrowser-tabs[movingtab] &[fadein]:not([selected]):not([multiselected]), &[multiselected-move-together] {
                 transition: transform 200ms !important;
+            }
+            &[tabdrop-samewindow] {
+                transition: transform 1ms !important;
             }
         }
     }
