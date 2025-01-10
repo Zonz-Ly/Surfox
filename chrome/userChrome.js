@@ -286,8 +286,9 @@ queueMicrotask(() => {
         urlbarContainer.style.maxWidth = (windowWidth * 0.41 - 8) + 'px';
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
-        let beforeBarWidth = 8;
-        let afterBarWidth = 0;
+        let navBarTargetComputedStyle = window.getComputedStyle(navBarTarget);
+        let beforeBarWidth = parseFloat(navBarTargetComputedStyle.paddingLeft);
+        let afterBarWidth = parseFloat(navBarTargetComputedStyle.paddingRight);
 
         let isLeft = true;
         let isRight = false;
@@ -465,8 +466,9 @@ queueMicrotask(() => {
         let windowWidth = navBar.clientWidth
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
-        let beforeBarWidth = 8;
-        let afterBarWidth = 0;
+        let navBarTargetComputedStyle = window.getComputedStyle(navBarTarget);
+        let beforeBarWidth = parseFloat(navBarTargetComputedStyle.paddingLeft);
+        let afterBarWidth = parseFloat(navBarTargetComputedStyle.paddingRight);
 
         let isLeft = true;
         let isRight = false;
