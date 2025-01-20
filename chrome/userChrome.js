@@ -3,7 +3,7 @@
 Services.prefs.setBoolPref("svg.context-properties.content.enabled", true);
 Services.prefs.setBoolPref("layout.css.light-dark.enabled", true);
 Services.prefs.setBoolPref("layout.css.nesting.enabled", true);
-Services.prefs.setBoolPref("browser.compactmode.show", true);
+// Services.prefs.setBoolPref("browser.compactmode.show", true);
 Services.prefs.setBoolPref("browser.touchmode.auto", false);
 if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
     Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
@@ -88,8 +88,8 @@ queueMicrotask(() => {
     urlbarInputBox.prepend(measurer);
 
     //  Add close tab button in URL bar.
-    let selectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
-    let selectedTabCloseButton = selectedTab.querySelector('.tab-close-button');
+    let selectedTab = tabbrowserTabs.querySelector(".tabbrowser-tab[selected]");
+    let selectedTabCloseButton = selectedTab.querySelector(".tab-close-button");
     let urlbarCloseButton = document.createElement("box");
     urlbarCloseButton.classList.add("tab-close-button", "close-icon");
     urlbarCloseButton.addEventListener("click", () => selectedTabCloseButton.click());
@@ -269,21 +269,21 @@ queueMicrotask(() => {
     
     function urlbarSizer() {
         if (document.documentElement.hasAttribute("customizing")) {
-            urlbarContainer.style.marginLeft = '4px';
-            urlbarContainer.style.marginRight = '4px';
-            urlbarContainer.style.minWidth ='';
-            urlbarContainer.style.maxWidth ='';
+            urlbarContainer.style.marginLeft = "4px";
+            urlbarContainer.style.marginRight = "4px";
+            urlbarContainer.style.minWidth ="";
+            urlbarContainer.style.maxWidth ="";
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
             flexibleSpaces.forEach(space => {
-                space.style.minWidth = '';
-                space.style.maxWidth = '';
+                space.style.minWidth = "";
+                space.style.maxWidth = "";
             });
             return;
         }
 
         let windowWidth = navBar.clientWidth;
         let urlbarWidth = windowWidth * 0.41;
-        urlbarContainer.style.maxWidth = urlbarWidth - 8 + 'px';
+        urlbarContainer.style.maxWidth = urlbarWidth - 8 + "px";
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
         let navBarTargetComputedStyle = window.getComputedStyle(navBarTarget);
@@ -337,57 +337,57 @@ queueMicrotask(() => {
             }
         }
         let restBarWidth = windowWidth - beforeBarWidth - afterBarWidth;
-        urlbarContainer.style.minWidth = (restBarWidth < urlbarWidth) ? urlbarWidth - 8 + 'px' : '';
+        urlbarContainer.style.minWidth = (restBarWidth < urlbarWidth) ? urlbarWidth - 8 + "px" : "";
 
         let leftFlexibleSpaceCount = leftFlexibleSpaces.length;
         let rightFlexibleSpaceCount = rightFlexibleSpaces.length;
 
         if (beforeBarWidth > afterBarWidth) {
             if (leftFlexibleSpaceCount === 0) {
-                urlbarContainer.style.marginLeft = Math.max(4, Math.min((windowWidth * 0.295) - beforeBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                urlbarContainer.style.marginLeft = Math.max(4, Math.min((windowWidth * 0.295) - beforeBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + "px";
             } else {
-                urlbarContainer.style.marginLeft = '4px';
+                urlbarContainer.style.marginLeft = "4px";
                 let spaceWidth = Math.max(0, Math.min((windowWidth * 0.295) - beforeBarWidth, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
-                    space.style.minWidth = spaceWidth + 'px';
-                    space.style.maxWidth = spaceWidth + 'px';
+                    space.style.minWidth = spaceWidth + "px";
+                    space.style.maxWidth = spaceWidth + "px";
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
                 if ((windowWidth * 0.295) - afterBarWidth > 0 && (windowWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
-                    urlbarContainer.style.marginRight = 'auto';
+                    urlbarContainer.style.marginRight = "auto";
                 } else {
-                    urlbarContainer.style.marginRight = '4px';
+                    urlbarContainer.style.marginRight = "4px";
                 }
             } else {
-                urlbarContainer.style.marginRight = '4px';
+                urlbarContainer.style.marginRight = "4px";
                 for (let space of rightFlexibleSpaces) {
-                    space.style.minWidth = '0px';
-                    space.style.maxWidth = 'none';
+                    space.style.minWidth = "0px";
+                    space.style.maxWidth = "none";
                 }
             }
         } else {
             if (leftFlexibleSpaceCount === 0) {
                 if ((windowWidth * 0.295) - beforeBarWidth > 0 && (windowWidth * 0.59) - beforeBarWidth - afterBarWidth > 0) {
-                    urlbarContainer.style.marginLeft = 'auto';
+                    urlbarContainer.style.marginLeft = "auto";
                 } else {
-                    urlbarContainer.style.marginLeft = '4px';
+                    urlbarContainer.style.marginLeft = "4px";
                 }
             } else {
-                urlbarContainer.style.marginLeft = '4px';
+                urlbarContainer.style.marginLeft = "4px";
                 for (let space of leftFlexibleSpaces) {
-                    space.style.minWidth = '0px';
-                    space.style.maxWidth = 'none';
+                    space.style.minWidth = "0px";
+                    space.style.maxWidth = "none";
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                urlbarContainer.style.marginRight = Math.max(4, Math.min((windowWidth * 0.295) - afterBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + 'px';
+                urlbarContainer.style.marginRight = Math.max(4, Math.min((windowWidth * 0.295) - afterBarWidth + 4, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth + 4)) + "px";
             } else {
-                urlbarContainer.style.marginRight = '4px';
+                urlbarContainer.style.marginRight = "4px";
                 let spaceWidth = Math.max(0, Math.min((windowWidth * 0.295) - afterBarWidth, (windowWidth * 0.59) - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
-                    space.style.minWidth = spaceWidth + 'px';
-                    space.style.maxWidth = spaceWidth + 'px';
+                    space.style.minWidth = spaceWidth + "px";
+                    space.style.maxWidth = spaceWidth + "px";
                 }
             }
         }
@@ -417,15 +417,15 @@ queueMicrotask(() => {
         let canHideTabBar = tabStrip.childElementCount <= 1 && tabsLength <= minRequiredTabs;
         canHideTabBar &= !document.documentElement.hasAttribute("customizing");
         tabBar.style.visibility = canHideTabBar ? "collapse" : "";
-        let unpinnedTabs = tabbrowserTabs.querySelectorAll('.tabbrowser-tab:not([pinned], [hidden])').length;
+        let unpinnedTabs = tabbrowserTabs.querySelectorAll(".tabbrowser-tab:not([pinned], [hidden])").length;
         let canHideTabCloseButton = unpinnedTabs <= minRequiredTabs;
-        tabbrowserTabs.querySelectorAll('.tab-close-button').forEach(button => {
+        tabbrowserTabs.querySelectorAll(".tab-close-button").forEach(button => {
             button.style.visibility = canHideTabCloseButton ? "hidden" : "";
         });
         if (tabClosing) {
-            unpinnedTabs -= 1
+            unpinnedTabs -= 1;
         }
-        tabbrowserTabs.style.setProperty('--tab-max-width', 100 / unpinnedTabs + '%');
+        tabbrowserTabs.style.setProperty("--tab-max-width", 100 / unpinnedTabs + "%");
     }
 
     let tabBarMutationObserver = new MutationObserver(() => {
@@ -436,11 +436,10 @@ queueMicrotask(() => {
     //  ----------------------------------------------------------------------------------------------------  //
     //  **Compact Tab bar functions**  //
 
-
     function hideShowUrlbarCloseButton() {
-        let unpinnedTabs = tabbrowserTabs.querySelectorAll('.tabbrowser-tab:not([pinned], [hidden])').length;
+        let unpinnedTabs = tabbrowserTabs.querySelectorAll(".tabbrowser-tab:not([pinned], [hidden])").length;
         if (tabClosing) {
-            unpinnedTabs -= 1
+            unpinnedTabs -= 1;
         }
         let canHideUrlbarCloseButton = unpinnedTabs <= 1;
         urlbarCloseButton.style.display = canHideUrlbarCloseButton ? "none" : "";
@@ -458,15 +457,15 @@ queueMicrotask(() => {
         if (document.documentElement.hasAttribute("customizing")) {
             let flexibleSpaces = navBarTarget.querySelectorAll("toolbarspring");
             flexibleSpaces.forEach(space => {
-                space.style.minWidth = '';
-                space.style.maxWidth = '';
+                space.style.minWidth = "";
+                space.style.maxWidth = "";
             });
-            tabbrowserTabs.style.maxWidth = '';
-            tabbrowserTabs.style.setProperty('--tab-max-width', '');
-            tabbrowserTabs.style.marginLeft = '';
-            tabbrowserTabs.style.marginRight = '';
-            tabScrollUpButton.style.visibility = '';
-            tabScrollDownButton.style.visibility = '';
+            tabbrowserTabs.style.maxWidth = "";
+            tabbrowserTabs.style.setProperty("--tab-max-width", "");
+            tabbrowserTabs.style.marginLeft = "";
+            tabbrowserTabs.style.marginRight = "";
+            tabScrollUpButton.style.visibility = "";
+            tabScrollDownButton.style.visibility = "";
             return;
         }
 
@@ -528,9 +527,9 @@ queueMicrotask(() => {
         }
 
         let restBarWidth = windowWidth - beforeBarWidth - afterBarWidth;
-        let unselectedTabs = tabsArrowScrollBox.querySelectorAll('.tabbrowser-tab:not([selected]):not([pinned]):not([hidden])').length;
-        let selectedTabs = tabsArrowScrollBox.querySelectorAll('.tabbrowser-tab[selected]:not([pinned]):not([hidden])').length;
-        let pinnedTabs = tabsArrowScrollBox.querySelectorAll('.tabbrowser-tab[pinned]:not([hidden])').length;
+        let unselectedTabs = tabsArrowScrollBox.querySelectorAll(".tabbrowser-tab:not([selected]):not([pinned]):not([hidden])").length;
+        let selectedTabs = tabsArrowScrollBox.querySelectorAll(".tabbrowser-tab[selected]:not([pinned]):not([hidden])").length;
+        let pinnedTabs = tabsArrowScrollBox.querySelectorAll(".tabbrowser-tab[pinned]:not([hidden])").length;
         
         if (tabClosing) {
             unselectedTabs -= 1;
@@ -538,7 +537,7 @@ queueMicrotask(() => {
         
         let tabFreeMargin = (0.01 * restBarWidth) / (unselectedTabs + selectedTabs + (0.25 * pinnedTabs)) + 3;
         tabMargin = Math.max(4, Math.min(tabFreeMargin, 6));
-        tabbrowserTabs.style.setProperty('--tab-margin', tabMargin + 'px');
+        tabbrowserTabs.style.setProperty("--tab-margin", tabMargin + "px");
         
         let tabsNotSelectedFreeWidth = pinnedTabs * (32 + (2 * tabMargin)) + unselectedTabs * (148 + (2 * tabMargin));
         let tabsMaxFreeWidth = Math.max((windowWidth * (0.41 - (unselectedTabs * 0.0425) - (pinnedTabs * 0.01))), (240 + (2 * tabMargin))) + tabsNotSelectedFreeWidth;
@@ -546,52 +545,52 @@ queueMicrotask(() => {
         let oneTabMaxWidth = selectedTabs ? windowWidth * 0.41 : 0;
         let tabsMaxWidth = Math.max(Math.min(tabsMaxFreeWidth, tabsMaxLimitedWidth), oneTabMaxWidth);
         let tabMaxWidth = Math.max((tabsMaxWidth - tabsNotSelectedFreeWidth - (2 * tabMargin)), 240);
-        tabbrowserTabs.style.maxWidth = tabsMaxWidth + 'px';
-        tabbrowserTabs.style.setProperty('--tab-max-width', tabMaxWidth + 'px');
+        tabbrowserTabs.style.maxWidth = tabsMaxWidth + "px";
+        tabbrowserTabs.style.setProperty("--tab-max-width", tabMaxWidth + "px");
 
         let leftFlexibleSpaceCount = leftFlexibleSpaces.length;
         let rightFlexibleSpaceCount = rightFlexibleSpaces.length;
 
         if (beforeBarWidth > afterBarWidth) {
             if (leftFlexibleSpaceCount === 0) {
-                tabbrowserTabs.style.marginLeft = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - beforeBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
+                tabbrowserTabs.style.marginLeft = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - beforeBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + "px";
             } else {
-                tabbrowserTabs.style.marginLeft = '0';
+                tabbrowserTabs.style.marginLeft = "0";
                 let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - beforeBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
-                    space.style.minWidth = spaceWidth + 'px';
-                    space.style.maxWidth = spaceWidth + 'px';
+                    space.style.minWidth = spaceWidth + "px";
+                    space.style.maxWidth = spaceWidth + "px";
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                tabbrowserTabs.style.marginRight = 'auto';
+                tabbrowserTabs.style.marginRight = "auto";
             } else {
-                tabbrowserTabs.style.marginRight = '0';
+                tabbrowserTabs.style.marginRight = "0";
                 let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - afterBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
-                    space.style.minWidth = '0px';
-                    space.style.maxWidth = spaceWidth + 'px';
+                    space.style.minWidth = "0px";
+                    space.style.maxWidth = spaceWidth + "px";
                 }
             }
         } else {
             if (leftFlexibleSpaceCount === 0) {
-                tabbrowserTabs.style.marginLeft = 'auto';
+                tabbrowserTabs.style.marginLeft = "auto";
             } else {
-                tabbrowserTabs.style.marginLeft = '0';
+                tabbrowserTabs.style.marginLeft = "0";
                 let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - beforeBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / leftFlexibleSpaceCount;
                 for (let space of leftFlexibleSpaces) {
-                    space.style.minWidth = '0px';
-                    space.style.maxWidth = spaceWidth + 'px';
+                    space.style.minWidth = "0px";
+                    space.style.maxWidth = spaceWidth + "px";
                 }
             }
             if (rightFlexibleSpaceCount === 0) {
-                tabbrowserTabs.style.marginRight = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - afterBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + 'px';
+                tabbrowserTabs.style.marginRight = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - afterBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) + "px";
             } else {
-                tabbrowserTabs.style.marginRight = '0';
+                tabbrowserTabs.style.marginRight = "0";
                 let spaceWidth = Math.max(0, Math.min((windowWidth - tabsMaxWidth) / 2 - afterBarWidth, windowWidth - tabsMaxWidth - beforeBarWidth - afterBarWidth)) / rightFlexibleSpaceCount;
                 for (let space of rightFlexibleSpaces) {
-                    space.style.minWidth = spaceWidth + 'px';
-                    space.style.maxWidth = spaceWidth + 'px';
+                    space.style.minWidth = spaceWidth + "px";
+                    space.style.maxWidth = spaceWidth + "px";
                 }
             }
         }
@@ -623,12 +622,12 @@ queueMicrotask(() => {
         }
         if (tabAnimate) {
             tabAnimate = false;
-            tabbrowserTabs.style.setProperty('--tab-transition', 'none');
+            tabbrowserTabs.style.setProperty("--tab-transition", "none");
             requestAnimationFrame(() => {
                 tabAnimate = true;
                 requestAnimationFrame(() => {
                     if (tabAnimate) {
-                        tabbrowserTabs.style.setProperty('--tab-transition', '');
+                        tabbrowserTabs.style.setProperty("--tab-transition", "");
                     }
                 });
             });
@@ -654,12 +653,12 @@ queueMicrotask(() => {
         }
 
         if (!selectedTab || selectedTab.hasAttribute("pinned") || selectedTab.hasAttribute("hidden")) {
-            urlbarContainer.style.display = 'none';
+            urlbarContainer.style.display = "none";
             return;
         }
 
         let tabRect = selectedTab.getBoundingClientRect();
-        urlbarContainer.style.display = '';
+        urlbarContainer.style.display = "";
         urlbarContainer.style.width = `${tabRect.width}px`;
         urlbarContainer.style.height = `${tabRect.height}px`;
 
@@ -675,10 +674,10 @@ queueMicrotask(() => {
     }
 
     function updateSelectedTab() {
-        let newSelectedTab = tabbrowserTabs.querySelector('.tabbrowser-tab[selected]');
+        let newSelectedTab = tabbrowserTabs.querySelector(".tabbrowser-tab[selected]");
         if (newSelectedTab !== selectedTab) {
             selectedTab = newSelectedTab;
-            selectedTabCloseButton = selectedTab.querySelector('.tab-close-button');
+            selectedTabCloseButton = selectedTab.querySelector(".tab-close-button");
             selectedTabResizeObserver.disconnect();
             selectedTabResizeObserver.observe(selectedTab);
             updateSelectedTabPosition();
@@ -835,24 +834,24 @@ queueMicrotask(() => {
     let currentUidensity = null;
     let uidensity = null;
     let tabsPlaceHolder = document.createElement("span");
-    tabsPlaceHolder.style.display = 'none';
+    tabsPlaceHolder.style.display = "none";
     tabbrowserTabs.setAttribute("overflows", "false");
     function setUidensity() {
-        uidensity = document.documentElement.getAttribute('uidensity');
+        uidensity = document.documentElement.getAttribute("uidensity");
         switch (uidensity) {
-            case 'touch':
-                document.documentElement.setAttribute('uidensity', 'mac');
+            case "touch":
+                document.documentElement.setAttribute("uidensity", "mac");
                 //  fallthrough,
             case null:
-                if (currentUidensity !== 'separate') {
+                if (currentUidensity !== "separate") {
                     selectedTabResizeObserver.disconnect();
                     tabsArrowScrollBox.removeEventListener("scroll", delayedUpdateSelectedTabPosition);
-                    tabbrowserTabs.removeEventListener('TabSelect', updateSelectedTab);
+                    tabbrowserTabs.removeEventListener("TabSelect", updateSelectedTab);
                     tabsSizerResizeObserver.disconnect();
                     tabsSizerMutationObserver.disconnect();
                     setURLBarForwardsEventsToTab(false);
-                    urlbarContainer.style.cssText = '';
-                    tabbrowserTabs.style.cssText = '';
+                    urlbarContainer.style.cssText = "";
+                    tabbrowserTabs.style.cssText = "";
                     tabsScrollBox.style.borderRadius = "";
                     tabScrollUpButton.style.visibility = "";
                     tabScrollDownButton.style.visibility = "";
@@ -871,13 +870,13 @@ queueMicrotask(() => {
                     gBrowser.tabContainer.addEventListener("TabPinned", tabPinHideShowTabBar);
                     gBrowser.tabContainer.addEventListener("TabUnpinned", tabPinHideShowTabBar);
 
-                    currentUidensity = 'separate';
+                    currentUidensity = "separate";
                 }
                 break;
-            case 'compact':
-                document.documentElement.setAttribute('uidensity', 'mix');
+            case "compact":
+                document.documentElement.setAttribute("uidensity", "mix");
 
-                if (currentUidensity !== 'compact') {
+                if (currentUidensity !== "compact") {
                     Services.prefs.removeObserver("browser.toolbars.bookmarks.visibility", moveBookmarkBar);
                     urlbarSizerResizeObserver.disconnect();
                     urlbarSizerMutationObserver.disconnect();
@@ -885,11 +884,11 @@ queueMicrotask(() => {
                     gBrowser.tabContainer.removeEventListener("TabClose", tabClosingHideShowTabBar);
                     gBrowser.tabContainer.removeEventListener("TabPinned", tabPinHideShowTabBar);
                     gBrowser.tabContainer.removeEventListener("TabUnpinned", tabPinHideShowTabBar);
-                    urlbarContainer.style.cssText = '';
+                    urlbarContainer.style.cssText = "";
                     tabsScrollBox.style.borderRadius = "var(--tab-border-radius)";
 
                     tabbrowserTabs.after(tabsPlaceHolder);
-                    if (urlbarContainer.parentElement.matches('#wrapper-urlbar-container')) {
+                    if (urlbarContainer.parentElement.matches("#wrapper-urlbar-container")) {
                             urlbarContainer.parentElement.after(tabbrowserTabs);
                     } else {
                         urlbarContainer.after(tabbrowserTabs);
@@ -903,14 +902,14 @@ queueMicrotask(() => {
                     updateSelectedTab()
                     updateSelectedTabPosition();
                     tabsArrowScrollBox.addEventListener("scroll", delayedUpdateSelectedTabPosition);
-                    tabbrowserTabs.addEventListener('TabSelect', updateSelectedTab);
+                    tabbrowserTabs.addEventListener("TabSelect", updateSelectedTab);
                     tabsSizer();
                     tabsSizerResizeObserver.observe(navBar);
                     tabsSizerMutationObserver.observe(navBar, {subtree: true, childList: true, attributes: true});
                     hideShowTabBar(0);
                     setURLBarForwardsEventsToTab(true);
 
-                    currentUidensity = 'compact';
+                    currentUidensity = "compact";
                 }
                 break;
             default:
@@ -921,6 +920,6 @@ queueMicrotask(() => {
     setUidensity();
     (new MutationObserver(setUidensity)).observe(document.documentElement, {
         attributes: true,
-        attributeFilter: ['uidensity'],
+        attributeFilter: ["uidensity"],
     });
 });
