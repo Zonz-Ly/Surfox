@@ -337,7 +337,10 @@ queueMicrotask(() => {
             }
         }
         let restBarWidth = windowWidth - beforeBarWidth - afterBarWidth;
-        urlbarContainer.style.minWidth = (restBarWidth < urlbarWidth) ? urlbarWidth - 8 + "px" : "";
+        urlbarContainer.style.minWidth = 
+        (restBarWidth < urlbarWidth || navBarTarget.querySelector("#personal-bookmarks")) 
+        ? urlbarWidth - 8 + "px" 
+        : "";    
 
         let leftFlexibleSpaceCount = leftFlexibleSpaces.length;
         let rightFlexibleSpaceCount = rightFlexibleSpaces.length;
@@ -414,8 +417,10 @@ queueMicrotask(() => {
 
     function hideShowTabBar(minRequiredTabs = 1) {
         let tabsLength = tabbrowserTabs.querySelectorAll(".tabbrowser-tab:not([hidden])").length;
-        let canHideTabBar = tabStrip.childElementCount <= 1 && tabsLength <= minRequiredTabs;
-        canHideTabBar &= !document.documentElement.hasAttribute("customizing");
+        let canHideTabBar = 
+            tabStrip.childElementCount <= 1 &&
+            tabsLength <= minRequiredTabs &&
+            !document.documentElement.hasAttribute("customizing");
         tabBar.style.visibility = canHideTabBar ? "collapse" : "";
         let unpinnedTabs = tabbrowserTabs.querySelectorAll(".tabbrowser-tab:not([pinned], [hidden])").length;
         let canHideTabCloseButton = unpinnedTabs <= minRequiredTabs;
