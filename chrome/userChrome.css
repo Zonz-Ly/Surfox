@@ -200,6 +200,14 @@ tooltip {
 
 #nav-bar-customization-target {
     height: var(--urlbar-min-height) !important;
+    > #tabbrowser-tabs,
+    > #urlbar-container,
+    > #wrapper-urlbar-container {
+        flex: 80 80 41vw !important;
+    }
+    > #personal-bookmarks {
+        flex: 0 1 auto !important;
+    }
 }
 
 :root[tabsintitlebar] .browser-titlebar:-moz-window-inactive {
@@ -542,6 +550,18 @@ toolbarspring {
     display: none !important;
 }
 
+#navigator-toolbox {
+    #search-container {
+        padding-inline: var(--toolbarbutton-outer-padding) !important;
+        margin-inline: 0 !important;
+    }
+    #search-container, #wrapper-search-container {
+        width: 20.5vw !important;
+        max-width: 20.5vw !important;
+    }
+}
+
+
 /* Tabs */
 :root:not([uidensity="mix"]) {
     
@@ -801,6 +821,9 @@ toolbarspring {
         font-size: 12px !important;
         min-height: var(--tab-min-height) !important;
         padding-inline: var(--tab-overflow-pinned-tabs-width) 0 !important;
+        :root[customizing] & {
+            margin-inline-start: 0 !important;
+        }
     }
     
     #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab:not([pinned]) {
@@ -1060,6 +1083,11 @@ toolbarspring {
     /*  Fix Firefox's Confusing Lore  */
     color: var(--tab-selected-textcolor) !important;
 }
+
+#TabsToolbar #searchbar:not(:focus-within) {
+    border-color: transparent !important;
+}
+
 
 /* bookmark bar */
 
