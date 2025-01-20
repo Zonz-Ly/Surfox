@@ -281,9 +281,9 @@ queueMicrotask(() => {
             return;
         }
 
-        let windowWidth = navBar.clientWidth
-        urlbarContainer.style.minWidth = (windowWidth * 0.41 - 8) + 'px';
-        urlbarContainer.style.maxWidth = (windowWidth * 0.41 - 8) + 'px';
+        let windowWidth = navBar.clientWidth;
+        let urlbarWidth = windowWidth * 0.41;
+        urlbarContainer.style.maxWidth = urlbarWidth - 8 + 'px';
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
         let navBarTargetComputedStyle = window.getComputedStyle(navBarTarget);
@@ -304,6 +304,9 @@ queueMicrotask(() => {
                 } else if (isRight) {
                     rightFlexibleSpaces.push(element);
                 }
+                continue;
+            }
+            if (element.matches("splitter")) {
                 continue;
             }
             if (isLeft) {
@@ -333,6 +336,8 @@ queueMicrotask(() => {
                 afterBarWidth += element.clientWidth;
             }
         }
+        let restBarWidth = windowWidth - beforeBarWidth - afterBarWidth;
+        urlbarContainer.style.minWidth = (restBarWidth < urlbarWidth) ? urlbarWidth - 8 + 'px' : '';
 
         let leftFlexibleSpaceCount = leftFlexibleSpaces.length;
         let rightFlexibleSpaceCount = rightFlexibleSpaces.length;
@@ -396,7 +401,7 @@ queueMicrotask(() => {
 
         delayedUrlbarSizing = true;
         urlbarSizer();
-        queueMicrotask(() => {
+        requestAnimationFrame(() => {
             delayedUrlbarSizing = false;
         });
     }
@@ -460,10 +465,12 @@ queueMicrotask(() => {
             tabbrowserTabs.style.setProperty('--tab-max-width', '');
             tabbrowserTabs.style.marginLeft = '';
             tabbrowserTabs.style.marginRight = '';
+            tabScrollUpButton.style.visibility = '';
+            tabScrollDownButton.style.visibility = '';
             return;
         }
 
-        let windowWidth = navBar.clientWidth
+        let windowWidth = navBar.clientWidth;
         let leftFlexibleSpaces = [];
         let rightFlexibleSpaces = [];
         let navBarTargetComputedStyle = window.getComputedStyle(navBarTarget);
@@ -487,6 +494,9 @@ queueMicrotask(() => {
                 } else if (isRight) {
                     rightFlexibleSpaces.push(element);
                 }
+                continue;
+            }
+            if (element.matches("splitter")) {
                 continue;
             }
             if (isLeft) {
@@ -594,32 +604,16 @@ queueMicrotask(() => {
     }
     
     let delayedtabsSizer = false;
-    let delayedcustomizing = false;
     function delayedtabsSizerHandler() {
         if (delayedtabsSizer) {
             return;
         }
 
         delayedtabsSizer = true;
-        if (delayedcustomizing) {
-            tabsSizer();
-            requestAnimationFrame(() => {
-                delayedtabsSizer = false;
-            });
-        } else {
-            tabsSizer();
-            queueMicrotask(() => {
-                delayedtabsSizer = false;
-            });
-        }
-
-        if (document.documentElement.hasAttribute("customizing")) {
-            delayedcustomizing = true;
-        } else {
-            requestAnimationFrame(() => {
-                delayedcustomizing = false;
-            });
-        }
+        tabsSizer();
+        requestAnimationFrame(() => {
+            delayedtabsSizer = false;
+        });
     }
 
     let tabAnimate = true;
@@ -700,7 +694,7 @@ queueMicrotask(() => {
     
         delayedTabPositionUpdating = true;
         updateSelectedTabPosition();
-        queueMicrotask(() => {
+        requestAnimationFrame(() => {
             delayedTabPositionUpdating = false;
         });
     }
