@@ -210,7 +210,7 @@ tooltip {
     }
 }
 
-:root[tabsintitlebar] .browser-titlebar:-moz-window-inactive {
+:root:is([tabsintitlebar], [customtitlebar]) .browser-titlebar:-moz-window-inactive {
     opacity: 1 !important;
 }
 
@@ -218,7 +218,7 @@ tooltip {
     border-inline-start: none !important;
 }
 
-:root:not([macOSNativeFullscreen]):is([chromemargin], [inFullscreen]) #nav-bar > .titlebar-buttonbox-container {
+:root:not([macOSNativeFullscreen]):is([tabsintitlebar], [customtitlebar], [inFullscreen]) #nav-bar > .titlebar-buttonbox-container {
     display: flex !important;
 }
 
@@ -306,7 +306,7 @@ tooltip {
     }
 }
 
-:root[sizemode="normal"][tabsintitlebar] #navigator-toolbox {
+:root[sizemode="normal"]:is([tabsintitlebar], [customtitlebar]) #navigator-toolbox {
     /*  Windows has eaten the topmost pixel, now let's make it spit it out.  */
     @media (-moz-platform: windows) {
         padding-top: 1px !important;
@@ -483,7 +483,7 @@ tooltip {
 }
 
 @media (-moz-platform: windows) {
-    :root[uidensity]:is([tabsintitlebar], [inFullscreen]) #PanelUI-button {
+    :root[uidensity]:is([tabsintitlebar], [customtitlebar], [inFullscreen]) #PanelUI-button {
         padding-inline-end: 0 !important;
     }
 }
