@@ -48,11 +48,11 @@ Alternatively, try placing the “Bookmarks Toolbar Items” on the **tab bar** 
 In the “Customize Toolbar” page, click the “Tab layout” button in the lower-left corner to choose navigation bar layouts:  
 - **Separate (Narrow)** (default on Windows): Matches the vertical padding of Catalina and earlier; recommended for Catalina users or those enabling the title bar.  
 - **Separate** (default on macOS): Matches the navigation bar width of Big Sur and later. If resetting the toolbar to defaults on macOS, remember to reselect this option.  
-- **Compact** (Beta): Imitates the compact tab layout of Monterey and later (as shown below). This feature is under development and requires enabling via `about:config`. Official release is planned for version 2.0.  
+- **Compact**: Imitates the compact tab layout of Monterey and later (as shown below).  
 <img width="1112" alt="Compact tab layout" src="https://github.com/user-attachments/assets/bb3aa3fb-b6e3-4a19-900e-467ee4b8724e" />
 
 ### Some configurable `about:config` values (if set to `true`):
-- `browser.compactmode.show`: Display the “Compact” option in the “Tab layout” menu.
+- `userChrome.windowControls.macStyle`: Enable macOS-style left-side window controls on Windows.
 - `extensions.unifiedExtensions.enabled`: Show the unified extensions button (quite useful if you use extensions).
 - `userChrome.menuButton.enabled`: Show the menu button (Why not just use the menu bar instead? On macOS, it's natively built-in, and on Windows and Linux, it appears by pressing the Alt key).
 - `userChrome.urlbar.starButton.enabled`: Show the star button for bookmarks at the far right of the address bar (you can also access it by right-clicking on a blank area of the webpage).
@@ -110,11 +110,11 @@ Firefox 版本 128 及更高。
 在「自定义工具栏」页面左下角，点击「标签页布局」按钮，可以选择不同标签页的位置和导航栏宽度。
 - **单独（窄）**（Windows 下默认）：地址栏上下边距和 Catalina 以前一致，亦推荐 Catalina 以前的用户和启用标题栏的用户设置成这个。
 - **单独**（macOS 下默认）：导航栏宽度和 Big Sur 以上一致；如果你在 macOS 上恢复工具栏默认设置，记得重新选择它。
-- **紧凑**（Beta）：模仿 Monterey 以上的标签页布局的紧凑模式；目前还在施工中，需要通过 `about:config` 开启，2.0 会正式发佈。
+- **紧凑**：模仿 Monterey 以上的标签页布局的紧凑模式。
 
 
 ### 一些可以根据需要调整的 `about:config` 的值（设置为 `true` 时）：
-- `browser.compactmode.show` 在「标签页布局」菜单中显示「紧凑」选项
+- `userChrome.windowControls.macStyle` 在 Windows 下启用 macOS 风格的居左窗口控制按钮
 - `extensions.unifiedExtensions.enabled` 显示扩展按钮（如果你用扩展的话还是很有用的）
 - `userChrome.menuButton.enabled`: 显示菜单按钮（为什么不用菜单栏代替呢？macOS 原生自带，Windows 和 Linux 下按一下 alt 就会出现）
 - `userChrome.urlbar.starButton.enabled` 显示地址栏最右侧的星星收藏按钮（在网页空白处按右键就会有）
