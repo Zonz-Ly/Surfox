@@ -3,13 +3,14 @@
 Services.prefs.setBoolPref("svg.context-properties.content.enabled", true);
 Services.prefs.setBoolPref("layout.css.light-dark.enabled", true);
 Services.prefs.setBoolPref("layout.css.nesting.enabled", true);
-// Services.prefs.setBoolPref("browser.compactmode.show", true);
+Services.prefs.setBoolPref("browser.compactmode.show", true);
 Services.prefs.setBoolPref("browser.touchmode.auto", false);
 if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
     Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
     Services.prefs.setBoolPref("extensions.unifiedExtensions.enabled", false);
     Services.prefs.setBoolPref("userChrome.menuButton.enabled", false);
     Services.prefs.setBoolPref("userChrome.urlbar.starButton.enabled", false);
+    Services.prefs.setBoolPref("userChrome.windowControls.macStyle", false);
     if (navigator.platform.startsWith("Mac")) {
         Services.prefs.setIntPref("browser.uidensity", 2);
     }
