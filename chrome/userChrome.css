@@ -19,7 +19,6 @@
     --button-text-color-hover: var(--input-color) !important;
     --button-text-color-active: var(--input-color) !important;
     --button-text-color-disabled: var(--input-color) !important;
-    --toolbar-color: var(--input-color) !important;
     --in-content-page-color: var(--input-color) !important;
     --toolbar-field-color: light-dark( rgba(0, 0, 0, .72), rgb(255, 255, 255) ) !important;
     --toolbar-field-focus-color: var(--toolbar-field-color) !important;
@@ -238,7 +237,7 @@ tooltip {
 }
 
 @media (-moz-platform: windows) {
-    @media not (-moz-bool-pref: "userChrome.windowControls.macStyle") {
+    @media not (-moz-pref("userChrome.windowControls.macStyle")) {
         .titlebar-min {
             list-style-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='context-stroke' fill-opacity='context-stroke-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 6a.5.5 0 0 0-.5.5.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 0-.5-.5z'/%3E%3C/svg%3E") !important;
             @media (resolution > 1dppx) {
@@ -302,7 +301,7 @@ tooltip {
             }
         }
     }
-    @media (-moz-bool-pref: "userChrome.windowControls.macStyle") {
+    @media (-moz-pref("userChrome.windowControls.macStyle")) {
         .titlebar-buttonbox-container {
             order: -1 !important;
         }
@@ -548,19 +547,19 @@ tooltip {
     display: none !important;
 }
 
-@media not (-moz-bool-pref: "extensions.unifiedExtensions.enabled") {
+@media not (-moz-pref("extensions.unifiedExtensions.enabled")) {
     #unified-extensions-button {
         display: none !important;
     }
 }
 
-@media not (-moz-bool-pref: "userChrome.menuButton.enabled") {
+@media not (-moz-pref("userChrome.menuButton.enabled")) {
     #PanelUI-menu-button {
         display: none !important;
     }
 }
 
-@media not (-moz-bool-pref: "userChrome.urlbar.starButton.enabled") {
+@media not (-moz-pref("userChrome.urlbar.starButton.enabled")) {
     #star-button-box{
         display: none !important;
     }
@@ -580,7 +579,7 @@ tooltip {
 }
 
 @media (-moz-platform: windows) {
-    @media not (-moz-bool-pref: "userChrome.windowControls.macStyle") {
+    @media not (-moz-pref("userChrome.windowControls.macStyle")) {
         :root[uidensity]:is([tabsintitlebar], [customtitlebar], [inFullscreen]) #PanelUI-button {
             padding-inline-end: 0 !important;
         }
