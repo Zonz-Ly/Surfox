@@ -5,6 +5,8 @@ Services.prefs.setBoolPref("layout.css.light-dark.enabled", true);
 Services.prefs.setBoolPref("layout.css.nesting.enabled", true);
 Services.prefs.setBoolPref("browser.compactmode.show", true);
 Services.prefs.setBoolPref("browser.touchmode.auto", false);
+Services.prefs.setBoolPref("browser.urlbar.scotchBonnet.enableOverride", false);
+Services.prefs.setBoolPref("browser.tabs.groups.enabled", false);
 if (!Services.prefs.prefHasUserValue("userChrome.Surfox.firstRun")) {
     Services.prefs.setBoolPref("userChrome.Surfox.firstRun", true);
     Services.prefs.setBoolPref("extensions.unifiedExtensions.enabled", false);
