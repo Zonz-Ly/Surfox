@@ -1,4 +1,4 @@
-/*  Tested on Firefox 133.0.3  */
+/*  Tested on Firefox 137  */
 
 /*  Delete this text to get Firefox default text color (especially it will appear darker in light mode). */
 :root {
@@ -526,6 +526,23 @@ tooltip {
     .urlbar-input-container[pageproxystate="invalid"] & {
         display: none !important;
     }
+}
+
+
+#translations-button-locale {
+    display: none !important;
+}
+
+#translations-button-icon {
+    width: 17px !important;
+}
+
+#translations-button-circle-arrows {
+    margin-inline: 0 !important;
+}
+
+#translations-button[data-l10n-id="urlbar-translations-button-loading"] > #translations-button-icon {
+    display: none;
 }
 
 /* Buttons */
@@ -1377,4 +1394,13 @@ toolbarspring {
 
 .findbar-textbox {
     background-color: transparent !important;
+}
+
+/* vertical tabs */
+
+#toolbar-context-toggle-vertical-tabs {
+    display: none;
+}
+#sidebarRevampSeparator {
+    display: none;
 }
