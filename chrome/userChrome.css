@@ -456,13 +456,13 @@ tooltip {
     padding-inline: calc(var(--urlbar-icon-padding) + 3px) var(--urlbar-icon-padding) !important;
 }
 
-#identity-box[pageproxystate="valid"]:is(.notSecureText, .chromeUI, .extensionPage) > .identity-box-button {
-    &:hover:not([open]) {
-        background-color: var(--button-background-color-hover) !important;
-    }
-    &:is(:hover:active, [open]) {
-        background-color: var(--button-background-color-active) !important;
-    }
+#identity-box[pageproxystate="valid"] > .identity-box-button  {
+    background-color: transparent !important;
+    padding-inline: var(--urlbar-icon-padding) !important;
+}
+
+#identity-icon-label {
+    display: none;
 }
 
 #remote-control-box, #tracking-protection-icon-container, #notification-popup-box, .identity-box-button,
