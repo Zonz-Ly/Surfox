@@ -6,6 +6,7 @@ Services.prefs.setBoolPref("layout.css.nesting.enabled", true);
 Services.prefs.setBoolPref("browser.compactmode.show", true);
 Services.prefs.setBoolPref("browser.touchmode.auto", false);
 Services.prefs.setBoolPref("browser.urlbar.scotchBonnet.enableOverride", false);
+Services.prefs.setBoolPref("app.shield.optoutstudies.enabled", false);
 Services.prefs.setBoolPref("browser.tabs.groups.enabled", false);
 Services.prefs.setBoolPref("sidebar.revamp", false);
 Services.prefs.setBoolPref("sidebar.verticalTabs", false);
