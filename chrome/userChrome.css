@@ -102,7 +102,7 @@
 }
 
 menupopup:not(.toolbar-menupopup):not([placespopup="true"]) {
-    --panel-background: light-dark(#FAFAFA, #2D2D2D) !important;
+/*     --panel-background: light-dark(#FAFAFA, #2D2D2D) !important; */
     menu, menuitem {
         &:where([_moz-menuactive]:not([disabled="true"])) {
             background-color: var(--button-background-color-active) !important;
@@ -1201,6 +1201,14 @@ toolbarspring {
 
 #TabsToolbar #searchbar:not(:focus-within) {
     border-color: transparent !important;
+}
+
+#tabbrowser-tabs {
+  &[orient="horizontal"] {
+    &[positionpinnedtabs] > #tabbrowser-arrowscrollbox::part(scrollbox) {
+      padding-inline: 0 !important;
+    }
+  }
 }
 
 
