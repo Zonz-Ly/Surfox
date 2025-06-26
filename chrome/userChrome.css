@@ -159,12 +159,12 @@ tooltip {
         --toolbar-bgcolor: var(--toolbox-non-lwt-bgcolor-inactive) !important;
     }
     &[uidensity="mix"] {
-        --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .15), rgba(255, 255, 255, .19)) !important;
-        &:-moz-window-inactive {
-            --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .115), rgba(255, 255, 255, .27)) !important;
-        }
+        --toolbar-field-background-color: light-dark(#D7D7D7, #5C5C5C) !important;
         @media (-moz-windows-mica) {
-            --toolbar-bgcolor: transparent !important;
+            &:not(:-moz-window-inactive) {
+                --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .15), rgba(255, 255, 255, .19)) !important;
+                --toolbar-bgcolor: transparent !important;
+            }
         }
     }
     &:not([uidensity="mix"]) {
