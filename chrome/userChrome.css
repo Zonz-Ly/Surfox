@@ -1,4 +1,4 @@
-/*  Tested on Firefox 137  */
+/*  Tested on Firefox 140  */
 
 /*  Delete this text to get Firefox default text color (especially it will appear darker in light mode). */
 :root {
@@ -57,6 +57,9 @@
     --newtab-button-static-hover-background: light-dark(#F0F0F0, #434343) !important;
     --newtab-button-static-active-background: light-dark(#E3E3E3, #505050) !important;
     --toolbar-bgcolor: light-dark(#FDFDFD, #363636) !important;
+    @media (-moz-windows-mica) {
+        --toolbar-bgcolor: transparent !important;
+    }
     --input-bgcolor: light-dark(#FFFFFF, #434343) !important;
     --tabpanel-background-color: light-dark(#FDFDFD, #363636) !important;
     --newtab-background-color: var(--toolbar-bgcolor) !important;
@@ -159,7 +162,10 @@ tooltip {
         --toolbar-bgcolor: var(--toolbox-non-lwt-bgcolor-inactive) !important;
     }
     &[uidensity="mix"] {
-        --toolbar-field-background-color: light-dark(#D7D7D7, #5C5C5C) !important;
+        --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .15), rgba(255, 255, 255, .19)) !important;
+        &:-moz-window-inactive {
+            --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .115), rgba(255, 255, 255, .27)) !important;
+        }
     }
     &:not([uidensity="mix"]) {
         --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .05), rgba(0, 0, 0, .3)) !important;
@@ -603,8 +609,8 @@ tooltip {
     }
 }
 
-.toolbaritem-combined-buttons,
-.toolbaritem-menu-buttons {
+#navigator-toolbox .toolbaritem-combined-buttons,
+#navigator-toolbox .toolbaritem-menu-buttons {
     padding-inline: var(--toolbarbutton-outer-padding) !important;
     margin: 0 !important;
 }
@@ -1110,7 +1116,7 @@ toolbarspring {
         border-radius: 2px !important;
         align-self: center !important;
         box-sizing: border-box !important;
-        background-image: url(chrome://global/skin/icons/close-12.svg) !important;
+        background-image: url(resource://content-accessible/close-12.svg) !important;
         background-position: center;
         background-size: 10px 10px;
         background-repeat: no-repeat;
