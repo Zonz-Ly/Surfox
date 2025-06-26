@@ -1,4 +1,4 @@
-/*  Tested on Firefox 140  */
+/*  Tested on Firefox 137  */
 
 /*  Delete this text to get Firefox default text color (especially it will appear darker in light mode). */
 :root {
@@ -57,18 +57,15 @@
     --newtab-button-static-hover-background: light-dark(#F0F0F0, #434343) !important;
     --newtab-button-static-active-background: light-dark(#E3E3E3, #505050) !important;
     --toolbar-bgcolor: light-dark(#FDFDFD, #363636) !important;
-    @media (-moz-windows-mica) {
-        --toolbar-bgcolor: transparent !important;
-    }
     --input-bgcolor: light-dark(#FFFFFF, #434343) !important;
     --tabpanel-background-color: light-dark(#FDFDFD, #363636) !important;
     --newtab-background-color: var(--toolbar-bgcolor) !important;
     --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
     --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
-    --button-text-color-primary: var(--toolbar-bgcolor) !important;
-    --button-text-color-primary-hover: var(--toolbar-bgcolor) !important;
-    --button-text-color-primary-active: var(--toolbar-bgcolor) !important;
-    --button-text-color-primary-disabled: var(--toolbar-bgcolor) !important;
+    --button-text-color-primary: light-dark(#FDFDFD, #363636) !important;
+    --button-text-color-primary-hover: var(--button-text-color-primary) !important;
+    --button-text-color-primary-active: var(--button-text-color-primary) !important;
+    --button-text-color-primary-disabled: var(--button-text-color-primary) !important;
     --newtab-background-color-secondary: var(--input-bgcolor) !important;
     --arrowpanel-background: var(--input-bgcolor) !important;
     --arrowpanel-border-color: light-dark( rgba(0, 0, 0, .1185), rgba(255, 255, 255, .1194) ) !important;
@@ -165,6 +162,9 @@ tooltip {
         --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .15), rgba(255, 255, 255, .19)) !important;
         &:-moz-window-inactive {
             --toolbar-field-background-color: light-dark(rgba(0, 0, 0, .115), rgba(255, 255, 255, .27)) !important;
+        }
+        @media (-moz-windows-mica) {
+            --toolbar-bgcolor: transparent !important;
         }
     }
     &:not([uidensity="mix"]) {
