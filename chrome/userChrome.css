@@ -1,4 +1,4 @@
-/*  Tested on Firefox 137  */
+/*  Tested on Firefox 140  */
 
 /*  Delete this text to get Firefox default text color (especially it will appear darker in light mode). */
 :root {
@@ -147,6 +147,7 @@ tooltip {
     --tab-min-height: 28px !important;
     --tab-max-width: 100%;
     --tab-transition: min-width 200ms, max-width 200ms;
+    --tab-selected-shadow-size: 0px !important;
     @media (-moz-platform: windows) {
         /*  Make same as Windows 11  */
         --toolbox-non-lwt-bgcolor-inactive: light-dark(#F3F3F3, #202020) !important;
